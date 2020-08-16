@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_main_fragment_filter_item"
+        android:title=""
+        android:icon="@drawable/vector_drawable_filter"
+        app:showAsAction="always|collapseActionView"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/menu_main_fragment_clear_filter_item"
+        android:title="@string/menu_item_main_clear_filter_title"
+        android:icon="@drawable/vector_drawable_close"
+        app:showAsAction="always|collapseActionView"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/menu_main_preferences_item"
+        android:title="@string/menu_item_main_preference_title"
+        android:icon="@drawable/vector_drawable_settings"
+        app:showAsAction="never"
+        tools:ignore="AlwaysShowAction" />
+
+</menu>

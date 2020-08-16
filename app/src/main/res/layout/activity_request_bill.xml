@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+    <include layout="@layout/action_bar"/>
+
+    <android.support.v4.widget.NestedScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="36dp"
+                android:paddingRight="36dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edit_text_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="flagNoExtractUi|actionNext"
+                        android:maxLines="1"
+                        android:inputType="number"
+                        android:maxLength="13"
+                        android:text="+998"
+                        android:hint="@string/fragment_main_bill_input_phonenumber_hint"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edit_text_bill_sum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="flagNoExtractUi|actionNext"
+                        android:maxLines="1"
+                        android:inputType="number"
+                        android:hint="@string/fragment_main_bill_input_sum_hint"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
+
+                <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edit_text_bill_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="flagNoExtractUi|actionDone"
+                        android:maxLines="1"
+                        android:inputType="textVisiblePassword|textNoSuggestions"
+                        android:hint="@string/fragment_main_bill_comment_hint"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/button_sent_request"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorWhite"
+                    style="@style/Ui.Button"
+                    android:text="@string/fragment_main_bill_send_request_button_title"/>
+
+            <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/button_generate_qr_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/fragment_main_bill_generate_qrcode_title"
+                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"/>
+
+            <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/button_sent_nfs_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/fragment_main_bill_generate_ndefmessage_title"
+                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"/>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

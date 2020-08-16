@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="?dialogPreferredPadding"
+        android:paddingBottom="?dialogPreferredPadding">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/text_view_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/black_60"/>
+
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text_view_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:textColor="@color/colorPrimary"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/drawable_shape_gradient_view_90_background"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/text_view_check_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/text_view_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/black_60"
+                android:textSize="14sp"
+                tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/text_view_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:padding="5dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorAccent"
+                android:layout_alignParentRight="true"
+                android:textSize="16sp"
+                android:text="OK"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                tools:ignore="RelativeOverlap"
+        />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

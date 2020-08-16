@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+
+    <include layout="@layout/action_bar"
+    />
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_collapseMode="pin">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:paddingLeft="36dp"
+                android:paddingRight="36dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    app:srcCompat="@mipmap/icon_logo"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                >
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_text_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/icon_clear"
+                android:drawableRight="@drawable/icon_clear"
+                android:drawableTint="@color/colorBlack"
+                android:textSize="18sp"
+                android:lineSpacingExtra="4sp"
+                android:fontFamily="@font/lato"
+                android:hint="@string/activity_authorization_input_login_hint"
+                android:imeOptions="flagNoExtractUi|actionNext"
+                android:inputType="textVisiblePassword|textNoSuggestions"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="6dp"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:drawableEnd="@drawable/ic_visible_off"
+                    android:drawableRight="@drawable/ic_visible_off"
+                    android:drawableTint="@color/colorBlack"
+                        android:fontFamily="@font/lato"
+                        android:id="@+id/edit_text_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="flagNoExtractUi|actionDone"
+                        android:textSize="18sp"
+                        android:lineSpacingExtra="4sp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:hint="@string/activity_authorization_input_password_hint"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                    android:id="@+id/linear_layout_save_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                        android:id="@+id/check_box_save_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="2dp"
+                        android:checked="false"
+                        android:duplicateParentState="true"
+                        android:text="@string/activity_authorization_save_password_title"
+                        android:clickable="true"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:orientation="vertical" >
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/groupbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="36dp"
+        android:paddingRight="36dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClickPhone"
+            android:autoLink="phone"
+            >
+            <TextView
+                android:fontFamily="@font/lato"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:layout_gravity="center"
+                android:id="@+id/text_of_phone_support"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/name_of_phone_support" />
+            <TextView
+                android:fontFamily="@font/lato"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:layout_gravity="center"
+                android:id="@+id/text_of_phone_number"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/_998_71_207_80_80" />
+
+            <TextView
+                android:fontFamily="@font/lato"
+                android:paddingTop="4dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:layout_gravity="center"
+                android:id="@+id/text_of_version_number"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/version_number" />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_alignParentBottom="true"
+            android:id="@+id/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/activity_authorization_login_button_title"
+            android:textColor="@color/colorWhite"
+            style="@style/Ui.Button"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/activity_authorization_forgot_password_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/activity_authorization_forgot_password_button_title"
+            style="@style/Ui.Button.Transparent.ColorPrimaryDark"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/activity_authorization_registration_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:text="@string/activity_authorization_registration_button_title"
+                style="@style/Ui.Button.ColorPrimaryDark"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

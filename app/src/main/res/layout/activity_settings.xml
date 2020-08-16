@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include
+            layout="@layout/action_bar"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/fragment_main_preference_category_general_title"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/colorBlue"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+        />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+        >
+
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/vector_drawable_qrcode"
+                    tools:ignore="VectorDrawableCompat"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="75dp"
+                    android:orientation="vertical"
+            >
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:singleLine="true"
+                        android:text="@string/fragment_main_preference_merchant_qrcode_title"
+                        android:textSize="16sp"
+
+                />
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_80"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/fragment_main_preference_merchant_qrcode_subtitle"
+                        android:textSize="14sp"
+
+                />
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/view_qr_code"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/fragment_main_preference_category_account_settings_title"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/colorBlue"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+        />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+        >
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/vector_drawable_key"
+                    tools:ignore="VectorDrawableCompat"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="75dp"
+                    android:orientation="vertical"
+            >
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:singleLine="true"
+                        android:text="@string/fragment_main_preference_change_password_title"
+                        android:textSize="16sp"
+
+                />
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_80"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/fragment_main_preference_change_password_subtitle"
+                        android:textSize="14sp"
+
+                />
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/view_change_password"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+        >
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/vector_drawable_logout"
+                    tools:ignore="VectorDrawableCompat"
+            />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="75dp"
+                    android:orientation="vertical"
+            >
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:singleLine="true"
+                        android:text="@string/fragment_main_preference_logout_title"
+                        android:textSize="16sp"
+
+                />
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_80"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/fragment_main_preference_logout_subtitle"
+                        android:textSize="14sp"
+
+                />
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/view_log_out"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+        >
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_language"
+                    tools:ignore="VectorDrawableCompat"
+            />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="75dp"
+                    android:orientation="vertical"
+            >
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:singleLine="true"
+                        android:text="@string/fragment_main_preference_change_language_title"
+                        android:textSize="16sp"
+
+                />
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_80"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/fragment_main_preference_change_language_subtitle"
+                        android:textSize="14sp"
+
+                />
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/view_set_language"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                android:focusable="true" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

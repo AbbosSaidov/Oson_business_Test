@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_main_bottomnavigationview_bill_item"
+        android:title="@string/menu_item_bottomnavigationview_bill_title"
+        android:icon="@drawable/vector_drawable_bill"
+        app:showAsAction="always|collapseActionView"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/menu_main_bottomnavigationview_purchase_item"
+        android:title="@string/menu_item_bottomnavigationview_purchase_title"
+        android:icon="@drawable/vector_drawable_purchase"
+        app:showAsAction="always|collapseActionView"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/menu_main_bottomnavigationview_history_item"
+        android:title="@string/menu_item_bottomnavigationview_history_title"
+        android:icon="@drawable/vector_drawable_history"
+        app:showAsAction="always|collapseActionView"
+        tools:ignore="AlwaysShowAction" />
+    <item
+        android:id="@+id/menu_item_bottomnavigationview_settings_item"
+        android:title="@string/menu_item_bottomnavigationview_settings"
+        android:icon="@drawable/vector_drawable_settings"
+        app:showAsAction="always|collapseActionView"
+        tools:ignore="AlwaysShowAction" />
+
+</menu>

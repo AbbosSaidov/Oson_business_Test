@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="340dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="?dialogPreferredPadding">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialogfragment_bill_history_filter_title_merchant_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:textColor="@color/black_90"
+                android:text="@string/dialogfragment_main_bill_purchase_filter_choose_merchant_title"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"/>
+
+        <View
+                android:id="@+id/dialogfragment_bill_history_filter_stroke_first"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/drawable_shape_gradient_view_90_background"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialogfragment_bill_history_filter_title_uid_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:textColor="@color/black_90"
+                android:text="@string/dialogfragment_main_bill_purchase_filter_choose_phonenumber_title"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+            <android.support.v7.widget.AppCompatCheckedTextView
+                    android:id="@+id/text_view_check_number"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_weight="5"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/dialogfragment_main_bill_purchase_filter_choose_phonenumber_tap_to_select_hint"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/image_button_clear_number"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/vector_drawable_close_circle"
+                    style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                    tools:ignore="VectorDrawableCompat"/>
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/dialogfragment_bill_history_filter_stroke_second"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/drawable_shape_gradient_view_90_background"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialogfragment_bill_history_filter_title_from_date_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:textColor="@color/black_90"
+                android:text="@string/dialogfragment_main_bill_purchase_filter_choose_date_from_title"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+            <android.support.v7.widget.AppCompatCheckedTextView
+                    android:id="@+id/text_view_check_from_date"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_weight="5"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/dialogfragment_main_bill_purchase_filter_choose_date_from_tap_to_select_hint"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/image_button_clear_from_date"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/vector_drawable_close_circle"
+                    style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                    tools:ignore="VectorDrawableCompat"/>
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/dialogfragment_bill_history_filter_stroke_third"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/drawable_shape_gradient_view_90_background"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialogfragment_bill_history_filter_title_to_date_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:textColor="@color/black_90"
+                android:text="@string/dialogfragment_main_bill_purchase_filter_choose_date_to_title"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="6">
+
+            <android.support.v7.widget.AppCompatCheckedTextView
+                    android:id="@+id/text_view_check_to_date"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_weight="5"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/dialogfragment_main_bill_purchase_filter_choose_date_to_tap_to_select_hint"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/image_button_clear_to_date"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/vector_drawable_close_circle"
+                    style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                    tools:ignore="VectorDrawableCompat"/>
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/dialogfragment_bill_history_filter_stroke_fourth"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/drawable_shape_gradient_view_90_background"/>
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
+            <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/text_view_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:text="@string/cancel"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    tools:ignore="RelativeOverlap"
+            />
+
+            <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/text_view_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_alignParentRight="true"
+                    android:textSize="16sp"
+                    android:text="@string/ok"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    tools:ignore="RelativeOverlap"
+            />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

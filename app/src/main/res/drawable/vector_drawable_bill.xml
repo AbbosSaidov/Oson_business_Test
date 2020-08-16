@@ -1,0 +1,8 @@
+<!-- drawable/close.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path android:fillColor="#fff" android:pathData="M 6 2 C 5.476563 2 4.941406 2.183594 4.5625 2.5625 C 4.183594 2.941406 4 3.476563 4 4 L 4 20 C 4 20.523438 4.183594 21.058594 4.5625 21.4375 C 4.941406 21.816406 5.476563 22 6 22 L 18 22 C 18.523438 22 19.058594 21.816406 19.4375 21.4375 C 19.816406 21.058594 20 20.523438 20 20 L 20 4 C 20 3.476563 19.816406 2.941406 19.4375 2.5625 C 19.058594 2.183594 18.523438 2 18 2 Z M 6 4 L 18 4 L 18 20 L 6 20 Z M 8 7 L 8 9 L 16 9 L 16 7 Z M 8 12 L 8 14 L 12 14 L 12 12 Z M 14 12 L 14 14 L 16 14 L 16 12 Z M 8 15 L 8 17 L 12 17 L 12 15 Z M 14 15 L 14 17 L 16 17 L 16 15 Z " />
+</vector>
