@@ -105,6 +105,7 @@ class LoginActivity : MyActivity() {
                 // TODO Auto-generated method stub
             }
         })
+        //
         passwordEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
