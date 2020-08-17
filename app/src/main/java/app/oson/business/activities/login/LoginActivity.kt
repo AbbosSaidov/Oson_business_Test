@@ -38,7 +38,7 @@ class LoginActivity : MyActivity() {
         titleTextView.setText(R.string.authorization_title)
 
         loginEditText = findViewById(R.id.edit_text_login)
-        loginEditText.onRightDrawableClicked { it.text.clear() }
+        loginEditText.onRightDrawableClicked { it.text.clear()}
 
 
         passwordEditText = findViewById(R.id.edit_text_password)
@@ -214,7 +214,7 @@ class LoginActivity : MyActivity() {
                         val userData = response
                         Log.i("qwerty", "asd"+response.logged)
                         if(response.logged){
-                            preferences.setUserData(userData);
+                            preferences.setUserData(userData)
 
                             if (savePasswordCheckBox.isChecked == true)
                                 preferences.saveLoginData(loginData)
@@ -232,7 +232,6 @@ class LoginActivity : MyActivity() {
                                     "Введен неверный логин или пароль", Toast.LENGTH_SHORT).show()
 
                         }
-
                     }
                 })
         }

@@ -46,7 +46,7 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
         preferences = Preferences(applicationContext)
     }
 
-    override fun setContentView(layoutResID: Int) {
+    override fun setContentView(layoutResID: Int){
         super.setContentView(layoutResID)
 
 

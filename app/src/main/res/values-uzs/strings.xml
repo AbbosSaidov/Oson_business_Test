@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OsonBusiness</string>
+    <string name="action_settings">Tarix</string>
+    <string name="settings">Sozlamalar</string>
+
+    <string name="base_check_holder">Chek %1$d</string>
+    <string name="base_bill_holder">Hisob %1$d</string>
+
+    <string name="activity_select_language_title">Tilni tanlash</string>
+
+    <string name="activity_select_language_hint">O\'z tilingizni tanlang</string>
+    <string name="activity_select_language_russian">Русский</string>
+    <string name="activity_select_language_uzbek">O\'zbekcha</string>
+    <string name="activity_select_language_english">English</string>
+
+    <string name="authorization_title">Kirish</string>
+    <string name="activity_authorization_input_login_hint">Login</string>
+    <string name="activity_authorization_input_password_hint">Parol</string>
+    <string name="activity_authorization_save_password_title">Parolni saqlash</string>
+    <string name="activity_authorization_login_button_title">Kirish</string>
+    <string name="activity_authorization_registration_button_title">Ro\'yxatdan o\'tish</string>
+    <string name="activity_authorization_forgot_password_button_title">Parolni unutdingizmi?</string>
+
+    <string name="activity_registration_title">Ro\'yxatdan o\'tish</string>
+    <string name="activity_registration_input_company_name_hint">Kompaniya nomi</string>
+    <string name="activity_registration_input_settlement_account_hint">Hisob raqami</string>
+    <string name="activity_registration_input_vatin_hint">INN</string>
+    <string name="activity_registration_input_login_hint">Login</string>
+    <string name="activity_registration_input_password_hint">Parol</string>
+    <string name="activity_registration_input_confirm_password_hint">Parolni takrorlang</string>
+    <string name="activity_registration_continue_button_hint">Davom etish</string>
+
+    <string name="dialogfragment_error_network_connection_title">Bog\'lanishda xato</string>
+    <string name="dialogfragment_error_network_connection_message">Serverga ulanib bo\'lmadi. Internet bilan aloqani tekshiring va qaytadan urinib ko\'ring.</string>
+    <string name="dialogfragment_error_unknown_title">Noma\'lum xatolik</string>
+    <string name="dialogfragment_error_unknown_message">Noma\'lum xatolik yuz berdi, keyinroq qayta urinib ko\'ring.</string>
+
+    <string name="dialogfragment_authorization_unknown_error_during_load_title">Noma\'lum xatolik</string>
+    <string name="dialogfragment_authorization_unknown_error_during_load_message">Yuklab olishda noma\'lum xatolik yuz berdi, keyinroq qayta urinib ko\'ring.</string>
+
+    <string name="dialogfragment_registration_company_name_empty">Kompaniya nomi bo‘sh bo‘lishi mumkin emas</string>
+    <string name="dialogfragment_registration_settlement_account_wrong_length">Hisob raqami uzunligi noto‘g‘ri</string>
+    <string name="dialogfragment_registration_vatid_wrong_length">INN raqami uzunligi noto‘g‘ri</string>
+    <string name="dialogfragment_registration_login_empty">Login bo\'sh bo\'lishi mumkin emas</string>
+    <string name="dialogfragment_registration_password_empty">Parol bo\'sh bo\'lishi mumkin emas</string>
+    <string name="dialogfragment_registration_confirm_password_empty">Takroriy parol bo\'sh bo\'lishi mumkin emas</string>
+    <string name="dialogfragment_registration_confirm_password_not_equals">Takroriy parol yuqoridagi parolga mos kelmaydi</string>
+
+    <string name="dialogfragment_main_filter_action_on_loading_title">Yuklanmoqda</string>
+    <string name="dialogfragment_main_filter_action_on_loading_bill_message">Iltimos, hisoblar yuklanishini kuting</string>
+    <string name="dialogfragment_main_filter_action_on_loading_purchase_message">Iltimos, xaridlar ro\'yxati yuklanishini kuting</string>
+    <string name="dialogfragment_main_filter_action_on_empty_title">Ro\'yxat bo\'sh</string>
+    <string name="dialogfragment_main_filter_action_on_empty_message">Bo\'sh ro\'yxatni filtrlab bo\'lmaydi</string>
+    <string name="dialogfragment_main_filter_action_on_error_title">Xatolik</string>
+    <string name="dialogfragment_main_filter_action_on_error_message">Iltimos, ma\'lumotlarni yuklang va qayta urinib ko\'ring</string>
+
+    <string name="dialogfragment_main_bill_request_phonenumber_empty">Telefon raqami 13 ta raqamdan iborat bo\'lishi kerak</string>
+    <string name="dialogfragment_main_bill_request_sum_empty">Summa bo‘sh bo‘lishi mumkin emas</string>
+    <string name="dialogfragment_main_bill_request_sum_must_be_more">Summa %1$dan katta bo\'lishi kerak</string>
+    <string name="dialogfragment_main_bill_request_sum_must_be_less">Summa %1$dan kam bo\'lishi kerak</string>
+    <string name="dialogfragment_main_bill_request_comment_empty">Izoh bo\'sh bo\'lishi kerak emas</string>
+    <string name="dialogfragment_main_bill_request_data_nulled">Iltimos, sozlamalar bo\'limidan NFC-ni yoqing</string>
+
+    <string name="dialogfragment_main_bill_request_nfc_disabled">Iltimos, sozlamalar bo\'limidan NFC-ni yoqing</string>
+    <string name="dialogfragment_main_bill_request_android_beam_disabled">Boshqa Android qurilmalarga ulanish uchun iltimos, sozlamalar bo\'limida Android Beam-ni yoqing</string>
+
+    <string name="dialogfragment_main_bill_request_post_success_title">Muvaffaqiyatli</string>
+    <string name="dialogfragment_main_bill_request_post_success_message_with_nfc">% 1 $ ga so\'rov muvaffaqiyatli yuborildi. Siz hisob ma\'lumotlarini QR kod yoki NFC orqali yuborishingiz ham mumkin.</string>
+    <string name="dialogfragment_main_bill_request_post_success_message_without_nfc">% 1 $ ga so\'rov muvaffaqiyatli yuborildi. Shuningdek, siz hisob ma\'lumotlarini QR kod orqali yuborishingiz mumkin.</string>
+    <string name="dialogfragment_main_bill_request_post_success_message_sended_ndefmessage_nfc">Ma\'lumotlar NFC orqali muvaffaqiyatli yuborildi.</string>
+
+    <string name="dialogfragment_main_bill_request_post_phonenumber_not_found_title">Xatolik</string>
+    <string name="dialogfragment_main_bill_request_post_phonenumber_not_found_message">Siz kiritgan telefon raqam tizimda topilmadi, iltimos, boshqasini kiriting.</string>
+
+    <string name="dialogfragment_main_bill_request_generated_qrcode_title">Hisobni to\'lash uchun telefoningiz \ n kamerasini QR kodga to\'g\'rilang</string>
+    <string name="dialogfragment_main_bill_request_generated_ndefmessage_title">Hisobni to\'lash uchun telefoningizni NFC moduliga yaqinlashtiring</string>
+
+    <string name="dialogfragment_main_purchase_request_field_empty">Iltimos% 1 $ s kiriting</string>
+    <string name="dialogfragment_main_purchase_request_field_incorrect_phonenumber">Telefon raqamini to‘g‘ri tanlang</string>
+    <string name="dialogfragment_main_purchase_request_cardnumber_empty">Karta raqami bo‘sh bo‘lishi mumkin emas</string>
+    <string name="dialogfragment_main_purchase_request_cardnumber_wrong_length">Karta raqami 16 ta raqamdan iborat bo\'lishi kerak</string>
+    <string name="dialogfragment_main_purchase_request_card_expiration_date_empty">Karta amal qilish muddati bo‘sh bo‘lishi mumkin emas</string>
+    <string name="dialogfragment_main_purchase_request_card_expiration_date_wrong_length">Karta amal qilish muddatu 4 ta raqamdan iborat bo\'lishi kerak</string>
+    <string name="dialogfragment_main_purchase_request_amount_empty">Summa bo‘sh bo‘lishi mumkin emas</string>
+    <string name="dialogfragment_main_purchase_request_amount_wrong_min_amount_uzs">Summa % 1 $ dan ko\'proq bo\'lishi kerak</string>
+    <string name="dialogfragment_main_purchase_request_amount_wrong_max_amount_uzs">Summa % 1 $ dan kamroq bo\'lishi kerak</string>
+    <string name="dialogfragment_main_purchase_request_amount_wrong_min_amount_usd">Summa $% 1 $ s dan katta bo‘lishi kerak</string>
+    <string name="dialogfragment_main_purchase_request_amount_wrong_max_amount_usd">Summa $% 1 $ s dan kichik bo‘lishi kerak</string>
+
+    <string name="dialogfragment_main_purchase_request_wrong_fields">Noto\'g\'ri ma\'lumotlar kiritildi, iltimos, ularning to\'g\'riligini tekshiring</string>
+
+    <string name="dialogfragment_main_purchase_request_card_not_found">Karta topilmadi, kiritilgan karta raqami to\'g\'ri ekanligini tekshiring</string>
+    <string name="dialogfragment_main_purchase_request_confirmation_wrong_smscode"> Noto\'g\'ri SMS kod kiritildi. Iltimos, tekshirib qayta kiriting </string>
+    <string name="dialogfragment_main_purchase_request_confirmation_not_enough_amount">Kartada to\'lovni amalga oshirish uchun mablag yetarli emas, iltimos, boshqa karta raqamini kiriting</string>
+
+    <string name="dialogfragment_main_purchase_request_confirmation_success_title">To\'lov yakunlandi</string>
+    <string name="dialogfragment_main_purchase_request_confirmation_success_message">To\'lov muvaffaqiyatli amalga oshirildi</string>
+
+    <string name="dialogfragment_main_purchase_request_confirmation_unknown_error_title">Noma\'lum xatolik</string>
+    <string name="dialogfragment_main_purchase_request_confirmation_unknown_error_message">Произошла неизвестная ошибка, пожалуйста попробуйте попытку позже</string>
+
+    <string name="dialogfragment_main_purchase_request_waiting_smscode_title">Подтверждение</string>
+    <string name="dialogfragment_main_purchase_request_waiting_smscode_message">Пожалуйста введите SMS-код, который был отправлен на номер %1$s</string>
+    <string name="dialogfragment_main_purchase_request_waiting_smscode_hint">SMS-код</string>
+    <string name="dialogfragment_main_purchase_request_waiting_smscode_empty">SMS-код не может быть пустым</string>
+
+    <string name="dialogfragment_main_bill_purchase_filter_choose_merchant_title">Выберите поставщика</string>
+    <string name="dialogfragment_main_bill_purchase_filter_choose_phonenumber_title">Выбор номера телефона</string>
+    <string name="dialogfragment_main_bill_purchase_filter_choose_phonenumber_tap_to_select_hint">Нажмите, чтобы выбрать</string>
+    <string name="dialogfragment_main_bill_purchase_filter_choose_date_from_title">Выбор начала даты фильтрации</string>
+    <string name="dialogfragment_main_bill_purchase_filter_choose_date_from_tap_to_select_hint">Нажмите, чтобы выбрать</string>
+    <string name="dialogfragment_main_bill_purchase_filter_choose_date_to_title">Выбор конец даты фильтрации</string>
+    <string name="dialogfragment_main_bill_purchase_filter_choose_date_to_tap_to_select_hint">Нажмите, чтобы выбрать</string>
+
+    <string name="dialogfragment_main_bill_purchase_filter_start_from_date_holder">Начать с %1$s</string>
+    <string name="dialogfragment_main_bill_purchase_filter_end_to_date_holder">Завершить к %1$s</string>
+
+    <string name="dialogfragment_main_preferences_old_password_empty">Пожалуйста введите текущий пароль</string>
+    <string name="dialogfragment_main_preferences_new_password_empty">Пожалуйста введите новый пароль</string>
+    <string name="dialogfragment_main_preferences_confirm_new_password_empty">Пожалуйста введите новый пароль еще раз</string>
+    <string name="dialogfragment_main_preferences_confirm_new_password_not_equals">Повторный пароль не соответствует введенному паролю выше</string>
+
+    <string name="dialogfragment_main_preferences_current_password_doesnt_match">Вы ввели неверный текущий пароль, пожалуйста попробуйте снова</string>
+    <string name="dialogfragment_main_preferences_new_password_success">Пароль успешно изменен</string>
+
+    <string name="dialogfragment_main_preferences_logout_message">Вы действительно хотите выйти из системы?</string>
+
+    <string name="fragment_main_bill_input_phonenumber_hint">Введите номер телефона</string>
+    <string name="fragment_main_bill_input_sum_hint">Введите сумму</string>
+    <string name="fragment_main_bill_comment_hint">Введите комментарий</string>
+    <string name="fragment_main_bill_send_request_button_title">Отправить запрос</string>
+    <string name="fragment_main_bill_generate_qrcode_title">Сгенерировать QR-код</string>
+    <string name="fragment_main_bill_generate_ndefmessage_title">Отправить данные по NFC</string>
+
+    <string name="fragment_main_purchase_input_cardnumber_hint">Введите номер карты</string>
+    <string name="fragment_main_purchase_input_card_expire_date_hint">Введите срок действия карты</string>
+    <string name="fragment_main_purchase_send_purchase_button_title">Оплатить</string>
+
+    <string name="fragment_main_history_title">История</string>
+
+    <string name="fragment_main_history_bill">Счета</string>
+    <string name="fragment_main_history_purchase">Оплаты</string>
+
+    <string name="fragment_main_preference_category_general_title">Основное</string>
+    <string name="fragment_main_preference_category_account_settings_title">Настройки аккаунта</string>
+
+    <string name="fragment_main_preference_merchant_qrcode_title">Ваш QR-код</string>
+    <string name="fragment_main_preference_merchant_qrcode_subtitle">Выберите для показа вашего QR-кода</string>
+    <string name="fragment_main_preference_change_language_title">Выбор языка</string>
+    <string name="fragment_main_preference_change_language_subtitle">Выберите для изменения языка</string>
+    <string name="fragment_main_preference_change_password_title">Смена пароля</string>
+    <string name="fragment_main_preference_change_password_subtitle">Выберите для изменения текущего пароля</string>
+    <string name="fragment_main_preference_logout_title">Выход</string>
+    <string name="fragment_main_preference_logout_subtitle">Выберите для выхода из приложения</string>
+
+    <string name="fragment_change_password_input_old_password_hint">Текущий пароль</string>
+    <string name="fragment_change_password_input_new_password_hint">Новый пароль</string>
+    <string name="fragment_change_password_input_confirm_new_password_hint">Повторите новый пароль</string>
+    <string name="fragment_change_password_change_password_button_hint">Изменить пароль</string>
+
+    <string name="menu_item_main_bill_filter">Фильтр по счетам</string>
+    <string name="menu_item_main_purchase_filter">Фильтр по оплатам</string>
+    <string name="menu_item_main_clear_filter_title">Очистить результаты</string>
+    <string name="menu_item_main_preference_title">Настройки</string>
+
+    <string name="menu_item_bottomnavigationview_settings">Настройки</string>
+    <string name="menu_item_bottomnavigationview_bill_title">Выставить</string>
+    <string name="menu_item_bottomnavigationview_purchase_title">Оплата</string>
+    <string name="menu_item_bottomnavigationview_history_title">История</string>
+
+    <string name="viewholder_history_bill_empty">Список счетов в данное время пуст</string>
+    <string name="viewholder_history_bill_filter_empty">Список счетов по фильтру в данное время пуст</string>
+    <string name="viewholder_history_purchase_empty">Список покупок в данное время пуст</string>
+    <string name="viewholder_history_purchase_filter_empty">Список покупок по фильтру в данное время пуст</string>
+
+    <string name="viewholder_item_unknown_field">Неизвестно</string>
+
+    <string name="all_merchant">Все поставщики</string>
+
+    <string name="cancel">ОТМEНА</string>
+    <string name="ok">ОК</string>
+    <string name="start_date">Начать с </string>
+    <string name="finish_date">Завершить к </string>
+    <string name="search">Search...</string>
+    <string name="name_of_phone_support">Телефон службы поддержки</string>
+    <string name="_998_71_207_80_80">+998 71 207 80 80</string>
+    <string name="version_number">Версия:1.1.0</string>
+    <string name="fragment_change_language">Язык</string>
+
+</resources>

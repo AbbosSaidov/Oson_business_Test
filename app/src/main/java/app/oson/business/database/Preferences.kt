@@ -12,6 +12,7 @@ class Preferences(context: Context) {
 
     private val LOGIN_DATA = "login_data";
     private val SAVE_LOGIN = "save_login"
+    private val Language_data = "language_data"
     var context: Context
     internal var sharedPreferences: SharedPreferences
 
@@ -40,7 +41,7 @@ class Preferences(context: Context) {
     }
 
     fun saveLoginData(loginData: LoginData?) {
-        if (loginData != null) {
+        if (loginData != null){
             val str = Gson().toJson(loginData);
             prefs.edit().putString(SAVE_LOGIN, str).commit();
         } else{
@@ -49,14 +50,30 @@ class Preferences(context: Context) {
     }
 
     fun getLoginData(): LoginData? {
-
         val str = prefs.getString(SAVE_LOGIN, null);
 
         if (str != null) {
             val l = Gson().fromJson(str, LoginData::class.java);
             return l;
         } else
-            return null;
+            return null
+    }
+
+    fun saveLangData(langData: String?) {
+        if (langData != null){
+            prefs.edit().putString(Language_data, langData).commit()
+        } else{
+            prefs.edit().remove(Language_data).commit()
+        }
+    }
+
+    fun getLangData(): String? {
+        val str = prefs.getString(Language_data, null);
+
+        if (str != null) {
+            return str
+        } else
+            return null
     }
 
     companion object {

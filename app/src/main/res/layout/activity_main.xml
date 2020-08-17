@@ -75,15 +75,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/tab_layout"
-                android:layout_above="@id/bottom_navigation_view"
-        />
-
+                android:layout_above="@id/bottom_navigation_view"/>
 
         <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="@drawable/drawable_shape_gradient_view_90_background"/>
-
         <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
@@ -102,6 +99,7 @@
                 android:layout_height="?actionBarSize"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorPrimary"
+                app:labelVisibilityMode="labeled"
                 app:itemIconTint="@drawable/drawable_selector_bottomnavigationview_tint"
                 app:itemTextColor="@drawable/drawable_selector_bottomnavigationview_tint"
                 app:menu="@menu/menu_main_fragment_bottomnavigationview"/>

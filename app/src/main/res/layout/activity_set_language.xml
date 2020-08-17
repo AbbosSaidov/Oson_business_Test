@@ -49,7 +49,7 @@
                     android:layout_height="40dp"
                     android:padding="5dp"
                     app:srcCompat="@drawable/ic_language_ckeck"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     tools:ignore="VectorDrawableCompat"/>
             </RelativeLayout>
 
