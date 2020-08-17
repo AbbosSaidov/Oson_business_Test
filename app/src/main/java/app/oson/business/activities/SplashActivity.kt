@@ -2,36 +2,35 @@ package app.oson.business.activities
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.DisplayMetrics
 import android.view.View
 import app.oson.business.R
 import app.oson.business.activities.login.LoginActivity
 import java.util.*
 
-class SplashActivity : MyActivity() {
+class SplashActivity : MyActivity(){
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         setLanguage()
+
         Handler(Looper.getMainLooper()).postDelayed({
 
             login()
 
-        }, 1500);
+        }, 1500)
 
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View?){
 
     }
 
-    override fun setupActionBar() {
+    override fun setupActionBar(){
 
     }
 
@@ -67,7 +66,7 @@ class SplashActivity : MyActivity() {
         }*/
     }
     fun setLanguage(){
-        if(preferences.getLangData()==""||preferences.getLangData()==null){
+        if(preferences.getLangData()=="" || preferences.getLangData()==null){
             val locale2 = Locale("")
             Locale.setDefault(locale2)
 
