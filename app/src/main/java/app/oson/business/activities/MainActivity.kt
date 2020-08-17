@@ -70,7 +70,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         transaction!!.commit()
 
 
-
+//,ll,l,
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
         bottomNavigationView.selectedItemId = R.id.menu_main_bottomnavigationview_history_item
