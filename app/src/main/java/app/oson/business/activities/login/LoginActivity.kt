@@ -179,18 +179,18 @@ class LoginActivity : MyActivity() {
             return false
         }
 
-        if (loginEditText.text.toString().isEmpty()) {
+        if (loginEditText.text.toString().isEmpty()){
 
             Toast.makeText(this@LoginActivity, "Parolni kiriting!", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        return true;
+        return true
     }
 
     lateinit var loginData: LoginData
 
-    fun login() {
+    fun login(){
 
         if (checkLoginData()) {
             loginData = LoginData()

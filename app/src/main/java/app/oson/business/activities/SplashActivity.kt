@@ -10,10 +10,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import app.oson.business.R
 import app.oson.business.activities.login.LoginActivity
-import app.oson.business.models.UserData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 class SplashActivity : MyActivity() {
@@ -72,19 +68,25 @@ class SplashActivity : MyActivity() {
     }
     fun setLanguage(){
         if(preferences.getLangData()==""||preferences.getLangData()==null){
-            val myLocale = Locale("")
-            val res: Resources = resources
-            val dm: DisplayMetrics = res.getDisplayMetrics()
-            val conf: Configuration = res.getConfiguration()
-            conf.locale = myLocale
-            res.updateConfiguration(conf, dm)
+            val locale2 = Locale("")
+            Locale.setDefault(locale2)
+
+            val config2 = Configuration()
+            config2.locale = locale2
+
+            baseContext.resources.updateConfiguration(
+                config2, baseContext.resources.displayMetrics
+            )
         }else{
-            val myLocale = Locale(preferences.getLangData())
-            val res: Resources = resources
-            val dm: DisplayMetrics = res.getDisplayMetrics()
-            val conf: Configuration = res.getConfiguration()
-            conf.locale = myLocale
-            res.updateConfiguration(conf, dm)
+            val locale2 = Locale(preferences.getLangData())
+            Locale.setDefault(locale2)
+
+            val config2 = Configuration()
+            config2.locale = locale2
+
+            baseContext.resources.updateConfiguration(
+                config2, baseContext.resources.displayMetrics
+            )
         }
     }
 

@@ -1,11 +1,8 @@
 package app.oson.business.activities.login
 
-import android.content.Intent
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
 import android.support.v7.widget.AppCompatImageView
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import app.oson.business.R
@@ -68,16 +65,17 @@ class SetLanguage : MyActivity() {
         }
     }
 
-    fun setLocale(lang: String?) {
-        val myLocale = Locale(lang)
-        val res: Resources = resources
-        val dm: DisplayMetrics = res.getDisplayMetrics()
-        val conf: Configuration = res.getConfiguration()
-        conf.locale = myLocale
-        res.updateConfiguration(conf, dm)
+    fun setLocale(lang: String?){
+        val locale2 = Locale(lang)
+        Locale.setDefault(locale2)
 
-        //val refresh = Intent(this, SetLanguage::class.java)
-        // startActivity(refresh)
+        val config2 = Configuration()
+        config2.locale = locale2
+
+        baseContext.resources.updateConfiguration(
+            config2, baseContext.resources.displayMetrics
+        )
+
         finish()
     }
     fun setVisible(lang:String?){
