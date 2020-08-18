@@ -4,8 +4,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent">
 
-    <include layout="@layout/action_bar"
-    />
+    <include layout="@layout/action_bar"/>
 
     <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -42,9 +41,9 @@
                 android:id="@+id/edit_text_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/icon_clear"
-                android:drawableRight="@drawable/icon_clear"
-                android:drawableTint="@color/colorBlack"
+                android:drawableEnd="@drawable/ic_clear_text_icon"
+                android:drawableRight="@drawable/ic_clear_text_icon"
+                android:drawableTint="@color/colorAccent"
                 android:textSize="18sp"
                 android:lineSpacingExtra="4sp"
                 android:fontFamily="@font/lato"
@@ -66,7 +65,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:drawableEnd="@drawable/ic_visible_off"
                     android:drawableRight="@drawable/ic_visible_off"
-                    android:drawableTint="@color/colorBlack"
+                    android:drawableTint="@color/colorAccent"
                         android:fontFamily="@font/lato"
                         android:id="@+id/edit_text_password"
                         android:layout_width="match_parent"
@@ -153,6 +152,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/name_of_phone_support" />
             <TextView
+                android:autoLink="phone"
                 android:fontFamily="@font/lato"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
@@ -182,7 +182,7 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/button_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
             android:layout_gravity="center"
             android:text="@string/activity_authorization_login_button_title"
             android:textColor="@color/colorWhite"

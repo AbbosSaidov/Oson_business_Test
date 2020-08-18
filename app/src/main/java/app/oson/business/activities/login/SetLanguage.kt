@@ -1,5 +1,6 @@
 package app.oson.business.activities.login
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.widget.AppCompatImageView
@@ -46,10 +47,10 @@ class SetLanguage : MyActivity() {
         titleTextView.visibility = View.VISIBLE
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View?){
         Log.i("qwerty","asdasd")
 
-        if (v == russianView) {
+        if (v == russianView){
             setLocale("")
             setVisible("rus")
             preferences.saveLangData("rus")
@@ -57,14 +58,12 @@ class SetLanguage : MyActivity() {
             setLocale("uzs")
             setVisible("uzs")
             preferences.saveLangData("uzs")
-        } else if (v == englishView) {
+        }else if (v == englishView) {
             setLocale("eng")
             setVisible("eng")
             preferences.saveLangData("eng")
-
         }
     }
-
     fun setLocale(lang: String?){
         val locale2 = Locale(lang)
         Locale.setDefault(locale2)
@@ -77,17 +76,21 @@ class SetLanguage : MyActivity() {
         )
 
         finish()
+        overridePendingTransition( 0, 0)
+        startActivity(getIntent())
+        overridePendingTransition( 0, 0)
+
     }
     fun setVisible(lang:String?){
-        if (lang == "rus") {
+        if (lang == "rus"){
             ds.visibility=View.INVISIBLE
             ds2.visibility=View.INVISIBLE
             ds3.visibility=View.VISIBLE
-        } else if (lang == "uzs") {
+        } else if (lang == "uzs"){
             ds.visibility=View.INVISIBLE
             ds2.visibility=View.VISIBLE
             ds3.visibility=View.INVISIBLE
-        } else if (lang == "eng") {
+        } else if(lang == "eng"){
             ds.visibility=View.VISIBLE
             ds2.visibility=View.INVISIBLE
             ds3.visibility=View.INVISIBLE

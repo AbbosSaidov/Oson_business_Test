@@ -12,13 +12,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import app.oson.business.R
 import app.oson.business.api.Api
-import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.database.Preferences
-import kotlinx.android.synthetic.main.action_bar.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -40,7 +39,7 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var preferences: Preferences
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
         preferences = Preferences(applicationContext)

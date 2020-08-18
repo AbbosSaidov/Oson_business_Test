@@ -9,15 +9,13 @@ import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.fragments.FragmentPurchaseList
 import app.oson.business.models.Merchant
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -70,7 +68,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         transaction!!.commit()
 
 
-//,ll,l,
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
         bottomNavigationView.selectedItemId = R.id.menu_main_bottomnavigationview_history_item
@@ -141,7 +139,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         return false;
     }
 
-
     var merchantList: ArrayList<Merchant>? = null
     fun getMerchantList() {
         MerchantService().merchantList(
@@ -159,6 +156,10 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
                 }
 
             });
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
 

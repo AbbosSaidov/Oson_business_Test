@@ -10,20 +10,26 @@
 
     <style name="Ui.Button" parent="Base.Widget.AppCompat.Button">
         <item name="backgroundTint">?attr/colorAccent</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="fontFamily">@font/lato</item>
     </style>
 
     <style name="Ui.Button.ColorPrimary" parent="Base.Widget.AppCompat.Button.Colored">
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="backgroundTint">?attr/colorPrimary</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="fontFamily">@font/lato</item>
     </style>
 
     <style name="Ui.Button.ColorPrimaryDark" parent="Base.Widget.AppCompat.Button.Colored">
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="backgroundTint">?attr/colorPrimaryDark</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="fontFamily">@font/lato</item>
@@ -32,22 +38,25 @@
     <style name="Ui.Button.ColorBackgroundTinted" parent="Base.Widget.AppCompat.Button.Colored"/>
 
     <style name="Ui.Button.Transparent" parent="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:padding">20dp</item>
-        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>        <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="fontFamily">@font/lato</item>
     </style>
 
     <style name="Ui.Button.Transparent.ColorPrimary" parent="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:padding">20dp</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="fontFamily">@font/lato</item>
     </style>
 
     <style name="Ui.Button.Transparent.ColorPrimaryDark" parent="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:padding">20dp</item>
-        <item name="android:textColor">?attr/colorPrimaryDark</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>        <item name="android:textColor">?attr/colorPrimaryDark</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="fontFamily">@font/lato</item>
     </style>
@@ -57,7 +66,9 @@
     <style name="Ui.ImageButton" parent="Base.Widget.AppCompat.ImageButton"/>
 
     <style name="Ui.ImageButton.Transparent" parent="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="backgroundTint">?attr/colorAccent</item>
         <item name="android:background">@drawable/roundshapbtn</item>
         <item name="android:minWidth">0dp</item>

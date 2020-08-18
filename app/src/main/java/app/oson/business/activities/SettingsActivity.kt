@@ -117,8 +117,6 @@ class SettingsActivity : MyActivity() {
             val decodeByte = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 //            val bitmap = QRCode.from(decodeByte.toString()).bitmap()
             imageView.setImageBitmap(decodeByte)
-
-
         }
 
         var okTextView = dialog.findViewById<AppCompatTextView>(R.id.text_view_ok)

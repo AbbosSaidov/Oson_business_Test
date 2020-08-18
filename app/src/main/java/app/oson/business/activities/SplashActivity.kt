@@ -34,7 +34,7 @@ class SplashActivity : MyActivity(){
 
     }
 
-    fun login() {
+    fun login(){
         val intent = Intent(this@SplashActivity, LoginActivity::class.java)
         startActivity(intent)
        /* if (preferences.getLoginData() != null) {
