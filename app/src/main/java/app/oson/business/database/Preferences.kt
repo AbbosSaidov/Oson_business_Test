@@ -54,7 +54,7 @@ class Preferences(context: Context) {
 
         if (str != null) {
             val l = Gson().fromJson(str, LoginData::class.java);
-            return l;
+            return l
         } else
             return null
     }

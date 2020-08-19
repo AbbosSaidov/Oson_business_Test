@@ -1,4 +1,4 @@
-package app.oson.business.activities.login
+package app.oson.business.activities .login
 
 import android.content.Intent
 import android.net.Uri
@@ -31,13 +31,14 @@ class LoginActivity : MyActivity() {
     lateinit var loginButton: Button
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         titleTextView.setText(R.string.authorization_title)
 
         loginEditText = findViewById(R.id.edit_text_login)
+
         loginEditText.onRightDrawableClicked { it.text.clear()}
 
 
@@ -58,16 +59,23 @@ class LoginActivity : MyActivity() {
             }
         }
 
+        loginEditText.setText(preferences.getLoginData()?.login)
+        passwordEditText.setText(preferences.getLoginData()?.password)
+
+
+
+
         savePasswordLinearLayout = findViewById(R.id.linear_layout_save_password)
         savePasswordCheckBox = findViewById(R.id.check_box_save_password)
         loginButton = findViewById(R.id.button_login)
-
-        loginButton.setOnClickListener(this)
-
-
         disabledButton()
-
+        if(loginEditText.text!!.isNotEmpty() && passwordEditText.text!!.isNotEmpty()){
+            loginButton.setAlpha(1.0f)
+            loginButton.setEnabled(true)
+        }
+        loginButton.setOnClickListener(this)
     }
+
     fun disabledButton(){
         loginButton.setAlpha(.5f)
         loginButton.setEnabled(false)
@@ -97,8 +105,8 @@ class LoginActivity : MyActivity() {
             override fun beforeTextChanged(
                 s: CharSequence, start: Int, count: Int,
                 after: Int
-            ) {
-                // TODO Auto-generated method stub
+            ){
+
             }
 
             override fun afterTextChanged(s: Editable) {
