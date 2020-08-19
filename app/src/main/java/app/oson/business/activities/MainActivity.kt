@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
+import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -35,6 +36,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         titleTextView.setText(R.string.menu_item_bottomnavigationview_history_title)
 
@@ -158,9 +160,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             });
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
 
 
 }

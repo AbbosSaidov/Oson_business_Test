@@ -1,17 +1,21 @@
 package app.oson.business.activities.login
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.AppCompatImageView
 import android.util.Log
 import android.view.View
 import app.oson.business.R
+import app.oson.business.activities.MainActivity
 import app.oson.business.activities.MyActivity
+import app.oson.business.activities.SettingsActivity
 import java.util.*
 
 
-class SetLanguage : MyActivity() {
+class SetLanguage : MyActivity(){
 
     lateinit var russianView: View
     lateinit var uzbekView: View
@@ -39,7 +43,6 @@ class SetLanguage : MyActivity() {
         }else{
             setVisible(preferences.getLangData())
         }
-
     }
 
     override fun setupActionBar(){
@@ -76,10 +79,11 @@ class SetLanguage : MyActivity() {
         )
 
         finish()
-        overridePendingTransition( 0, 0)
-        startActivity(getIntent())
-        overridePendingTransition( 0, 0)
-
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
     fun setVisible(lang:String?){
         if (lang == "rus"){
@@ -97,7 +101,7 @@ class SetLanguage : MyActivity() {
         }
     }
 
-    fun initViews() {
+    fun initViews(){
         russianView = findViewById(R.id.view_russian_lang)
         uzbekView = findViewById(R.id.view_uzbek_lang)
         englishView = findViewById(R.id.view_english_lang)
