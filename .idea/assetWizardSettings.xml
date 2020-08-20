@@ -24,8 +24,19 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Abbos\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\Abbos\AppData\Local\Temp\baseline_arrow_drop_up_24.xml" />
                                                 <entry key="opacityPercent" value="60" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/E:/Android_studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/arrow_drop_up/baseline_arrow_drop_up_24.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -70,9 +81,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="C:\Users\Abbos\Desktop\Icons\Input\Vector.svg" />
-                                      <entry key="outputName" value="ic_clear_text_icon" />
+                                      <entry key="outputName" value="ic_bottom_click" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -28,7 +28,7 @@ class PurchaseActivity : MyActivity() {
 
     var merchantList: ArrayList<Merchant>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchase)
         titleTextView.setText(R.string.menu_item_bottomnavigationview_purchase_title)
@@ -38,7 +38,7 @@ class PurchaseActivity : MyActivity() {
         initViews()
 
         val arrayList = ArrayList<String>()
-        for (i in merchantList!!.indices) {
+        for (i in merchantList!!.indices){
             arrayList.add(merchantList!![i].name)
         }
 

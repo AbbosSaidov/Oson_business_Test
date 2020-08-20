@@ -3,12 +3,14 @@ package app.oson.business.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.BottomSheetBehavior.BottomSheetCallback
-import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.AppCompatButton
 import android.support.v7.widget.AppCompatEditText
+import android.support.v7.widget.AppCompatTextView
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Spinner
 import app.oson.business.R
@@ -25,11 +27,13 @@ class RequestBillActivity : MyActivity() {
     lateinit var billSumEditText: AppCompatEditText
     lateinit var commentEditText: AppCompatEditText
     lateinit var sendButton: AppCompatButton
+    lateinit var bootomSheetItemClick: Button
     lateinit var qrCodeGenerateButton: AppCompatButton
+    lateinit var bottomSheet: LinearLayout
 
     var merchantList: ArrayList<Merchant>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_bill)
         titleTextView.setText(R.string.menu_item_bottomnavigationview_bill_title)
@@ -43,18 +47,14 @@ class RequestBillActivity : MyActivity() {
             arrayList.add(merchantList!![i].name)
         }
 
-        val spinnerAdapter = ArrayAdapter(
+        /*val spinnerAdapter = ArrayAdapter(
             this@RequestBillActivity,
             android.R.layout.simple_spinner_item,
             arrayList
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
-        spinner!!.adapter = spinnerAdapter
-
-        var bottomSheet:LinearLayout = findViewById(R.id.bottom_sheet)
-        var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-
-        sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        spinner!!.adapter = spinnerAdapter*/
+        bootomSheetItemClick.text = arrayList[0]
 
     }
 
@@ -68,19 +68,27 @@ class RequestBillActivity : MyActivity() {
             putBill()
         }else if(v == qrCodeGenerateButton){
             putBillQrCode()
+        }else if(v == bootomSheetItemClick){
+            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+            sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
 
     fun initViews(){
-        spinner = findViewById(R.id.spinner)
+      //  spinner = findViewById(R.id.spinner)
         phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
         phoneNumberEditText.setSelection(phoneNumberEditText.text!!?.length);
         billSumEditText = findViewById(R.id.edit_text_bill_sum)
         commentEditText = findViewById(R.id.edit_text_bill_comment)
         sendButton = findViewById(R.id.button_sent_request)
         sendButton.setOnClickListener(this)
+        bootomSheetItemClick = findViewById(R.id.bottom_sheet_item_click)
+        bootomSheetItemClick.setOnClickListener(this)
         qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
         qrCodeGenerateButton.setOnClickListener(this)
+        bottomSheet = findViewById(R.id.bottom_sheet)
+        var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     }
 
     fun checkBillData(): Boolean{
@@ -94,7 +102,8 @@ class RequestBillActivity : MyActivity() {
         }
 
         if (billSumEditText.text.toString().isEmpty() || billSumEditText.text.toString().toLong() < 1000) {
-            showAlertDialog("Error",
+            showAlertDialog(
+                "Error",
                 (resources.getString(R.string.dialogfragment_main_bill_request_sum_empty) + " " + billSumEditText.text.toString()
                     .toInt())
             )
