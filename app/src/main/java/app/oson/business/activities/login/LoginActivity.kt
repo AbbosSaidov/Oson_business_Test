@@ -22,7 +22,7 @@ import app.oson.business.models.LoginData
 import app.oson.business.models.UserData
 
 
-class LoginActivity : MyActivity() {
+class LoginActivity : MyActivity(){
 
     lateinit var loginEditText: AppCompatEditText
     lateinit var passwordEditText: AppCompatEditText
@@ -39,8 +39,7 @@ class LoginActivity : MyActivity() {
 
         loginEditText = findViewById(R.id.edit_text_login)
 
-        loginEditText.onRightDrawableClicked { it.text.clear()}
-
+        loginEditText.onRightDrawableClicked {it.text.clear()}
 
         passwordEditText = findViewById(R.id.edit_text_password)
         passwordEditText.transformationMethod = PasswordTransformationMethod()
@@ -62,9 +61,6 @@ class LoginActivity : MyActivity() {
         loginEditText.setText(preferences.getLoginData()?.login)
         passwordEditText.setText(preferences.getLoginData()?.password)
 
-
-
-
         savePasswordLinearLayout = findViewById(R.id.linear_layout_save_password)
         savePasswordCheckBox = findViewById(R.id.check_box_save_password)
         loginButton = findViewById(R.id.button_login)
@@ -83,13 +79,13 @@ class LoginActivity : MyActivity() {
         var lBoolean =false
         var pBoolean =false
 
-        loginEditText.addTextChangedListener(object : TextWatcher {
+        loginEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
                 before: Int,
                 count: Int
-            ) {
+            ){
                 if (s.toString().trim { it <= ' ' }.length == 0) {
                     loginButton.setAlpha(.5f)
                     loginButton.setEnabled(false)
@@ -146,10 +142,10 @@ class LoginActivity : MyActivity() {
         })
     }
 
-    override fun setupActionBar() {
+    override fun setupActionBar(){
         titleTextView.visibility = View.VISIBLE
     }
-     fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
+     fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit){
         this.setOnTouchListener { v, event ->
             var hasConsumed = false
             if (v is EditText) {
@@ -163,7 +159,7 @@ class LoginActivity : MyActivity() {
             hasConsumed
         }
     }
-    override fun onClick(v: View?) {
+    override fun onClick(v: View?){
         if (v == loginButton) {
             login()
 
@@ -182,12 +178,12 @@ class LoginActivity : MyActivity() {
     }
 
     fun checkLoginData(): Boolean {
-        if (loginEditText.text.toString().isEmpty()) {
+        if (loginEditText.text.toString().isEmpty()){
             Toast.makeText(this@LoginActivity, "Loginni kiriting!", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        if (loginEditText.text.toString().isEmpty()){
+        if(loginEditText.text.toString().isEmpty()){
 
             Toast.makeText(this@LoginActivity, "Parolni kiriting!", Toast.LENGTH_SHORT).show()
             return false
@@ -209,13 +205,13 @@ class LoginActivity : MyActivity() {
                 login = loginData.login,
                 password = loginData.password,
                 callback = object : BaseCallback<UserData> {
-                    override fun onLoading() {
+                    override fun onLoading(){
                         showProgressDialog()
                     }
 
                     override fun onError(throwable: Throwable){
                         throwable.printStackTrace()
-                        cancelProgressDialog();
+                        cancelProgressDialog()
                     }
 
                     override fun onSuccess(response: UserData){

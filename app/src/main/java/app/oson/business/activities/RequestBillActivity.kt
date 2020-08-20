@@ -2,19 +2,21 @@ package app.oson.business.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.BottomSheetBehavior
+import android.support.design.widget.BottomSheetBehavior.BottomSheetCallback
+import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.AppCompatButton
 import android.support.v7.widget.AppCompatEditText
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.Spinner
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class RequestBillActivity : MyActivity() {
 
@@ -37,31 +39,39 @@ class RequestBillActivity : MyActivity() {
         initViews()
 
         val arrayList = ArrayList<String>()
-        for (i in merchantList!!.indices) {
+        for (i in merchantList!!.indices){
             arrayList.add(merchantList!![i].name)
         }
 
-        val spinnerAdapter = ArrayAdapter(this@RequestBillActivity, android.R.layout.simple_spinner_item, arrayList)
+        val spinnerAdapter = ArrayAdapter(
+            this@RequestBillActivity,
+            android.R.layout.simple_spinner_item,
+            arrayList
+        )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter
 
+        var bottomSheet:LinearLayout = findViewById(R.id.bottom_sheet)
+        var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+
+        sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+
     }
 
-    override fun setupActionBar() {
+    override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
-
     }
 
-    override fun onClick(v: View?) {
-        if (v == sendButton) {
+    override fun onClick(v: View?){
+        if (v == sendButton){
             putBill()
-        } else if (v == qrCodeGenerateButton) {
+        }else if(v == qrCodeGenerateButton){
             putBillQrCode()
         }
     }
 
-    fun initViews() {
+    fun initViews(){
         spinner = findViewById(R.id.spinner)
         phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
         phoneNumberEditText.setSelection(phoneNumberEditText.text!!?.length);
@@ -73,20 +83,29 @@ class RequestBillActivity : MyActivity() {
         qrCodeGenerateButton.setOnClickListener(this)
     }
 
-    fun checkBillData(): Boolean {
+    fun checkBillData(): Boolean{
 
-        if (phoneNumberEditText.text.toString().length != 13) {
-            showAlertDialog("Error" , resources.getString(R.string.dialogfragment_main_bill_request_phonenumber_empty))
+        if (phoneNumberEditText.text.toString().length != 13){
+            showAlertDialog(
+                "Error",
+                resources.getString(R.string.dialogfragment_main_bill_request_phonenumber_empty)
+            )
             return false
         }
 
         if (billSumEditText.text.toString().isEmpty() || billSumEditText.text.toString().toLong() < 1000) {
-            showAlertDialog("Error" , (resources.getString(R.string.dialogfragment_main_bill_request_sum_empty) + " " + billSumEditText.text.toString().toInt()))
+            showAlertDialog("Error",
+                (resources.getString(R.string.dialogfragment_main_bill_request_sum_empty) + " " + billSumEditText.text.toString()
+                    .toInt())
+            )
             return false
         }
 
         if (commentEditText.text.toString().isEmpty()) {
-            showAlertDialog("Error" , resources.getString(R.string.dialogfragment_main_bill_request_comment_empty))
+            showAlertDialog(
+                "Error",
+                resources.getString(R.string.dialogfragment_main_bill_request_comment_empty)
+            )
             return false
         }
 

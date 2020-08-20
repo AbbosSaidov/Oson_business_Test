@@ -43,5 +43,4 @@ dependencies {
     implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
     implementation 'com.github.kenglxn.QRGen:android:2.3.0'
 
-
 }

@@ -51,13 +51,13 @@ class PurchaseActivity : MyActivity() {
         getMerchantWithFields()
     }
 
-    override fun setupActionBar() {
+    override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
 
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View?){
         if (v == backImageView) {
             finish()
         } else if (v == sendButton) {
@@ -113,8 +113,8 @@ class PurchaseActivity : MyActivity() {
 
     fun putPurchase() {
         if (checkPurchaseData()) {
-            if (linearLayout.getPurchaseData()!! != null) {
-                merchantId = merchantList!!.get(spinner.selectedItemPosition).id;
+            if (linearLayout.getPurchaseData()!! != null){
+                merchantId = merchantList!![spinner.selectedItemPosition].id
                 fields = linearLayout.getPurchaseData()!!
                 cardNumber = cardNumberEditText.text.toString()
                 cardExpireData = cardExpireEditText.text.toString()
@@ -152,12 +152,12 @@ class PurchaseActivity : MyActivity() {
 
         MerchantService().getMerchant(
             merchantId = merchantList!!.get(spinner.selectedItemPosition).id,
-            callback = object : BaseCallback<Merchant.MerchantList> {
-                override fun onLoading() {
+            callback = object : BaseCallback<Merchant.MerchantList>{
+                override fun onLoading(){
 
                 }
 
-                override fun onError(throwable: Throwable) {
+                override fun onError(throwable: Throwable){
                     throwable.printStackTrace()
                 }
 
