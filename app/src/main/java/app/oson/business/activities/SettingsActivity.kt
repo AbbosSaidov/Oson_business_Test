@@ -8,24 +8,19 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.widget.AppCompatTextView
 import android.util.Base64
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.Spinner
 import app.oson.business.R
 import app.oson.business.activities.login.ChangePasswordActivity
-import app.oson.business.activities.login.SetLanguage
+import app.oson.business.activities.login.SetLanguageActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.api.services.UserService
 import app.oson.business.models.Bill
-import app.oson.business.models.LoginData
 import app.oson.business.models.Merchant
-import net.glxn.qrgen.android.QRCode
 import okhttp3.ResponseBody
-import java.lang.Exception
 
 class SettingsActivity : MyActivity() {
 
@@ -62,7 +57,7 @@ class SettingsActivity : MyActivity() {
         } else if (view == logOutView) {
             showLogOutDialog()
         }else if (view == languageView) {
-            val intent = Intent(this@SettingsActivity, SetLanguage::class.java)
+            val intent = Intent(this@SettingsActivity, SetLanguageActivity::class.java)
             startActivity(intent)
         }
     }

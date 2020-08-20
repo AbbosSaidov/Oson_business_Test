@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.login.SetLanguage">
+    tools:context=".activities.login.SetLanguageActivity">
     <include
         layout="@layout/action_bar"/>
     <LinearLayout

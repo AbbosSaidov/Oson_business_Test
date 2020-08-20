@@ -15,7 +15,7 @@ import app.oson.business.activities.SettingsActivity
 import java.util.*
 
 
-class SetLanguage : MyActivity(){
+class SetLanguageActivity : MyActivity(){
 
     lateinit var russianView: View
     lateinit var uzbekView: View
