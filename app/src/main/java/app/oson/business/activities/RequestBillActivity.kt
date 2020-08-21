@@ -9,15 +9,13 @@ import android.support.v7.widget.AppCompatTextView
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Spinner
+import android.widget.*
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
+import kotlinx.android.synthetic.main.activity_request_bill.*
 
 
 class RequestBillActivity : MyActivity() {
@@ -27,7 +25,8 @@ class RequestBillActivity : MyActivity() {
     lateinit var billSumEditText: AppCompatEditText
     lateinit var commentEditText: AppCompatEditText
     lateinit var sendButton: AppCompatButton
-    lateinit var bootomSheetItemClick: Button
+    //lateinit var bootomSheetItemClick: LinearLayout
+    lateinit var bootomSheetItemClickText: Button
     lateinit var qrCodeGenerateButton: AppCompatButton
     lateinit var bottomSheet: LinearLayout
 
@@ -54,7 +53,7 @@ class RequestBillActivity : MyActivity() {
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter*/
-        bootomSheetItemClick.text = arrayList[0]
+        bootomSheetItemClickText.text = arrayList[0]
 
     }
 
@@ -68,7 +67,7 @@ class RequestBillActivity : MyActivity() {
             putBill()
         }else if(v == qrCodeGenerateButton){
             putBillQrCode()
-        }else if(v == bootomSheetItemClick){
+        }else if(v == bottom_sheet_click_text){
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
@@ -82,8 +81,9 @@ class RequestBillActivity : MyActivity() {
         commentEditText = findViewById(R.id.edit_text_bill_comment)
         sendButton = findViewById(R.id.button_sent_request)
         sendButton.setOnClickListener(this)
-        bootomSheetItemClick = findViewById(R.id.bottom_sheet_item_click)
-        bootomSheetItemClick.setOnClickListener(this)
+        //bootomSheetItemClick = findViewById(R.id.bottom_sheet_item_click)
+        bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
+        bootomSheetItemClickText.setOnClickListener(this)
         qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
         qrCodeGenerateButton.setOnClickListener(this)
         bottomSheet = findViewById(R.id.bottom_sheet)
