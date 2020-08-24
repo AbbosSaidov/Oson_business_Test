@@ -34,7 +34,7 @@
                     android:layout_marginBottom="6dp"/>-->
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:background="?attr/selectableItemBackground">
@@ -44,20 +44,32 @@
                         android:layout_centerVertical="true"
                         app:srcCompat="@drawable/ic_bottom_click"
                         tools:ignore="VectorDrawableCompat"/>
+
                     <LinearLayout
-                    android:id="@+id/bottom_sheet_item_click"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:clickable="true"
-                    android:orientation="vertical">
-                        <Button
-                        android:background="?attr/selectableItemBackground"
-                        android:id="@+id/bottom_sheet_click_text"
+                        android:id="@+id/bottom_sheet_item_click"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        style="@style/Ui.Button.Transparent.ColorPrimaryDark"/>
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="55dp"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="20dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/bottom_sheet_click_text"
+                            style="@style/Ui.Button.Transparent.ColorPrimaryDark"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackground" />
                     </LinearLayout>
+                    <View
+                        android:id="@+id/bottom_sheet_click_view"
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"/>
                 </RelativeLayout>
 
 
@@ -120,15 +132,7 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/button_sent_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorWhite"
-                    style="@style/Ui.Button"
-                    android:text="@string/fragment_main_bill_send_request_button_title"/>
+
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/button_generate_qr_code"
@@ -153,7 +157,14 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
-
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_sent_request"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textColor="@color/colorWhite"
+            style="@style/Ui.Button"
+            android:text="@string/fragment_main_bill_send_request_button_title"/>
     </LinearLayout>
     <include layout="@layout/bottom_sheet" />
 </android.support.design.widget.CoordinatorLayout>

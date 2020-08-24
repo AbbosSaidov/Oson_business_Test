@@ -6,10 +6,10 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.v7.widget.AppCompatButton
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
-import android.view.MotionEvent
+import android.util.Log
 import android.view.View
-import android.view.View.OnTouchListener
 import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
@@ -25,8 +25,8 @@ class RequestBillActivity : MyActivity() {
     lateinit var billSumEditText: AppCompatEditText
     lateinit var commentEditText: AppCompatEditText
     lateinit var sendButton: AppCompatButton
-    //lateinit var bootomSheetItemClick: LinearLayout
-    lateinit var bootomSheetItemClickText: Button
+    lateinit var bootomSheetItemClick: View
+    lateinit var bootomSheetItemClickText: AppCompatTextView
     lateinit var qrCodeGenerateButton: AppCompatButton
     lateinit var bottomSheet: LinearLayout
 
@@ -46,6 +46,17 @@ class RequestBillActivity : MyActivity() {
             arrayList.add(merchantList!![i].name)
         }
 
+        val adapter: ArrayAdapter<*> = ArrayAdapter<String>(
+            this,
+            R.layout.activity_listview, arrayList
+        )
+        val listView: ListView = findViewById<View>(R.id.mobile_list) as ListView
+        listView.adapter = adapter
+        listView.setOnItemClickListener {parent, view, position, id ->
+            bootomSheetItemClickText.text = arrayList[position]
+            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+            sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }
         /*val spinnerAdapter = ArrayAdapter(
             this@RequestBillActivity,
             android.R.layout.simple_spinner_item,
@@ -67,7 +78,7 @@ class RequestBillActivity : MyActivity() {
             putBill()
         }else if(v == qrCodeGenerateButton){
             putBillQrCode()
-        }else if(v == bottom_sheet_click_text){
+        }else if(v == bootomSheetItemClick){
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
@@ -81,9 +92,9 @@ class RequestBillActivity : MyActivity() {
         commentEditText = findViewById(R.id.edit_text_bill_comment)
         sendButton = findViewById(R.id.button_sent_request)
         sendButton.setOnClickListener(this)
-        //bootomSheetItemClick = findViewById(R.id.bottom_sheet_item_click)
+        bootomSheetItemClick = findViewById(R.id.bottom_sheet_click_view)
         bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
-        bootomSheetItemClickText.setOnClickListener(this)
+        bootomSheetItemClick.setOnClickListener(this)
         qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
         qrCodeGenerateButton.setOnClickListener(this)
         bottomSheet = findViewById(R.id.bottom_sheet)
