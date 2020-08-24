@@ -38,7 +38,7 @@ class LoginActivity : MyActivity(){
         titleTextView.setText(R.string.authorization_title)
 
         loginEditText = findViewById(R.id.edit_text_login)
-
+//as
         loginEditText.onRightDrawableClicked {it.text.clear()}
 
         passwordEditText = findViewById(R.id.edit_text_password)
@@ -66,15 +66,15 @@ class LoginActivity : MyActivity(){
         loginButton = findViewById(R.id.button_login)
         disabledButton()
         if(loginEditText.text!!.isNotEmpty() && passwordEditText.text!!.isNotEmpty()){
-            loginButton.setAlpha(1.0f)
-            loginButton.setEnabled(true)
+            loginButton.alpha = 1.0f
+            loginButton.isEnabled = true
         }
         loginButton.setOnClickListener(this)
     }
 
     fun disabledButton(){
-        loginButton.setAlpha(.5f)
-        loginButton.setEnabled(false)
+        loginButton.alpha = .5f
+        loginButton.isEnabled = false
 
         var lBoolean =false
         var pBoolean =false
@@ -87,13 +87,13 @@ class LoginActivity : MyActivity(){
                 count: Int
             ){
                 if (s.toString().trim { it <= ' ' }.length == 0) {
-                    loginButton.setAlpha(.5f)
-                    loginButton.setEnabled(false)
+                    loginButton.alpha = .5f
+                    loginButton.isEnabled = false
                 } else {
                     lBoolean=true
                     if(lBoolean && pBoolean){
-                        loginButton.setAlpha(1.0f)
-                        loginButton.setEnabled(true)
+                        loginButton.alpha = 1.0f
+                        loginButton.isEnabled = true
                     }
                 }
             }
@@ -118,13 +118,13 @@ class LoginActivity : MyActivity(){
                 count: Int
             ) {
                 if (s.toString().trim { it <= ' ' }.length == 0) {
-                    loginButton.setAlpha(.5f)
-                    loginButton.setEnabled(false)
+                    loginButton.alpha = .5f
+                    loginButton.isEnabled = false
                 } else {
                     pBoolean=true
                     if(lBoolean && pBoolean){
-                        loginButton.setAlpha(1.0f)
-                        loginButton.setEnabled(true)
+                        loginButton.alpha = 1.0f
+                        loginButton.isEnabled = true
                     }
                 }
             }
@@ -170,7 +170,7 @@ class LoginActivity : MyActivity(){
                     isChecked: Boolean
                 ) {
                     if (isChecked) {
-                        savePasswordCheckBox.setChecked(true)
+                        savePasswordCheckBox.isChecked = true
                     }
                 }
             })
