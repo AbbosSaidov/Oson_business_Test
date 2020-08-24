@@ -60,7 +60,7 @@ class PurchaseActivity : MyActivity() {
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
-
+//
      /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter*/
