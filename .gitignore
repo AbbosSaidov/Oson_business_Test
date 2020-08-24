@@ -1,6 +1,0 @@
-# Project exclude paths
-/.gradle/
-.idea
-local.properties
-.gitignore
-build
