@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/action_bar"/>
 
-    <include layout="@layout/action_bar"/>
-
-    <android.support.v4.widget.NestedScrollView
+        <android.support.v4.widget.NestedScrollView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:orientation="vertical"
@@ -15,7 +19,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical">
 
-        <LinearLayout
+            <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -24,14 +28,47 @@
                 android:paddingLeft="36dp"
                 android:paddingRight="36dp">
 
-            <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground">
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_bottom_click"
+                        tools:ignore="VectorDrawableCompat" />
 
+                    <LinearLayout
+                        android:id="@+id/bottom_sheet_item_click"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="55dp"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="20dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-            <app.oson.business.views.FieldsLinearLayout
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/bottom_sheet_click_text"
+                            style="@style/Ui.Button.Transparent.ColorPrimaryDark"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackground" />
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/bottom_sheet_click_view"
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"/>
+                </RelativeLayout>
+
+                <app.oson.business.views.FieldsLinearLayout
                     android:id="@+id/linear_layout"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -39,10 +76,10 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp">
 
-            </app.oson.business.views.FieldsLinearLayout>
+                </app.oson.business.views.FieldsLinearLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -50,7 +87,7 @@
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
-                <android.support.v7.widget.AppCompatEditText
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/edit_text_card_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -61,9 +98,9 @@
 
                         android:hint="@string/fragment_main_purchase_input_cardnumber_hint"/>
 
-            </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -71,7 +108,7 @@
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
-                <android.support.v7.widget.AppCompatEditText
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/edit_text_card_expire"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -81,9 +118,9 @@
                         android:maxLength="5"
                         android:hint="@string/fragment_main_purchase_input_card_expire_date_hint"/>
 
-            </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -91,7 +128,7 @@
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
-                <android.support.v7.widget.AppCompatEditText
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/edit_text_amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -100,20 +137,29 @@
                         android:inputType="number"
                         android:hint="@string/fragment_main_bill_input_sum_hint"/>
 
-            </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/button_send_purchase"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorWhite"
-                    style="@style/Ui.Button"
-                    android:text="@string/fragment_main_purchase_send_purchase_button_title"/>
+            </LinearLayout>
 
-        </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
-
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="25dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="36dp"
+        android:paddingRight="36dp"
+        >
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_send_purchase"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textColor="@color/colorWhite"
+            style="@style/Ui.Button"
+            android:text="@string/fragment_main_bill_send_request_button_title"/>
+    </RelativeLayout>
+    <include layout="@layout/bottom_sheet"/>
+</android.support.design.widget.CoordinatorLayout>

@@ -4,13 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <include layout="@layout/action_bar"/>
 
         <android.support.v4.widget.NestedScrollView
@@ -26,12 +25,12 @@
                 android:paddingBottom="20dp"
                 android:paddingLeft="36dp"
                 android:paddingRight="36dp">
-         <!--       <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"/>-->
+                <!--       <android.support.v7.widget.AppCompatSpinner
+                           android:id="@+id/spinner"
+                           android:layout_width="match_parent"
+                           android:layout_height="?actionBarSize"
+                           android:layout_marginTop="6dp"
+                           android:layout_marginBottom="6dp"/>-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -157,6 +156,16 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="25dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="36dp"
+        android:paddingRight="36dp"
+        >
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_sent_request"
             android:layout_alignParentBottom="true"
@@ -165,6 +174,8 @@
             android:textColor="@color/colorWhite"
             style="@style/Ui.Button"
             android:text="@string/fragment_main_bill_send_request_button_title"/>
-    </LinearLayout>
-    <include layout="@layout/bottom_sheet" />
+    </RelativeLayout>
+
+
+   <!----><include layout="@layout/bottom_sheet"/>
 </android.support.design.widget.CoordinatorLayout>

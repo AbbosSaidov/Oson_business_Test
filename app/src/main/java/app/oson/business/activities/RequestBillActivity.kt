@@ -20,15 +20,16 @@ import kotlinx.android.synthetic.main.activity_request_bill.*
 
 class RequestBillActivity : MyActivity() {
 
-    lateinit var spinner: Spinner
     lateinit var phoneNumberEditText: AppCompatEditText
     lateinit var billSumEditText: AppCompatEditText
     lateinit var commentEditText: AppCompatEditText
     lateinit var sendButton: AppCompatButton
     lateinit var bootomSheetItemClick: View
     lateinit var bootomSheetItemClickText: AppCompatTextView
-    lateinit var qrCodeGenerateButton: AppCompatButton
     lateinit var bottomSheet: LinearLayout
+    lateinit var qrCodeGenerateButton: AppCompatButton
+    var selectedItemPosition: Int = 0
+
 
     var merchantList: ArrayList<Merchant>? = null
 
@@ -53,6 +54,7 @@ class RequestBillActivity : MyActivity() {
         val listView: ListView = findViewById<View>(R.id.mobile_list) as ListView
         listView.adapter = adapter
         listView.setOnItemClickListener {parent, view, position, id ->
+            selectedItemPosition=position
             bootomSheetItemClickText.text = arrayList[position]
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -87,7 +89,7 @@ class RequestBillActivity : MyActivity() {
     fun initViews(){
       //  spinner = findViewById(R.id.spinner)
         phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
-        phoneNumberEditText.setSelection(phoneNumberEditText.text!!?.length);
+        phoneNumberEditText.setSelection(phoneNumberEditText.text!!.length)
         billSumEditText = findViewById(R.id.edit_text_bill_sum)
         commentEditText = findViewById(R.id.edit_text_bill_comment)
         sendButton = findViewById(R.id.button_sent_request)
@@ -161,11 +163,11 @@ class RequestBillActivity : MyActivity() {
 
                     override fun onSuccess(response: Bill) {
 
-                        val intent = Intent(this@RequestBillActivity, MainActivity::class.java);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        val intent = Intent(this@RequestBillActivity, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
                     }
                 })
 
@@ -176,7 +178,7 @@ class RequestBillActivity : MyActivity() {
     fun putBillQrCode(){
         if (checkBillData()){
             merchantId =
-                    if (spinner.selectedItemPosition == 0) null else merchantList!!.get(spinner.selectedItemPosition - 1).id;
+                    if (selectedItemPosition == 0) null else merchantList!![selectedItemPosition - 1].id
             phoneNumber = phoneNumberEditText.text.toString()
             sum = billSumEditText.text.toString().toLong()
             commentText = commentEditText.text.toString()
@@ -193,11 +195,11 @@ class RequestBillActivity : MyActivity() {
 
                     override fun onSuccess(response: Bill) {
 
-                        val intent = Intent(this@RequestBillActivity, MainActivity::class.java);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        val intent = Intent(this@RequestBillActivity, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
                     }
                 })
         }

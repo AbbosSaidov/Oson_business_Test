@@ -46,12 +46,12 @@ class LoginActivity : MyActivity(){
         passwordEditText.onRightDrawableClicked {
             Log.i("qwerty","werwer="+it.transformationMethod)
             if(it.transformationMethod == null){
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     it.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_visible_off, 0)
                 }
                 it.transformationMethod = PasswordTransformationMethod()
             }else{
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     it.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_visible, 0)
                 }
                 it.transformationMethod = null
