@@ -28,6 +28,8 @@ class RequestBillActivity : MyActivity() {
     lateinit var bootomSheetItemClickText: AppCompatTextView
     lateinit var bottomSheet: LinearLayout
     lateinit var qrCodeGenerateButton: AppCompatButton
+    lateinit var listviewOfBottomSheet: ListView
+    lateinit var listviewOfBottomSheetAdapter: ArrayAdapter<*>
     var selectedItemPosition: Int = 0
 
 
@@ -40,25 +42,13 @@ class RequestBillActivity : MyActivity() {
 
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
 
-        initViews()
+
 
         val arrayList = ArrayList<String>()
         for (i in merchantList!!.indices){
             arrayList.add(merchantList!![i].name)
         }
-
-        val adapter: ArrayAdapter<*> = ArrayAdapter<String>(
-            this,
-            R.layout.activity_listview, arrayList
-        )
-        val listView: ListView = findViewById<View>(R.id.mobile_list) as ListView
-        listView.adapter = adapter
-        listView.setOnItemClickListener {parent, view, position, id ->
-            selectedItemPosition=position
-            bootomSheetItemClickText.text = arrayList[position]
-            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-            sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        }
+        initViews(arrayList)
         /*val spinnerAdapter = ArrayAdapter(
             this@RequestBillActivity,
             android.R.layout.simple_spinner_item,
@@ -86,7 +76,7 @@ class RequestBillActivity : MyActivity() {
         }
     }
 
-    fun initViews(){
+    fun initViews(arrayList: ArrayList<String>){
       //  spinner = findViewById(R.id.spinner)
         phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
         phoneNumberEditText.setSelection(phoneNumberEditText.text!!.length)
@@ -102,6 +92,17 @@ class RequestBillActivity : MyActivity() {
         bottomSheet = findViewById(R.id.bottom_sheet)
         var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        listviewOfBottomSheet=findViewById(R.id.mobile_list)
+        listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.activity_listview, arrayList)
+        listviewOfBottomSheet.adapter = listviewOfBottomSheetAdapter
+
+        listviewOfBottomSheet.setOnItemClickListener {parent, view, position, id ->
+            selectedItemPosition=position
+            bootomSheetItemClickText.text = arrayList[position]
+            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+            sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }
+
     }
 
     fun checkBillData(): Boolean{

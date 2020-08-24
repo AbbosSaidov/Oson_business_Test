@@ -9,18 +9,15 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.ListView
-import android.widget.Spinner
-import app.oson.business.App.Companion.context
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.api.services.PurchaseService
 import app.oson.business.models.Merchant
 import app.oson.business.models.PurchaseTransaction
-import app.oson.business.views.FieldView
 import app.oson.business.views.FieldsLinearLayout
 
-class PurchaseActivity : MyActivity() {
+class PurchaseActivity : MyActivity(){
 
     lateinit var cardNumberEditText: AppCompatEditText
     lateinit var cardExpireEditText: AppCompatEditText
@@ -30,6 +27,8 @@ class PurchaseActivity : MyActivity() {
     lateinit var bootomSheetItemClick: View
     lateinit var bootomSheetItemClickText: AppCompatTextView
     lateinit var bottomSheet: LinearLayout
+    lateinit var listviewOfBottomSheet: ListView
+    lateinit var listviewOfBottomSheetAdapter: ArrayAdapter<*>
     var selectedItemPosition: Int = 0
 
     var merchantList: ArrayList<Merchant>? = null
@@ -41,25 +40,14 @@ class PurchaseActivity : MyActivity() {
 
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
 
-        initViews()
+
 
         val arrayList = ArrayList<String>()
         for (i in merchantList!!.indices){
             arrayList.add(merchantList!![i].name)
         }
+        initViews(arrayList)
 
-        val adapter: ArrayAdapter<*> = ArrayAdapter<String>(
-            this,
-            R.layout.activity_listview, arrayList
-        )
-        val listView: ListView = findViewById<View>(R.id.mobile_list) as ListView
-        listView.adapter = adapter
-        listView.setOnItemClickListener {parent, view, position, id ->
-            selectedItemPosition=position
-            bootomSheetItemClickText.text = arrayList[position]
-            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-            sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        }
 //
      /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
@@ -88,7 +76,7 @@ class PurchaseActivity : MyActivity() {
 
     }
 
-    fun initViews() {
+    fun initViews(arrayList: ArrayList<String>) {
         cardNumberEditText = findViewById(R.id.edit_text_card_number)
         cardExpireEditText = findViewById(R.id.edit_text_card_expire)
         amountEditText = findViewById(R.id.edit_text_amount)
@@ -100,6 +88,16 @@ class PurchaseActivity : MyActivity() {
         bottomSheet = findViewById(R.id.bottom_sheet)
         var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        listviewOfBottomSheet=findViewById(R.id.mobile_list)
+        listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.activity_listview, arrayList)
+        listviewOfBottomSheet.adapter = listviewOfBottomSheetAdapter
+
+        listviewOfBottomSheet.setOnItemClickListener {parent, view, position, id ->
+            selectedItemPosition=position
+            bootomSheetItemClickText.text = arrayList[position]
+            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+            sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }
     }
 
     fun checkPurchaseData(): Boolean {
