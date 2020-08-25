@@ -44,7 +44,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         transaction = fragmentManager.beginTransaction()
         fragmentPurchaseList = FragmentPurchaseList()
 
-        tabLayout = findViewById<TabLayout>(R.id.tab_layout);
+        tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
         tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
@@ -56,7 +56,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             }
 
             override fun onTabSelected(tab: TabLayout.Tab) {
-                val position = tab.getPosition()
+                val position = tab.position
                 when (position) {
                     1 -> transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!).commit()
 
@@ -86,9 +86,9 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     }
 
     override fun setupActionBar() {
-        filterImageView.visibility = View.VISIBLE;
-        titleTextView.visibility = View.VISIBLE;
-        infoImageView.visibility = View.VISIBLE
+        filterImageView.visibility = View.VISIBLE
+        titleTextView.visibility = View.VISIBLE
+        // infoImageView.visibility = View.VISIBLE
     }
 
     override fun onClick(v: View?) {
@@ -96,8 +96,8 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             fragmentPurchaseList!!.onOpenFilterDialog()
 
 
-        } else if (v == infoImageView) {
-            infoRelativeLayout.visibility = View.VISIBLE
+      /* } else if (v == infoImageView) {
+            infoRelativeLayout.visibility = View.VISIBLE*/
         } else if (v == settingsLinearLayout) {
             infoRelativeLayout.visibility = View.GONE
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
@@ -115,13 +115,13 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.menu_main_bottomnavigationview_bill_item -> {
-                var intent = Intent(this, RequestBillActivity::class.java);
+                var intent = Intent(this, RequestBillActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
             }
 
             R.id.menu_main_bottomnavigationview_purchase_item -> {
-                var intent = Intent(this, PurchaseActivity::class.java);
+                var intent = Intent(this, PurchaseActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
             }
@@ -130,7 +130,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
             }
             R.id.menu_item_bottomnavigationview_settings_item -> {
-                var intent = Intent(this, SettingsActivity::class.java);
+                var intent = Intent(this, SettingsActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
 
@@ -138,14 +138,14 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             }
         }
 
-        return false;
+        return false
     }
 
     var merchantList: ArrayList<Merchant>? = null
-    fun getMerchantList() {
+    fun getMerchantList(){
         MerchantService().merchantList(
-            callback = object : BaseCallback<Merchant.MerchantList> {
-                override fun onLoading() {
+            callback = object : BaseCallback<Merchant.MerchantList>{
+                override fun onLoading(){
 
                 }
 
@@ -157,7 +157,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
                     merchantList = response.arrayList
                 }
 
-            });
+            })
     }
 
 

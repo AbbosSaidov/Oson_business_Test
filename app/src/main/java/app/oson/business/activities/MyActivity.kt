@@ -29,9 +29,10 @@ import java.util.concurrent.TimeUnit
 
 abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
 
-    internal lateinit var backImageView: AppCompatImageView;
-    internal lateinit var filterImageView: AppCompatImageView;
-    internal lateinit var infoImageView: AppCompatImageView;
+    internal lateinit var backImageView: AppCompatImageView
+    internal lateinit var filterImageView: AppCompatImageView
+
+    //    internal lateinit var infoImageView: AppCompatImageView;
     internal lateinit var titleTextView: AppCompatTextView
     internal lateinit var clearImageView: AppCompatImageView
 
@@ -100,7 +101,7 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
             .client(client)
             .build()
 
-        api = retrofit.create(Api::class.java!!)
+        api = retrofit.create(Api::class.java)
     }
 
 
@@ -108,21 +109,21 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
 
         backImageView = findViewById(R.id.image_view_back)
         filterImageView = findViewById(R.id.image_view_filter)
-        infoImageView = findViewById(R.id.image_view_info)
+        //  infoImageView = findViewById(R.id.image_view_info)
         titleTextView = findViewById(R.id.text_view_title)
         clearImageView = findViewById(R.id.image_view_clear)
 
-        backImageView.setOnClickListener() { view ->
+        backImageView.setOnClickListener { view ->
             finish()
         }
         filterImageView.setOnClickListener(this)
-        infoImageView.setOnClickListener(this)
+        //infoImageView.setOnClickListener(this)
         clearImageView.setOnClickListener(this)
 
         setupActionBar()
     }
 
-    abstract fun setupActionBar();
+    abstract fun setupActionBar()
 
     @SuppressLint("MissingPermission")
     fun isOnline(): Boolean {
@@ -132,16 +133,16 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    var progressDialog: Dialog? = null;
+    var progressDialog: Dialog? = null
     fun showProgressDialog() {
         if (progressDialog == null) {
-            progressDialog = Dialog(this);
+            progressDialog = Dialog(this)
             progressDialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             progressDialog?.setCancelable(false)
             progressDialog?.setContentView(ProgressBar(this))
         }
 
-        progressDialog?.show();
+        progressDialog?.show()
     }
 
 

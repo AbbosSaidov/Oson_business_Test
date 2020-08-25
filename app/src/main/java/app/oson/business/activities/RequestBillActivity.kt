@@ -77,7 +77,6 @@ class RequestBillActivity : MyActivity() {
     }
 
     fun initViews(arrayList: ArrayList<String>){
-      //  spinner = findViewById(R.id.spinner)
         phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
         phoneNumberEditText.setSelection(phoneNumberEditText.text!!.length)
         billSumEditText = findViewById(R.id.edit_text_bill_sum)

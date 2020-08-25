@@ -40,15 +40,12 @@ class PurchaseActivity : MyActivity(){
 
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
 
-
-
         val arrayList = ArrayList<String>()
         for (i in merchantList!!.indices){
             arrayList.add(merchantList!![i].name)
         }
         initViews(arrayList)
 
-//
      /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter*/
@@ -61,22 +58,20 @@ class PurchaseActivity : MyActivity(){
     override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
-
     }
 
     override fun onClick(v: View?){
-        if (v == backImageView) {
+        if (v == backImageView){
             finish()
-        } else if (v == sendButton) {
+        } else if (v == sendButton){
             putPurchase()
         }else if(v == bootomSheetItemClick){
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
-
     }
 
-    fun initViews(arrayList: ArrayList<String>) {
+    fun initViews(arrayList: ArrayList<String>){
         cardNumberEditText = findViewById(R.id.edit_text_card_number)
         cardExpireEditText = findViewById(R.id.edit_text_card_expire)
         amountEditText = findViewById(R.id.edit_text_amount)
