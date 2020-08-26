@@ -134,8 +134,8 @@
     <string name="fragment_main_bill_generate_qrcode_title">QR kodini yarating</string>
     <string name="fragment_main_bill_generate_ndefmessage_title">Ma\'lumotni NFC orqali yuborish</string>
 
-    <string name="fragment_main_purchase_input_cardnumber_hint">Karta raqamini kiriting</string>
-    <string name="fragment_main_purchase_input_card_expire_date_hint">Kartaning amal qilish muddatini kiriting</string>
+    <string name="fragment_main_purchase_input_cardnumber_hint">Karta raqami</string>
+    <string name="fragment_main_purchase_input_card_expire_date_hint">Amal qilish muddati</string>
     <string name="fragment_main_purchase_send_purchase_button_title">To\'lash</string>
 
     <string name="fragment_main_history_title">Tarix</string>

@@ -1,15 +1,17 @@
-package app.oson.business.activities
+package app.oson.business.ui.purchase
 
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
+import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.AppCompatButton
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
-import android.widget.ListView
 import app.oson.business.R
+import app.oson.business.activities.MyActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.api.services.PurchaseService
@@ -27,7 +29,7 @@ class PurchaseActivity : MyActivity(){
     lateinit var bootomSheetItemClick: View
     lateinit var bootomSheetItemClickText: AppCompatTextView
     lateinit var bottomSheet: LinearLayout
-    lateinit var listviewOfBottomSheet: ListView
+    lateinit var listviewOfBottomSheet: RecyclerView
     lateinit var listviewOfBottomSheetAdapter: ArrayAdapter<*>
     var selectedItemPosition: Int = 0
 
@@ -37,7 +39,6 @@ class PurchaseActivity : MyActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchase)
         titleTextView.setText(R.string.menu_item_bottomnavigationview_purchase_title)
-
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
 
         val arrayList = ArrayList<String>()
@@ -46,22 +47,29 @@ class PurchaseActivity : MyActivity(){
         }
         initViews(arrayList)
 
-     /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
+
+        val dialog = BottomSheetDialog(this)
+
+        dialog.setContentView(R.layout.bottom_sheet)
+        dialog.show()
+
+
+        /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter*/
-        bootomSheetItemClickText.text = arrayList[0]
-        sendButton.setOnClickListener(this)
+      //  bootomSheetItemClickText.text = arrayList[0]
+
+      //  sendButton.setOnClickListener(this)
 
         getMerchantWithFields()
     }
-
     override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
     }
 
     override fun onClick(v: View?){
-        if (v == backImageView){
+        if(v == backImageView){
             finish()
         } else if (v == sendButton){
             putPurchase()
@@ -80,19 +88,20 @@ class PurchaseActivity : MyActivity(){
         bootomSheetItemClick = findViewById(R.id.bottom_sheet_click_view)
         bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
         bootomSheetItemClick.setOnClickListener(this)
-        bottomSheet = findViewById(R.id.bottom_sheet)
-        var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+//        bottomSheet = findViewById(R.id.bottom_sheet)
+//        var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+//        sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         listviewOfBottomSheet=findViewById(R.id.mobile_list)
         listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.activity_listview, arrayList)
-        listviewOfBottomSheet.adapter = listviewOfBottomSheetAdapter
+      //  listviewOfBottomSheet.adapter=RecyclerView.Adapter()
 
-        listviewOfBottomSheet.setOnItemClickListener {parent, view, position, id ->
+
+     /*  listviewOfBottomSheet.setOnItemClickListener {parent, view, position, id ->
             selectedItemPosition=position
             bootomSheetItemClickText.text = arrayList[position]
-            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-            sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        }
+  //          var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+   //         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }*/
     }
 
     fun checkPurchaseData(): Boolean {

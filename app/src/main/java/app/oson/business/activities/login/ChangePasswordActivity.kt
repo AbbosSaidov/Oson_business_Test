@@ -26,25 +26,25 @@ class ChangePasswordActivity : MyActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
 
-        titleTextView.setText(resources.getString(R.string.fragment_main_preference_change_password_title))
+        titleTextView.text = resources.getString(R.string.fragment_main_preference_change_password_title)
         initViews()
 
         changePassButton.setOnClickListener(this)
 
     }
 
-    override fun setupActionBar() {
+    override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
     }
 
-    override fun onClick(v: View?) {
-        if (v == changePassButton) {
+    override fun onClick(v: View?){
+        if (v == changePassButton){
             changePassword()
         }
     }
 
-    fun initViews() {
+    fun initViews(){
         currentPassEditText = findViewById(R.id.edit_text_current_password)
         newPassEditText = findViewById(R.id.edit_text_new_password)
         confirmPassEditText = findViewById(R.id.edit_text_confirm_password)
@@ -86,7 +86,7 @@ class ChangePasswordActivity : MyActivity() {
     var aid: Int? = null
     lateinit var oldPassword: String
     lateinit var newPassword: String
-    val loginData = LoginData();
+    val loginData = LoginData()
 
     fun changePassword() {
 
@@ -113,18 +113,18 @@ class ChangePasswordActivity : MyActivity() {
 
                     override fun onError(throwable: Throwable) {
                         throwable.printStackTrace()
-                        cancelProgressDialog();
+                        cancelProgressDialog()
                     }
 
                     override fun onSuccess(response: ResponseBody) {
                         if (preferences.getLoginData() != null)
                             preferences.saveLoginData(loginData)
 
-                        val intent = Intent(this@ChangePasswordActivity, SplashActivity::class.java);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        val intent = Intent(this@ChangePasswordActivity, SplashActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
 
                         cancelProgressDialog()
                     }

@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
-import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -17,6 +16,7 @@ import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.fragments.FragmentPurchaseList
 import app.oson.business.models.Merchant
+import app.oson.business.ui.purchase.PurchaseActivity
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -103,17 +103,17 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
             intent.putExtra(MERCHANT, merchantList)
             startActivity(intent)
-        } else if (v == infoRelativeLayout) {
+        } else if (v == infoRelativeLayout){
             infoRelativeLayout.visibility = View.GONE
 
-        } else if (v == clearImageView) {
+        } else if (v == clearImageView){
             clearImageView.visibility = View.GONE
             fragmentPurchaseList!!.clear()
         }
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
+        when (menuItem.itemId){
             R.id.menu_main_bottomnavigationview_bill_item -> {
                 var intent = Intent(this, RequestBillActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)

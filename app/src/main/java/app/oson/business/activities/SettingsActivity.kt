@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.Spinner
 import app.oson.business.R
 import app.oson.business.activities.login.ChangePasswordActivity
-import app.oson.business.activities.login.SetLanguageActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.api.services.UserService
@@ -34,7 +33,7 @@ class SettingsActivity : MyActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        titleTextView.setText(resources.getString(R.string.menu_item_main_preference_title))
+        titleTextView.text = resources.getString(R.string.menu_item_main_preference_title)
         initViews()
 
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
@@ -139,17 +138,17 @@ class SettingsActivity : MyActivity() {
 
                 override fun onError(throwable: Throwable) {
                     throwable.printStackTrace()
-                    cancelProgressDialog();
+                    cancelProgressDialog()
                 }
 
                 override fun onSuccess(response: ResponseBody) {
                     preferences.saveLoginData(null)
 
-                    val intent = Intent(this@SettingsActivity, SplashActivity::class.java);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    val intent = Intent(this@SettingsActivity, SplashActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
 
                     cancelProgressDialog()
                 }

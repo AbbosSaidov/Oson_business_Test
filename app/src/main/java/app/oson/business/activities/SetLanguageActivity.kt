@@ -1,4 +1,4 @@
-package app.oson.business.activities.login
+package app.oson.business.activities
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -9,9 +9,6 @@ import android.support.v7.widget.AppCompatImageView
 import android.util.Log
 import android.view.View
 import app.oson.business.R
-import app.oson.business.activities.MainActivity
-import app.oson.business.activities.MyActivity
-import app.oson.business.activities.SettingsActivity
 import java.util.*
 
 
@@ -32,7 +29,7 @@ class SetLanguageActivity : MyActivity(){
          ds2  = findViewById(R.id.uzbek_chek)
          ds3  = findViewById(R.id.russian_chek)
 
-        titleTextView.setText(resources.getString(R.string.fragment_main_preference_change_language_title))
+        titleTextView.text = resources.getString(R.string.fragment_main_preference_change_language_title)
         initViews()
 
         russianView.setOnClickListener(this)

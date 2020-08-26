@@ -127,14 +127,14 @@
     <string name="dialogfragment_main_preferences_logout_message">Вы действительно хотите выйти из системы?</string>
 
     <string name="fragment_main_bill_input_phonenumber_hint">Введите номер телефона</string>
-    <string name="fragment_main_bill_input_sum_hint">Введите сумму</string>
+    <string name="fragment_main_bill_input_sum_hint">Сумма</string>
     <string name="fragment_main_bill_comment_hint">Введите комментарий</string>
     <string name="fragment_main_bill_send_request_button_title">Отправить запрос</string>
     <string name="fragment_main_bill_generate_qrcode_title">Сгенерировать QR-код</string>
     <string name="fragment_main_bill_generate_ndefmessage_title">Отправить данные по NFC</string>
 
-    <string name="fragment_main_purchase_input_cardnumber_hint">Введите номер карты</string>
-    <string name="fragment_main_purchase_input_card_expire_date_hint">Введите срок действия карты</string>
+    <string name="fragment_main_purchase_input_cardnumber_hint">Номер карты</string>
+    <string name="fragment_main_purchase_input_card_expire_date_hint">Срок действия</string>
     <string name="fragment_main_purchase_send_purchase_button_title">Оплатить</string>
 
     <string name="fragment_main_history_title">История</string>

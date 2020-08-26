@@ -88,7 +88,6 @@
                         android:maxLines="1"
                         android:inputType="number"
                         android:maxLength="13"
-                        android:text="+998"
                         android:hint="@string/fragment_main_bill_input_phonenumber_hint"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -177,5 +176,5 @@
     </RelativeLayout>
 
 
-   <!----><include layout="@layout/bottom_sheet"/>
+   <!--<include layout="@layout/bottom_sheet"/>-->
 </android.support.design.widget.CoordinatorLayout>

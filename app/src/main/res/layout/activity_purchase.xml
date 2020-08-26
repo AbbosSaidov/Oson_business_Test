@@ -161,5 +161,5 @@
             style="@style/Ui.Button"
             android:text="@string/fragment_main_bill_send_request_button_title"/>
     </RelativeLayout>
-    <include layout="@layout/bottom_sheet"/>
+ <!---->   <include layout="@layout/bottom_sheet"/>
 </android.support.design.widget.CoordinatorLayout>

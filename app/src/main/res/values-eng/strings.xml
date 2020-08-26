@@ -133,8 +133,8 @@
     <string name="fragment_main_bill_generate_qrcode_title">Generate QR Code</string>
     <string name="fragment_main_bill_generate_ndefmessage_title">Send data via NFC</string>
 
-    <string name="fragment_main_purchase_input_cardnumber_hint">Enter card number</string>
-    <string name="fragment_main_purchase_input_card_expire_date_hint">Enter the card expiration date</string>
+    <string name="fragment_main_purchase_input_cardnumber_hint">Card number</string>
+    <string name="fragment_main_purchase_input_card_expire_date_hint">Expiration date</string>
     <string name="fragment_main_purchase_send_purchase_button_title">Pay</string>
 
     <string name="fragment_main_history_title">History</string>
