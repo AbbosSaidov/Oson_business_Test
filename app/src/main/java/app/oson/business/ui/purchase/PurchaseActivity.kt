@@ -1,14 +1,12 @@
 package app.oson.business.ui.purchase
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialog
-import android.support.v7.widget.AppCompatButton
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatTextView
-import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.*
+import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import app.oson.business.R
 import app.oson.business.activities.MyActivity
@@ -19,7 +17,7 @@ import app.oson.business.models.Merchant
 import app.oson.business.models.PurchaseTransaction
 import app.oson.business.views.FieldsLinearLayout
 
-class PurchaseActivity : MyActivity(){
+class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
 
     lateinit var cardNumberEditText: AppCompatEditText
     lateinit var cardExpireEditText: AppCompatEditText
@@ -29,11 +27,15 @@ class PurchaseActivity : MyActivity(){
     lateinit var bootomSheetItemClick: View
     lateinit var bootomSheetItemClickText: AppCompatTextView
     lateinit var bottomSheet: LinearLayout
-    lateinit var listviewOfBottomSheet: RecyclerView
-    lateinit var listviewOfBottomSheetAdapter: ArrayAdapter<*>
+    lateinit var recyclerView: RecyclerView
+    lateinit var listviewOfBottomSheetAdapter: RecyclerView.Adapter<*>
+    lateinit var listviewOfBottomSheetManager: LinearLayoutManager
+    lateinit var dialog: BottomSheetDialog
     var selectedItemPosition: Int = 0
 
+
     var merchantList: ArrayList<Merchant>? = null
+    var subsidaryList: ArrayList<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -41,25 +43,22 @@ class PurchaseActivity : MyActivity(){
         titleTextView.setText(R.string.menu_item_bottomnavigationview_purchase_title)
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
 
-        val arrayList = ArrayList<String>()
+         subsidaryList = ArrayList<String>()
         for (i in merchantList!!.indices){
-            arrayList.add(merchantList!![i].name)
+            subsidaryList!!.add(merchantList!![i].name)
         }
-        initViews(arrayList)
+        initViews()
 
 
-        val dialog = BottomSheetDialog(this)
-
-        dialog.setContentView(R.layout.bottom_sheet)
-        dialog.show()
+        subsidiaryListDialog()
 
 
         /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter*/
-      //  bootomSheetItemClickText.text = arrayList[0]
+        bootomSheetItemClickText.text = subsidaryList!![0]
 
-      //  sendButton.setOnClickListener(this)
+        sendButton.setOnClickListener(this)
 
         getMerchantWithFields()
     }
@@ -74,12 +73,26 @@ class PurchaseActivity : MyActivity(){
         } else if (v == sendButton){
             putPurchase()
         }else if(v == bootomSheetItemClick){
-            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-            sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            dialog.show()
         }
     }
 
-    fun initViews(arrayList: ArrayList<String>){
+    fun subsidiaryListDialog(){
+
+        dialog = BottomSheetDialog(this)
+        dialog.setContentView(R.layout.bottom_sheet)
+
+        recyclerView = dialog.findViewById<RecyclerView>(R.id.recycler_view)!!
+
+        listviewOfBottomSheetManager = LinearLayoutManager(this)
+        recyclerView.layoutManager =listviewOfBottomSheetManager
+        listviewOfBottomSheetAdapter=PurchaseItemAdapter(this,subsidaryList!!)
+        (listviewOfBottomSheetAdapter as PurchaseItemAdapter).setClickListener(this)
+        recyclerView.adapter =listviewOfBottomSheetAdapter
+
+    }
+
+    fun initViews(){
         cardNumberEditText = findViewById(R.id.edit_text_card_number)
         cardExpireEditText = findViewById(R.id.edit_text_card_expire)
         amountEditText = findViewById(R.id.edit_text_amount)
@@ -88,40 +101,40 @@ class PurchaseActivity : MyActivity(){
         bootomSheetItemClick = findViewById(R.id.bottom_sheet_click_view)
         bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
         bootomSheetItemClick.setOnClickListener(this)
-//        bottomSheet = findViewById(R.id.bottom_sheet)
-//        var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-//        sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        listviewOfBottomSheet=findViewById(R.id.mobile_list)
-        listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.activity_listview, arrayList)
-      //  listviewOfBottomSheet.adapter=RecyclerView.Adapter()
+        //bottomSheet = findViewById(R.id.bottom_sheet)
+        //var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        //sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+
+
+       // listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.item_recycler_view_purchase_activity, arrayList)
 
 
      /*  listviewOfBottomSheet.setOnItemClickListener {parent, view, position, id ->
             selectedItemPosition=position
             bootomSheetItemClickText.text = arrayList[position]
-  //          var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
+    //          var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
    //         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }*/
     }
 
     fun checkPurchaseData(): Boolean {
         if (merchantList == null) {
-            showAlertDialog("Error" , "NULLLLL")
+            showAlertDialog("Error", "NULLLLL")
             return false
         }
 
         if (cardNumberEditText.text.toString().length != 16) {
-            showAlertDialog("Error" , "Kartani to'liq kiriting")
+            showAlertDialog("Error", "Kartani to'liq kiriting")
             return false
         }
 
         if (cardExpireEditText.text.toString().length != 4) {
-            showAlertDialog("Error" , "Karta amal qilish muddatini kiriting")
+            showAlertDialog("Error", "Karta amal qilish muddatini kiriting")
             return false
         }
 
         if (amountEditText.text.toString().isEmpty()) {
-            showAlertDialog("Error" , "Summani kiriting!")
+            showAlertDialog("Error", "Summani kiriting!")
             return false
         }
 
@@ -170,7 +183,7 @@ class PurchaseActivity : MyActivity(){
 
                     })
             } else {
-                showAlertDialog("Error" , "Malumotlarni kiritishda xatolik bo'ldi")
+                showAlertDialog("Error", "Malumotlarni kiritishda xatolik bo'ldi")
             }
         }
     }
@@ -181,12 +194,12 @@ class PurchaseActivity : MyActivity(){
 
         MerchantService().getMerchant(
             merchantId = merchantList!![selectedItemPosition].id,
-            callback = object : BaseCallback<Merchant.MerchantList>{
-                override fun onLoading(){
+            callback = object : BaseCallback<Merchant.MerchantList> {
+                override fun onLoading() {
 
                 }
 
-                override fun onError(throwable: Throwable){
+                override fun onError(throwable: Throwable) {
                     throwable.printStackTrace()
                 }
 
@@ -198,6 +211,12 @@ class PurchaseActivity : MyActivity(){
                 }
             }
         )
+    }
+
+    override fun onItemClick(position: Int) {
+        Log.i("werty", "qwe=$position")
+         dialog.hide()
+        bootomSheetItemClickText.text = subsidaryList!![position]
     }
 
 }

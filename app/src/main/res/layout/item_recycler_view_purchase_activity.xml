@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:id="@+id/subsidiary_name"
+    android:layout_width="match_parent"
+    android:textSize="17sp"
+    android:padding="16dp"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/lato"
+    android:textColor="@color/colorBlack"
+    android:background="?attr/selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

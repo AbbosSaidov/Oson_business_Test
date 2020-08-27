@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "639239159972",
+    "firebase_url": "https://function1-1ff4d.firebaseio.com",
+    "project_id": "function1-1ff4d",
+    "storage_bucket": "function1-1ff4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639239159972:android:6d2342e05bb247cfd0e631",
+        "android_client_info": {
+          "package_name": "app.oson.business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639239159972-vdb9i77ht23rmd2fjgkmfm1f9ma4veue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCdN1LMy-1kwqoN-tobh0mkKkhQ5VSbY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639239159972-vdb9i77ht23rmd2fjgkmfm1f9ma4veue.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

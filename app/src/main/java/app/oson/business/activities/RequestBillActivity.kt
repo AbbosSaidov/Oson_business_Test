@@ -3,37 +3,39 @@ package app.oson.business.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
-import android.support.v7.widget.AppCompatButton
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatTextView
+import android.support.design.widget.BottomSheetDialog
+import android.support.v7.widget.*
 import android.util.Log
 import android.view.View
 import android.widget.*
-import android.widget.AdapterView.OnItemClickListener
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
-import kotlinx.android.synthetic.main.activity_request_bill.*
+import app.oson.business.ui.purchase.PurchaseItemAdapter
 
 
-class RequestBillActivity : MyActivity() {
+class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener {
 
     lateinit var phoneNumberEditText: AppCompatEditText
     lateinit var billSumEditText: AppCompatEditText
     lateinit var commentEditText: AppCompatEditText
+    lateinit var qrCodeGenerateButton: AppCompatButton
     lateinit var sendButton: AppCompatButton
     lateinit var bootomSheetItemClick: View
     lateinit var bootomSheetItemClickText: AppCompatTextView
     lateinit var bottomSheet: LinearLayout
-    lateinit var qrCodeGenerateButton: AppCompatButton
-    lateinit var listviewOfBottomSheet: ListView
-    lateinit var listviewOfBottomSheetAdapter: ArrayAdapter<*>
+    lateinit var recyclerView: RecyclerView
+    lateinit var listviewOfBottomSheetAdapter: RecyclerView.Adapter<*>
+    lateinit var listviewOfBottomSheetManager: LinearLayoutManager
+    lateinit var dialog: BottomSheetDialog
     var selectedItemPosition: Int = 0
 
 
     var merchantList: ArrayList<Merchant>? = null
+    var subsidaryList: ArrayList<String>? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -44,11 +46,12 @@ class RequestBillActivity : MyActivity() {
 
 
 
-        val arrayList = ArrayList<String>()
+        subsidaryList = ArrayList<String>()
         for (i in merchantList!!.indices){
-            arrayList.add(merchantList!![i].name)
+            subsidaryList!!.add(merchantList!![i].name)
         }
-        initViews(arrayList)
+        initViews()
+        subsidiaryListDialog()
         /*val spinnerAdapter = ArrayAdapter(
             this@RequestBillActivity,
             android.R.layout.simple_spinner_item,
@@ -56,7 +59,9 @@ class RequestBillActivity : MyActivity() {
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         spinner!!.adapter = spinnerAdapter*/
-        bootomSheetItemClickText.text = arrayList[0]
+        bootomSheetItemClickText.text = subsidaryList!![0]
+
+        sendButton.setOnClickListener(this)
 
     }
 
@@ -71,12 +76,11 @@ class RequestBillActivity : MyActivity() {
         }else if(v == qrCodeGenerateButton){
             putBillQrCode()
         }else if(v == bootomSheetItemClick){
-            var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-            sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            dialog.show()
         }
     }
 
-    fun initViews(arrayList: ArrayList<String>){
+    fun initViews(){
         phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
         phoneNumberEditText.setSelection(phoneNumberEditText.text!!.length)
         billSumEditText = findViewById(R.id.edit_text_bill_sum)
@@ -88,11 +92,11 @@ class RequestBillActivity : MyActivity() {
         bootomSheetItemClick.setOnClickListener(this)
         qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
         qrCodeGenerateButton.setOnClickListener(this)
-        bottomSheet = findViewById(R.id.bottom_sheet)
+ /*       bottomSheet = findViewById(R.id.bottom_sheet)
         var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        listviewOfBottomSheet=findViewById(R.id.mobile_list)
-        listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.activity_listview, arrayList)
+//        listviewOfBottomSheet=findViewById(R.id.mobile_list)
+        listviewOfBottomSheetAdapter = ArrayAdapter<String>(this,R.layout.item_recycler_view_purchase_activity, arrayList)
         listviewOfBottomSheet.adapter = listviewOfBottomSheetAdapter
 
         listviewOfBottomSheet.setOnItemClickListener {parent, view, position, id ->
@@ -100,7 +104,7 @@ class RequestBillActivity : MyActivity() {
             bootomSheetItemClickText.text = arrayList[position]
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-        }
+        }*/
 
     }
 
@@ -204,5 +208,23 @@ class RequestBillActivity : MyActivity() {
                 })
         }
     }
+    fun subsidiaryListDialog(){
+
+        dialog = BottomSheetDialog(this)
+        dialog.setContentView(R.layout.bottom_sheet)
+
+        recyclerView = dialog.findViewById<RecyclerView>(R.id.recycler_view)!!
+
+        listviewOfBottomSheetManager = LinearLayoutManager(this)
+        recyclerView.layoutManager =listviewOfBottomSheetManager
+        listviewOfBottomSheetAdapter=PurchaseItemAdapter(this,subsidaryList!!)
+        (listviewOfBottomSheetAdapter as PurchaseItemAdapter).setClickListener(this)
+        recyclerView.adapter =listviewOfBottomSheetAdapter
+
+    }
+    override fun onItemClick(position: Int) {
+        Log.i("werty", "qwe=$position")
+        dialog.hide()
+        bootomSheetItemClickText.text = subsidaryList!![position]    }
 
 }
