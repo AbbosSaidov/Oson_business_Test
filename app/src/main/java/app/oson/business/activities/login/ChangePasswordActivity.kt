@@ -2,10 +2,12 @@ package app.oson.business.activities.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.AppCompatButton
-import android.support.v7.widget.AppCompatEditText
+//import androidx.appcompat.widget.AppCompatButton
+//import androidx.appcompat.widget.AppCompatEditText
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
 import app.oson.business.R
 import app.oson.business.activities.MainActivity
 import app.oson.business.activities.MyActivity

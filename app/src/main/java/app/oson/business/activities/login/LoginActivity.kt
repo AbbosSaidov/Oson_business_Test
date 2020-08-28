@@ -4,8 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.widget.AppCompatCheckBox
-import android.support.v7.widget.AppCompatEditText
+//import android.support.v7.widget.AppCompatCheckBox
+//import androidx.appcompat.widget.AppCompatEditText
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
@@ -13,6 +13,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatEditText
 import app.oson.business.R
 import app.oson.business.activities.MainActivity
 import app.oson.business.activities.MyActivity
@@ -35,28 +37,15 @@ class LoginActivity : MyActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+ //       throw RuntimeException("Test Crash") // Force a crash
+
         titleTextView.setText(R.string.authorization_title)
 
         loginEditText = findViewById(R.id.edit_text_login)
-//as
-        loginEditText.onRightDrawableClicked {it.text.clear()}
 
         passwordEditText = findViewById(R.id.edit_text_password)
         passwordEditText.transformationMethod = PasswordTransformationMethod()
-        passwordEditText.onRightDrawableClicked {
-            Log.i("qwerty","werwer="+it.transformationMethod)
-            if(it.transformationMethod == null){
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    it.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_visible_off, 0)
-                }
-                it.transformationMethod = PasswordTransformationMethod()
-            }else{
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    it.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_visible, 0)
-                }
-                it.transformationMethod = null
-            }
-        }
+
 
         loginEditText.setText(preferences.getLoginData()?.login)
         passwordEditText.setText(preferences.getLoginData()?.password)
@@ -144,20 +133,6 @@ class LoginActivity : MyActivity(){
 
     override fun setupActionBar(){
         titleTextView.visibility = View.VISIBLE
-    }
-     fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit){
-        this.setOnTouchListener { v, event ->
-            var hasConsumed = false
-            if (v is EditText) {
-                if (event.x >= v.width - v.totalPaddingRight) {
-                    if (event.action == MotionEvent.ACTION_UP) {
-                        onClicked(this)
-                    }
-                    hasConsumed = true
-                }
-            }
-            hasConsumed
-        }
     }
     override fun onClick(v: View?){
         if (v == loginButton) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +11,7 @@
         android:orientation="vertical">
         <include layout="@layout/action_bar"/>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:orientation="vertical"
@@ -34,7 +34,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:background="?attr/selectableItemBackground">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
@@ -53,7 +53,7 @@
                         android:gravity="center_vertical"
                         android:orientation="vertical">
 
-                        <android.support.v7.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/bottom_sheet_click_text"
                             style="@style/Ui.Button.Transparent.ColorPrimaryDark"
                             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                 </app.oson.business.views.FieldsLinearLayout>
 
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -87,7 +87,7 @@
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_text_card_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -98,9 +98,9 @@
 
                         android:hint="@string/fragment_main_purchase_input_cardnumber_hint"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -108,7 +108,7 @@
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_text_card_expire"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -118,9 +118,9 @@
                         android:maxLength="5"
                         android:hint="@string/fragment_main_purchase_input_card_expire_date_hint"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -128,7 +128,7 @@
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit_text_amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -137,11 +137,11 @@
                         android:inputType="number"
                         android:hint="@string/fragment_main_bill_input_sum_hint"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
     <RelativeLayout
@@ -152,7 +152,7 @@
         android:paddingLeft="36dp"
         android:paddingRight="36dp"
         >
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_send_purchase"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
@@ -162,4 +162,4 @@
             android:text="@string/fragment_main_bill_send_request_button_title"/>
     </RelativeLayout>
  <!---->   <include layout="@layout/bottom_sheet"/>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,10 +2,10 @@ package app.oson.business.fragments
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.*
-import android.support.v7.widget.SearchView
+//import android.support.v4.app.Fragment
+//import android.support.v4.widget.SwipeRefreshLayout
+//import android.support.v7.widget.*
+//import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +23,14 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ArrayAdapter
+import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+//import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.api.services.PurchaseService
@@ -39,7 +47,7 @@ class FragmentPurchaseList : Fragment() {
 
     var purchaseList: ArrayList<Purchase>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
     }
@@ -54,14 +62,12 @@ class FragmentPurchaseList : Fragment() {
         recyclerView.addItemDecoration(StickyRecyclerHeadersDecoration(purchaseAdapter))
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
-        swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
-            override fun onRefresh() {
-                purchaseList?.clear()
-                purchaseAdapter.notifyDataSetChanged()
+        swipeRefreshLayout.setOnRefreshListener {
+            purchaseList?.clear()
+            purchaseAdapter.notifyDataSetChanged()
 
-                getPurchaseList()
-            }
-        })
+            getPurchaseList()
+        }
         getPurchaseList()
 
         return view

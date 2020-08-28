@@ -2,21 +2,25 @@ package app.oson.business.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.TabLayout
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+//import android.support.design.widget.BottomNavigationView
+//import com.google.android.material.tabs.TabLayout
+//import android.support.v4.app.FragmentManager
+//import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.fragments.FragmentPurchaseList
 import app.oson.business.models.Merchant
 import app.oson.business.ui.purchase.PurchaseActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -55,11 +59,14 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
             }
 
-            override fun onTabSelected(tab: TabLayout.Tab) {
+            override fun onTabSelected(tab: TabLayout.Tab){
                 val position = tab.position
                 when (position) {
-                    1 -> transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!).commit()
-
+                    1->{
+                        transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
+                     //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
+                    transaction!!.commit()
+                    }
                 }
 
             }

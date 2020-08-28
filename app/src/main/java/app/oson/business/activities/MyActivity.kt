@@ -9,13 +9,16 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.AppCompatTextView
+import androidx.appcompat.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
+//import androidx.appcompat.widget.AppCompatImageView
+//import androidx.appcompat.widget.AppCompatTextView
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import app.oson.business.R
 import app.oson.business.api.Api
 import app.oson.business.database.Preferences
@@ -27,7 +30,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
+abstract class MyActivity : AppCompatActivity(), View.OnClickListener{
 
     internal lateinit var backImageView: AppCompatImageView
     internal lateinit var filterImageView: AppCompatImageView
@@ -49,7 +52,6 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
     override fun setContentView(layoutResID: Int){
         super.setContentView(layoutResID)
 
-
         initActionBar()
 
         val logging = HttpLoggingInterceptor()
@@ -57,38 +59,36 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
-            .addInterceptor(object : Interceptor {
-                override fun intercept(chain: Interceptor.Chain): Response {
-                    val builder = chain.request().newBuilder()
+            .addInterceptor { chain ->
+                val builder = chain.request().newBuilder()
 
-                    if (preferences.getUserData() != null)
-                        builder.addHeader("token", preferences.getUserData()!!.token)
+                if (preferences.getUserData() != null)
+                    builder.addHeader("token", preferences.getUserData()!!.token)
 
-                    var request = builder.build()
+                var request = builder.build()
 
-                    var response = chain.proceed(request)
-
-
-//                    if (response.code() == 401 && preferences.getLoginData() != null) {
-//                        val r = api!!.refreshToken("refresh_token", Api.CLIENT_ID, Api.CLIENT_SECRET, preferences.getUserData()!!.token).execute()
-//
-//                        if (r.code() == 200 && r.body() != null) {
-//                            preferences.saveLoginData(r.body()!!)
-//
-//
-//                            builder.removeHeader("authorization")
-//                            builder.addHeader("authorization", "Bearer " + preferences.getLoginData()!!.accessToken)
-//
-//                            request = builder.build()
-//
-//                            response = chain.proceed(request)
-//                        }
-//                    }
+                var response = chain.proceed(request)
 
 
-                    return response
-                }
-            })
+                //                    if (response.code() == 401 && preferences.getLoginData() != null) {
+                //                        val r = api!!.refreshToken("refresh_token", Api.CLIENT_ID, Api.CLIENT_SECRET, preferences.getUserData()!!.token).execute()
+                //
+                //                        if (r.code() == 200 && r.body() != null) {
+                //                            preferences.saveLoginData(r.body()!!)
+                //
+                //
+                //                            builder.removeHeader("authorization")
+                //                            builder.addHeader("authorization", "Bearer " + preferences.getLoginData()!!.accessToken)
+                //
+                //                            request = builder.build()
+                //
+                //                            response = chain.proceed(request)
+                //                        }
+                //                    }
+
+
+                response
+            }
             .readTimeout(60, TimeUnit.SECONDS)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)

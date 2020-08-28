@@ -2,18 +2,24 @@ package app.oson.business.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.BottomSheetDialog
-import android.support.v7.widget.*
+//import android.support.design.widget.BottomSheetBehavior
+//import android.support.design.widget.BottomSheetDialog
+//import android.support.v7.widget.*
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import app.oson.business.R
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
 import app.oson.business.ui.purchase.PurchaseItemAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener {

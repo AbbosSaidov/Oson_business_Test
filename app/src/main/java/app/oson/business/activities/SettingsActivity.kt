@@ -6,12 +6,13 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.support.v7.widget.AppCompatTextView
+//import androidx.appcompat.widget.AppCompatTextView
 import android.util.Base64
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
+import androidx.appcompat.widget.AppCompatTextView
 import app.oson.business.R
 import app.oson.business.activities.login.ChangePasswordActivity
 import app.oson.business.api.callbacks.BaseCallback

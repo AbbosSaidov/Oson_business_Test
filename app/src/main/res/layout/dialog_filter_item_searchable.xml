@@ -9,7 +9,7 @@
         android:padding="7dp"
 >
 
-    <android.support.v7.widget.SearchView
+    <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:paddingRight="?dialogPreferredPadding"
             android:iconifiedByDefault="false">
         <requestFocus/>
-    </android.support.v7.widget.SearchView>
+    </androidx.appcompat.widget.SearchView>
 
     <ListView
             android:id="@+id/list_view"
