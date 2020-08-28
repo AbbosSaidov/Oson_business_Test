@@ -37,7 +37,7 @@ class LoginActivity : MyActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
- //       throw RuntimeException("Test Crash") // Force a crash
+        // throw RuntimeException("Test Crash") // Force a crash
 
         titleTextView.setText(R.string.authorization_title)
 
@@ -46,7 +46,6 @@ class LoginActivity : MyActivity(){
         passwordEditText = findViewById(R.id.edit_text_password)
         passwordEditText.transformationMethod = PasswordTransformationMethod()
 
-
         loginEditText.setText(preferences.getLoginData()?.login)
         passwordEditText.setText(preferences.getLoginData()?.password)
 
@@ -54,14 +53,9 @@ class LoginActivity : MyActivity(){
         savePasswordCheckBox = findViewById(R.id.check_box_save_password)
         loginButton = findViewById(R.id.button_login)
         disabledButton()
-        if(loginEditText.text!!.isNotEmpty() && passwordEditText.text!!.isNotEmpty()){
-            loginButton.alpha = 1.0f
-            loginButton.isEnabled = true
-        }
-        loginButton.setOnClickListener(this)
-    }
 
-    fun disabledButton(){
+    }
+    private fun disabledButton(){
         loginButton.alpha = .5f
         loginButton.isEnabled = false
 
@@ -75,10 +69,10 @@ class LoginActivity : MyActivity(){
                 before: Int,
                 count: Int
             ){
-                if (s.toString().trim { it <= ' ' }.length == 0) {
+                if(s.toString().trim { it <= ' '}.isEmpty()){
                     loginButton.alpha = .5f
                     loginButton.isEnabled = false
-                } else {
+                }else{
                     lBoolean=true
                     if(lBoolean && pBoolean){
                         loginButton.alpha = 1.0f
@@ -86,19 +80,15 @@ class LoginActivity : MyActivity(){
                     }
                 }
             }
-
             override fun beforeTextChanged(
                 s: CharSequence, start: Int, count: Int,
                 after: Int
             ){
-
             }
-
             override fun afterTextChanged(s: Editable) {
-                // TODO Auto-generated method stub
             }
         })
-        //
+
         passwordEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
@@ -129,6 +119,12 @@ class LoginActivity : MyActivity(){
                 // TODO Auto-generated method stub
             }
         })
+
+        if(loginEditText.text!!.isNotEmpty() && passwordEditText.text!!.isNotEmpty()){
+            loginButton.alpha = 1.0f
+            loginButton.isEnabled = true
+        }
+        loginButton.setOnClickListener(this)
     }
 
     override fun setupActionBar(){

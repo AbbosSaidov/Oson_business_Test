@@ -2,6 +2,8 @@ package app.oson.business.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 //import android.support.design.widget.BottomSheetBehavior
 //import android.support.design.widget.BottomSheetDialog
 //import android.support.v7.widget.*
@@ -57,6 +59,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
             subsidaryList!!.add(merchantList!![i].name)
         }
         initViews()
+        disabledButton()
         subsidiaryListDialog()
         /*val spinnerAdapter = ArrayAdapter(
             this@RequestBillActivity,
@@ -113,7 +116,111 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         }*/
 
     }
+    private fun disabledButton(){
+        sendButton.alpha = .5f
+        sendButton.isEnabled = false
 
+        var lBoolean =false
+        var pBoolean =false
+        var aBoolean =false
+
+        phoneNumberEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ){
+                if(s.toString().trim { it <= ' '}.isEmpty()){
+                    lBoolean=false
+                    sendButton.alpha = .5f
+                    sendButton.isEnabled = false
+                }else{
+                    lBoolean=true
+                    if(lBoolean && pBoolean&& aBoolean){
+                        sendButton.alpha = 1.0f
+                        sendButton.isEnabled = true
+                    }
+                }
+            }
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ){
+            }
+            override fun afterTextChanged(s: Editable) {
+            }
+        })
+
+        billSumEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (s.toString().trim { it <= ' ' }.length == 0) {
+                    pBoolean=false
+                    sendButton.alpha = .5f
+                    sendButton.isEnabled = false
+                } else {
+                    pBoolean=true
+                    if(lBoolean && pBoolean && aBoolean){
+                        sendButton.alpha = 1.0f
+                        sendButton.isEnabled = true
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+        commentEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (s.toString().trim { it <= ' ' }.length == 0) {
+                    aBoolean=false
+                    sendButton.alpha = .5f
+                    sendButton.isEnabled = false
+                } else {
+                    aBoolean=true
+                    if(lBoolean && pBoolean){
+                        sendButton.alpha = 1.0f
+                        sendButton.isEnabled = true
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable){
+                // TODO Auto-generated method stub
+            }
+        })
+
+        if(phoneNumberEditText.text!!.isNotEmpty() && billSumEditText.text!!.isNotEmpty()&& commentEditText.text!!.isNotEmpty()){
+            sendButton.alpha = 1.0f
+            sendButton.isEnabled = true
+        }
+    }
     fun checkBillData(): Boolean{
 
         if (phoneNumberEditText.text.toString().length != 13){

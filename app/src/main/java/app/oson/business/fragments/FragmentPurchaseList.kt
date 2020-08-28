@@ -2,10 +2,6 @@ package app.oson.business.fragments
 
 import android.app.Dialog
 import android.os.Bundle
-//import android.support.v4.app.Fragment
-//import android.support.v4.widget.SwipeRefreshLayout
-//import android.support.v7.widget.*
-//import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +34,7 @@ import app.oson.business.models.PurchaseTransaction
 import kotlin.collections.ArrayList
 
 
-class FragmentPurchaseList : Fragment() {
+class FragmentPurchaseList : Fragment(){
 
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
@@ -49,10 +45,9 @@ class FragmentPurchaseList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):View?{
         val view = inflater.inflate(R.layout.fragment_item_purchase_list, container, false)
         recyclerView = view.findViewById(R.id.recycler_view_search)
         purchaseAdapter = PurchaseListAdapter()

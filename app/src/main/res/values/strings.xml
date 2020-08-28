@@ -126,9 +126,9 @@
 
     <string name="dialogfragment_main_preferences_logout_message">Вы действительно хотите выйти из системы?</string>
 
-    <string name="fragment_main_bill_input_phonenumber_hint">Введите номер телефона</string>
+    <string name="fragment_main_bill_input_phonenumber_hint">Номер телефона</string>
     <string name="fragment_main_bill_input_sum_hint">Сумма</string>
-    <string name="fragment_main_bill_comment_hint">Введите комментарий</string>
+    <string name="fragment_main_bill_comment_hint">Комментарий</string>
     <string name="fragment_main_bill_send_request_button_title">Отправить запрос</string>
     <string name="fragment_main_bill_generate_qrcode_title">Сгенерировать QR-код</string>
     <string name="fragment_main_bill_generate_ndefmessage_title">Отправить данные по NFC</string>

@@ -65,6 +65,8 @@ class SettingsActivity : MyActivity() {
     override fun setupActionBar() {
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
+        qrCodeImageView.visibility=View.VISIBLE
+        exitImageView.visibility=View.VISIBLE
     }
 
     fun initViews() {
@@ -74,7 +76,7 @@ class SettingsActivity : MyActivity() {
         languageView = findViewById(R.id.view_set_language)
     }
 
-    fun showLogOutDialog() {
+    fun showLogOutDialog(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(resources.getString(R.string.fragment_main_preference_logout_title))
             .setMessage(resources.getString(R.string.dialogfragment_main_preferences_logout_message))

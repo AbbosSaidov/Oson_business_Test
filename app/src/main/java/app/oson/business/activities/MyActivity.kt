@@ -34,6 +34,8 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener{
 
     internal lateinit var backImageView: AppCompatImageView
     internal lateinit var filterImageView: AppCompatImageView
+ internal lateinit var qrCodeImageView: AppCompatImageView
+    internal lateinit var exitImageView: AppCompatImageView
 
     //    internal lateinit var infoImageView: AppCompatImageView;
     internal lateinit var titleTextView: AppCompatTextView
@@ -109,6 +111,8 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener{
 
         backImageView = findViewById(R.id.image_view_back)
         filterImageView = findViewById(R.id.image_view_filter)
+        exitImageView = findViewById(R.id.image_exit)
+        qrCodeImageView = findViewById(R.id.qr_code)
         //  infoImageView = findViewById(R.id.image_view_info)
         titleTextView = findViewById(R.id.text_view_title)
         clearImageView = findViewById(R.id.image_view_clear)

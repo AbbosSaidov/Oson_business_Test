@@ -2,6 +2,8 @@ package app.oson.business.ui.purchase
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 //import android.support.design.widget.BottomSheetBehavior
 //import android.support.design.widget.BottomSheetDialog
 //import android.support.v7.widget.*
@@ -55,9 +57,8 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         }
         initViews()
 
-
+        disabledButton()
         subsidiaryListDialog()
-
 
         /*   val spinnerAdapter = ArrayAdapter(this@PurchaseActivity, android.R.layout.simple_spinner_item, arrayList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
@@ -67,6 +68,111 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         sendButton.setOnClickListener(this)
 
         getMerchantWithFields()
+    }
+    private fun disabledButton(){
+        sendButton.alpha = .5f
+        sendButton.isEnabled = false
+
+        var lBoolean =false
+        var pBoolean =false
+        var aBoolean =false
+
+        cardNumberEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ){
+                if(s.toString().trim { it <= ' '}.isEmpty()){
+                    lBoolean=false
+                    sendButton.alpha = .5f
+                    sendButton.isEnabled = false
+                }else{
+                    lBoolean=true
+                    if(lBoolean && pBoolean&& aBoolean){
+                        sendButton.alpha = 1.0f
+                        sendButton.isEnabled = true
+                    }
+                }
+            }
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ){
+            }
+            override fun afterTextChanged(s: Editable) {
+            }
+        })
+
+        cardExpireEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (s.toString().trim { it <= ' ' }.length == 0) {
+                    pBoolean=false
+                    sendButton.alpha = .5f
+                    sendButton.isEnabled = false
+                } else {
+                    pBoolean=true
+                    if(lBoolean && pBoolean && aBoolean){
+                        sendButton.alpha = 1.0f
+                        sendButton.isEnabled = true
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+        amountEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (s.toString().trim { it <= ' ' }.length == 0) {
+                    aBoolean=false
+                    sendButton.alpha = .5f
+                    sendButton.isEnabled = false
+                } else {
+                    aBoolean=true
+                    if(lBoolean && pBoolean){
+                        sendButton.alpha = 1.0f
+                        sendButton.isEnabled = true
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+        if(cardNumberEditText.text!!.isNotEmpty() && cardExpireEditText.text!!.isNotEmpty()&& amountEditText.text!!.isNotEmpty()){
+            sendButton.alpha = 1.0f
+            sendButton.isEnabled = true
+        }
     }
     override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE

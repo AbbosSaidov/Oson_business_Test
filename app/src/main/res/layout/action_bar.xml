@@ -35,8 +35,6 @@
             android:orientation="horizontal"
             android:layout_centerVertical="true">
 
-
-
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view_clear"
                 android:layout_width="40dp"
@@ -49,32 +47,44 @@
                 android:visibility="gone"
                 android:background="?attr/actionBarItemBackground"
                 tools:ignore="VectorDrawableCompat"/>
-
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_filter"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:clickable="true"
-        android:padding="10dp"
-        android:layout_centerVertical="true"
-        app:srcCompat="@drawable/ic_filter_action_bar_foreground"
-        android:visibility="invisible"
-        android:background="?attr/actionBarItemBackground"
-        tools:ignore="VectorDrawableCompat"/>
- <!--   <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_info"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/qr_code"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:clickable="true"
             android:layout_centerVertical="true"
             android:padding="8dp"
-            android:src="@drawable/icon_info"
+            android:src="@drawable/ic_qr_1_code_foreground"
             android:background="?attr/actionBarItemBackground"
-            android:visibility="invisible"/>-->
+            android:visibility="gone"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_exit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_exit_setting_foreground"
+            android:background="?attr/actionBarItemBackground"
+            android:visibility="gone"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_filter"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_filter_action_bar_foreground"
+            android:visibility="gone"
+            android:background="?attr/actionBarItemBackground"
+            tools:ignore="VectorDrawableCompat"/>
+
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

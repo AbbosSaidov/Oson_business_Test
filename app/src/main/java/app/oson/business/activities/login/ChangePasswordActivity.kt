@@ -2,6 +2,8 @@ package app.oson.business.activities.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 //import androidx.appcompat.widget.AppCompatButton
 //import androidx.appcompat.widget.AppCompatEditText
 import android.view.View
@@ -30,11 +32,117 @@ class ChangePasswordActivity : MyActivity() {
 
         titleTextView.text = resources.getString(R.string.fragment_main_preference_change_password_title)
         initViews()
+        disabledButton()
+
 
         changePassButton.setOnClickListener(this)
 
     }
+    private fun disabledButton(){
+        changePassButton.alpha = .5f
+        changePassButton.isEnabled = false
 
+        var lBoolean =false
+        var pBoolean =false
+        var aBoolean =false
+
+        currentPassEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ){
+                if(s.toString().trim { it <= ' '}.isEmpty()){
+                    lBoolean=false
+                    changePassButton.alpha = .5f
+                    changePassButton.isEnabled = false
+                }else{
+                    lBoolean=true
+                    if(lBoolean && pBoolean&& aBoolean){
+                        changePassButton.alpha = 1.0f
+                        changePassButton.isEnabled = true
+                    }
+                }
+            }
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ){
+            }
+            override fun afterTextChanged(s: Editable) {
+            }
+        })
+
+        newPassEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (s.toString().trim { it <= ' ' }.length == 0) {
+                    pBoolean=false
+                    changePassButton.alpha = .5f
+                    changePassButton.isEnabled = false
+                } else {
+                    pBoolean=true
+                    if(lBoolean && pBoolean && aBoolean){
+                        changePassButton.alpha = 1.0f
+                        changePassButton.isEnabled = true
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+        confirmPassEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (s.toString().trim { it <= ' ' }.length == 0) {
+                    aBoolean=false
+                    changePassButton.alpha = .5f
+                    changePassButton.isEnabled = false
+                } else {
+                    aBoolean=true
+                    if(lBoolean && pBoolean){
+                        changePassButton.alpha = 1.0f
+                        changePassButton.isEnabled = true
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable){
+                // TODO Auto-generated method stub
+            }
+        })
+
+        if(currentPassEditText.text!!.isNotEmpty() && newPassEditText.text!!.isNotEmpty()&& confirmPassEditText.text!!.isNotEmpty()){
+            changePassButton.alpha = 1.0f
+            changePassButton.isEnabled = true
+        }
+    }
     override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
