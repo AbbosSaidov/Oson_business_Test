@@ -24,14 +24,14 @@ import okhttp3.ResponseBody
 
 class SettingsActivity : MyActivity() {
 
-    lateinit var qrCodeView: View
+   // lateinit var qrCodeView: View
     lateinit var changePasswordView: View
-    lateinit var logOutView: View
+    //lateinit var logOutView: View
     lateinit var languageView: View
 
     var merchantList: ArrayList<Merchant>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         titleTextView.text = resources.getString(R.string.menu_item_main_preference_title)
@@ -39,26 +39,27 @@ class SettingsActivity : MyActivity() {
 
         merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
 
-        qrCodeView.setOnClickListener(this)
+       // qrCodeView.setOnClickListener(this)
         changePasswordView.setOnClickListener(this)
-        logOutView.setOnClickListener(this)
+       // logOutView.setOnClickListener(this)
         languageView.setOnClickListener(this)
-
+        qrCodeImageView.setOnClickListener(this)
+        exitImageView.setOnClickListener(this)
 
     }
-
-    override fun onClick(view: View?) {
-        if (view == qrCodeView) {
-            billQrCode()
-        } else if (view == changePasswordView) {
+    override fun onClick(view: View?){
+         if (view == changePasswordView){
             val intent = Intent(this@SettingsActivity, ChangePasswordActivity::class.java)
             startActivity(intent)
-
-        } else if (view == logOutView) {
-            showLogOutDialog()
-        }else if (view == languageView) {
+       /* }else if (view == logOutView){
+            showLogOutDialog()*/
+        }else if (view == languageView){
             val intent = Intent(this@SettingsActivity, SetLanguageActivity::class.java)
             startActivity(intent)
+        }else if(view==qrCodeImageView){
+            billQrCode()
+        }else if(view==exitImageView){
+            showLogOutDialog()
         }
     }
 
@@ -70,9 +71,9 @@ class SettingsActivity : MyActivity() {
     }
 
     fun initViews() {
-        qrCodeView = findViewById(R.id.view_qr_code)
+       // qrCodeView = findViewById(R.id.view_qr_code)
         changePasswordView = findViewById(R.id.view_change_password)
-        logOutView = findViewById(R.id.view_log_out)
+       // logOutView = findViewById(R.id.view_log_out)
         languageView = findViewById(R.id.view_set_language)
     }
 

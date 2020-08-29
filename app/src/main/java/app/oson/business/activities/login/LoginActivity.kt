@@ -1,16 +1,12 @@
-package app.oson.business.activities .login
+package app.oson.business.activities.login
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-//import android.support.v7.widget.AppCompatCheckBox
-//import androidx.appcompat.widget.AppCompatEditText
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.AppCompatCheckBox
@@ -23,7 +19,6 @@ import app.oson.business.api.services.UserService
 import app.oson.business.models.LoginData
 import app.oson.business.models.UserData
 
-
 class LoginActivity : MyActivity(){
 
     lateinit var loginEditText: AppCompatEditText
@@ -31,7 +26,6 @@ class LoginActivity : MyActivity(){
     lateinit var savePasswordLinearLayout: LinearLayout
     lateinit var savePasswordCheckBox: AppCompatCheckBox
     lateinit var loginButton: Button
-
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -55,6 +49,7 @@ class LoginActivity : MyActivity(){
         disabledButton()
 
     }
+
     private fun disabledButton(){
         loginButton.alpha = .5f
         loginButton.isEnabled = false

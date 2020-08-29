@@ -16,7 +16,7 @@
             android:orientation="vertical"
             android:paddingTop="5dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+     <!--  <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@string/fragment_main_preference_category_general_title"
@@ -93,7 +93,7 @@
                 android:textColor="@color/colorBlue"
                 android:textStyle="bold"
                 android:paddingLeft="20dp"
-        />
+        />-->
 
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -152,7 +152,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+    <!--    <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:orientation="horizontal"
@@ -208,7 +208,7 @@
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackground"/>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"

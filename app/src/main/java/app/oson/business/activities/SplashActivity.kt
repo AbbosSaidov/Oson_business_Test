@@ -61,7 +61,7 @@ class SplashActivity : MyActivity(){
                     }
                 });
         } else{
-            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+            val intent = Intent(this@SplashActivity, app.oson.business.activities.login.LoginActivity::class.java)
             startActivity(intent)
         }*/
     }
