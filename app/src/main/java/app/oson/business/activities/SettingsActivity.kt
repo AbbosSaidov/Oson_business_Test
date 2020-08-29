@@ -45,8 +45,8 @@ class SettingsActivity : MyActivity() {
         languageView.setOnClickListener(this)
         qrCodeImageView.setOnClickListener(this)
         exitImageView.setOnClickListener(this)
-
     }
+
     override fun onClick(view: View?){
          if (view == changePasswordView){
             val intent = Intent(this@SettingsActivity, ChangePasswordActivity::class.java)
@@ -91,14 +91,14 @@ class SettingsActivity : MyActivity() {
     }
 
 
-    fun showQrCodeDialog() {
+    fun showQrCodeDialog(){
 
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_qr_code)
 
         var spinner = dialog.findViewById<Spinner>(R.id.spinner)
         val arrayList = ArrayList<String>()
-        for (i in merchantList!!.indices) {
+        for(i in merchantList!!.indices){
             arrayList.add(merchantList!![i].name)
         }
 
@@ -110,10 +110,10 @@ class SettingsActivity : MyActivity() {
 
 
 
-        if (bill.qrCodeBase!!.isNotEmpty()) {
+        if (bill.qrCodeBase!!.isNotEmpty()){
             val bytes: ByteArray = Base64.decode(bill.qrCodeBase, Base64.DEFAULT)
             val decodeByte = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-//            val bitmap = QRCode.from(decodeByte.toString()).bitmap()
+            //  val bitmap = QRCode.from(decodeByte.toString()).bitmap()
             imageView.setImageBitmap(decodeByte)
         }
 

@@ -54,9 +54,6 @@ class LoginActivity : MyActivity(){
         loginButton.alpha = .5f
         loginButton.isEnabled = false
 
-        var lBoolean =false
-        var pBoolean =false
-
         loginEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
@@ -68,8 +65,7 @@ class LoginActivity : MyActivity(){
                     loginButton.alpha = .5f
                     loginButton.isEnabled = false
                 }else{
-                    lBoolean=true
-                    if(lBoolean && pBoolean){
+                    if(passwordEditText.text!!.isNotEmpty()){
                         loginButton.alpha = 1.0f
                         loginButton.isEnabled = true
                     }
@@ -84,35 +80,23 @@ class LoginActivity : MyActivity(){
             }
         })
 
-        passwordEditText.addTextChangedListener(object : TextWatcher {
+        passwordEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
                 before: Int,
                 count: Int
-            ) {
-                if (s.toString().trim { it <= ' ' }.length == 0) {
+            ){
+                if(s.toString().trim { it <=' '}.isEmpty()){
                     loginButton.alpha = .5f
                     loginButton.isEnabled = false
-                } else {
-                    pBoolean=true
-                    if(lBoolean && pBoolean){
+                }else if(loginEditText.text!!.isNotEmpty()){
                         loginButton.alpha = 1.0f
                         loginButton.isEnabled = true
                     }
-                }
             }
-
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int, count: Int,
-                after: Int
-            ) {
-                // TODO Auto-generated method stub
-            }
-
-            override fun afterTextChanged(s: Editable) {
-                // TODO Auto-generated method stub
-            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int,after: Int) {}
+            override fun afterTextChanged(s: Editable) {}
         })
 
         if(loginEditText.text!!.isNotEmpty() && passwordEditText.text!!.isNotEmpty()){
@@ -125,6 +109,7 @@ class LoginActivity : MyActivity(){
     override fun setupActionBar(){
         titleTextView.visibility = View.VISIBLE
     }
+
     override fun onClick(v: View?){
         if (v == loginButton) {
             login()

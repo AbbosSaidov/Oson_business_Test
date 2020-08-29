@@ -101,7 +101,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         bootomSheetItemClick.setOnClickListener(this)
         qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
         qrCodeGenerateButton.setOnClickListener(this)
- /*       bottomSheet = findViewById(R.id.bottom_sheet)
+        /*       bottomSheet = findViewById(R.id.bottom_sheet)
         var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 //        listviewOfBottomSheet=findViewById(R.id.mobile_list)
@@ -120,11 +120,8 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         sendButton.alpha = .5f
         sendButton.isEnabled = false
 
-        var lBoolean =false
-        var pBoolean =false
-        var aBoolean =false
 
-        phoneNumberEditText.addTextChangedListener(object : TextWatcher {
+        phoneNumberEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
@@ -132,26 +129,18 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
                 count: Int
             ){
                 if(s.toString().trim { it <= ' '}.isEmpty()){
-                    lBoolean=false
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
                 }else{
-                    lBoolean=true
-                    if(lBoolean && pBoolean&& aBoolean){
+                    if(billSumEditText.text!!.isNotEmpty() && commentEditText.text!!.isNotEmpty()){
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
                 }
             }
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int, count: Int,
-                after: Int
-            ){
-            }
-            override fun afterTextChanged(s: Editable) {
-            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int,after: Int){}
+            override fun afterTextChanged(s: Editable){}
         })
-
         billSumEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
@@ -159,13 +148,11 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
                 before: Int,
                 count: Int
             ) {
-                if (s.toString().trim { it <= ' ' }.length == 0) {
-                    pBoolean=false
+                if (s.toString().trim { it <= ' ' }.isEmpty()) {
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
                 } else {
-                    pBoolean=true
-                    if(lBoolean && pBoolean && aBoolean){
+                    if(phoneNumberEditText.text!!.isNotEmpty()&& commentEditText.text!!.isNotEmpty()){
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
@@ -184,36 +171,28 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
             }
         })
 
-        commentEditText.addTextChangedListener(object : TextWatcher {
+        commentEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
                 before: Int,
                 count: Int
-            ) {
-                if (s.toString().trim { it <= ' ' }.length == 0) {
-                    aBoolean=false
+            ){
+                if(s.toString().trim { it <= ' ' }.isEmpty()) {
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
-                } else {
-                    aBoolean=true
-                    if(lBoolean && pBoolean){
+                }else{
+                    if(phoneNumberEditText.text!!.isNotEmpty() && billSumEditText.text!!.isNotEmpty()){
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
                 }
             }
-
             override fun beforeTextChanged(
                 s: CharSequence, start: Int, count: Int,
                 after: Int
-            ) {
-                // TODO Auto-generated method stub
-            }
-
-            override fun afterTextChanged(s: Editable){
-                // TODO Auto-generated method stub
-            }
+            ){}
+            override fun afterTextChanged(s: Editable){}
         })
 
         if(phoneNumberEditText.text!!.isNotEmpty() && billSumEditText.text!!.isNotEmpty()&& commentEditText.text!!.isNotEmpty()){
@@ -257,7 +236,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
     lateinit var commentText: String
 
     fun putBill() {
-        if (checkBillData()) {
+        if (checkBillData()){
 //            merchantId =
 //                    if (spinner.selectedItemPosition == 0) null else merchantList!!.get(spinner.selectedItemPosition - 1).id;
 //            phoneNumber = phoneNumberEditText.text.toString()

@@ -101,10 +101,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     override fun onClick(v: View?) {
         if (v == filterImageView) {
             fragmentPurchaseList!!.onOpenFilterDialog()
-
-
-      /* } else if (v == infoImageView) {
-            infoRelativeLayout.visibility = View.VISIBLE*/
         } else if (v == settingsLinearLayout) {
             infoRelativeLayout.visibility = View.GONE
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
@@ -112,7 +108,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             startActivity(intent)
         } else if (v == infoRelativeLayout){
             infoRelativeLayout.visibility = View.GONE
-
         } else if (v == clearImageView){
             clearImageView.visibility = View.GONE
             fragmentPurchaseList!!.clear()

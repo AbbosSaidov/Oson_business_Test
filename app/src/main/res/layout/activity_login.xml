@@ -180,7 +180,6 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/button_login"
             android:layout_width="match_parent"
-
             android:layout_gravity="center"
             android:text="@string/activity_authorization_login_button_title"
             android:textColor="@color/colorWhite"

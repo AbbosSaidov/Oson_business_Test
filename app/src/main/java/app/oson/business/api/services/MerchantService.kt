@@ -11,8 +11,7 @@ class MerchantService : BaseRestService() {
     fun merchantList(
 
         callback: BaseCallback<Merchant.MerchantList>
-    ) {
-
+    ){
         callback.onLoading()
         getApi().getMerchantList()
             .enqueue(object : Callback<Merchant.MerchantList> {
@@ -42,19 +41,16 @@ class MerchantService : BaseRestService() {
         getApiOther().getMerchantWithFields(
             merchantId = merchantId
         ).enqueue(object : Callback<Merchant.MerchantList> {
-                override fun onResponse(call: Call<Merchant.MerchantList>, response: Response<Merchant.MerchantList>) {
-                    if (response.isSuccessful && response.body() != null) {
+                override fun onResponse(call: Call<Merchant.MerchantList>, response: Response<Merchant.MerchantList>){
+                    if (response.isSuccessful && response.body() != null){
                         callback.onSuccess(response.body()!!)
-                    } else {
+                    }else{
                         callback.onError(Throwable("Error"))
                     }
                 }
-
-                override fun onFailure(call: Call<Merchant.MerchantList>, t: Throwable) {
+                override fun onFailure(call: Call<Merchant.MerchantList>, t: Throwable){
                     callback.onError(t)
                 }
-
             })
-
     }
 }
