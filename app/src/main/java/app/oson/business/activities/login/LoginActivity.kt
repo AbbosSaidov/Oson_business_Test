@@ -31,7 +31,7 @@ class LoginActivity : MyActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // throw RuntimeException("Test Crash") // Force a crash
+      //   throw RuntimeException("Test Crash") // Force a crash
 
         titleTextView.setText(R.string.authorization_title)
 

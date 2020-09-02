@@ -114,12 +114,10 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
             var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }*/
-
     }
     private fun disabledButton(){
         sendButton.alpha = .5f
         sendButton.isEnabled = false
-
 
         phoneNumberEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(

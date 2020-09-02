@@ -73,9 +73,6 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         sendButton.alpha = .5f
         sendButton.isEnabled = false
 
-        var lBoolean =false
-        var pBoolean =false
-        var aBoolean =false
 
         cardNumberEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
@@ -85,12 +82,10 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 count: Int
             ){
                 if(s.toString().trim { it <= ' '}.isEmpty()){
-                    lBoolean=false
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
                 }else{
-                    lBoolean=true
-                    if(lBoolean && pBoolean&& aBoolean){
+                    if(  amountEditText.text!!.isNotEmpty() && cardExpireEditText.text!!.isNotEmpty()){
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
@@ -101,7 +96,7 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 after: Int
             ){
             }
-            override fun afterTextChanged(s: Editable) {
+            override fun afterTextChanged(s: Editable){
             }
         })
 
@@ -113,12 +108,10 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 count: Int
             ) {
                 if (s.toString().trim { it <= ' ' }.length == 0) {
-                    pBoolean=false
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
                 } else {
-                    pBoolean=true
-                    if(lBoolean && pBoolean && aBoolean){
+                    if(cardNumberEditText.text!!.isNotEmpty() &&  amountEditText.text!!.isNotEmpty()){
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
@@ -145,12 +138,10 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 count: Int
             ) {
                 if (s.toString().trim { it <= ' ' }.length == 0) {
-                    aBoolean=false
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
                 } else {
-                    aBoolean=true
-                    if(lBoolean && pBoolean){
+                    if(cardNumberEditText.text!!.isNotEmpty() && cardExpireEditText.text!!.isNotEmpty()){
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }

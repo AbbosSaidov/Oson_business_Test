@@ -20,13 +20,13 @@ import app.oson.business.api.services.UserService
 import app.oson.business.models.LoginData
 import okhttp3.ResponseBody
 
-class ChangePasswordActivity : MyActivity() {
+class ChangePasswordActivity : MyActivity(){
     lateinit var currentPassEditText: AppCompatEditText
     lateinit var newPassEditText: AppCompatEditText
     lateinit var confirmPassEditText: AppCompatEditText
     lateinit var changePassButton: AppCompatButton
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
 
@@ -34,17 +34,13 @@ class ChangePasswordActivity : MyActivity() {
         initViews()
         disabledButton()
 
-
         changePassButton.setOnClickListener(this)
-
     }
+
     private fun disabledButton(){
         changePassButton.alpha = .5f
         changePassButton.isEnabled = false
 
-        var lBoolean =false
-        var pBoolean =false
-        var aBoolean =false
 
         currentPassEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
@@ -54,12 +50,10 @@ class ChangePasswordActivity : MyActivity() {
                 count: Int
             ){
                 if(s.toString().trim { it <= ' '}.isEmpty()){
-                    lBoolean=false
                     changePassButton.alpha = .5f
                     changePassButton.isEnabled = false
                 }else{
-                    lBoolean=true
-                    if(lBoolean && pBoolean&& aBoolean){
+                    if(confirmPassEditText.text!!.isNotEmpty() && newPassEditText.text!!.isNotEmpty()){
                         changePassButton.alpha = 1.0f
                         changePassButton.isEnabled = true
                     }
@@ -82,12 +76,10 @@ class ChangePasswordActivity : MyActivity() {
                 count: Int
             ) {
                 if (s.toString().trim { it <= ' ' }.length == 0) {
-                    pBoolean=false
                     changePassButton.alpha = .5f
                     changePassButton.isEnabled = false
                 } else {
-                    pBoolean=true
-                    if(lBoolean && pBoolean && aBoolean){
+                    if(currentPassEditText.text!!.isNotEmpty() && confirmPassEditText.text!!.isNotEmpty()){
                         changePassButton.alpha = 1.0f
                         changePassButton.isEnabled = true
                     }
@@ -114,12 +106,10 @@ class ChangePasswordActivity : MyActivity() {
                 count: Int
             ) {
                 if (s.toString().trim { it <= ' ' }.length == 0) {
-                    aBoolean=false
                     changePassButton.alpha = .5f
                     changePassButton.isEnabled = false
                 } else {
-                    aBoolean=true
-                    if(lBoolean && pBoolean){
+                    if(currentPassEditText.text!!.isNotEmpty() && newPassEditText.text!!.isNotEmpty()){
                         changePassButton.alpha = 1.0f
                         changePassButton.isEnabled = true
                     }
