@@ -1,21 +1,18 @@
 package app.oson.business.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import app.oson.business.R
-import app.oson.business.activities.MyActivity
 import app.oson.business.models.Merchant
 import app.oson.business.models.Purchase
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ArrayAdapter
@@ -26,11 +23,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import app.oson.business.activities.main.history.FilterActivity
 //import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.api.services.PurchaseService
-import app.oson.business.models.PurchaseTransaction
 import kotlin.collections.ArrayList
 
 
@@ -192,11 +189,10 @@ class FragmentPurchaseList : Fragment(){
         dialog.show()
     }
 
-    fun onOpenFilterDialog() {
-        if (merchantList == null) {
-
+    fun onOpenFilterDialog(){
+        if(merchantList == null){
             getMerchantList()
-        } else
+        }else
             showDialogFilter()
     }
 
@@ -207,11 +203,11 @@ class FragmentPurchaseList : Fragment(){
     lateinit var clearFromDateImageButton: AppCompatImageButton
     lateinit var clearToDateImageButton: AppCompatImageButton
 
-    fun showDialogFilter() {
+    fun showDialogFilter(){
         if (merchantList == null)
-            return;
+            return
 
-        val dialog = Dialog(activity)
+        /*     val dialog = Dialog(activity)
         dialog.setContentView(R.layout.dialog_filter)
 
         var spinner = dialog.findViewById<Spinner>(R.id.spinner)
@@ -277,7 +273,10 @@ class FragmentPurchaseList : Fragment(){
 
 
         dialog.show()
+        */
 
+        val intent = Intent(activity, FilterActivity::class.java)
+        startActivity(intent)
     }
 
 
@@ -419,7 +418,6 @@ class FragmentPurchaseList : Fragment(){
 
                     showDialogFilter()
                 }
-
             }
         )
     }

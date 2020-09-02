@@ -188,5 +188,6 @@
     <string name="_998_71_207_80_80">+998 71 207 80 80</string>
     <string name="version_number">Talqin:1.1.0</string>
     <string name="fragment_change_language">Til</string>
+    <string name="menu_item_main_filter">Filter</string>
 
 </resources>

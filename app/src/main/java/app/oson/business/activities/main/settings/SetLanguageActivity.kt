@@ -1,4 +1,4 @@
-package app.oson.business.activities
+package app.oson.business.activities.main.settings
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import app.oson.business.R
+import app.oson.business.activities.MyActivity
+import app.oson.business.activities.main.history.MainActivity
 import java.util.*
 
 

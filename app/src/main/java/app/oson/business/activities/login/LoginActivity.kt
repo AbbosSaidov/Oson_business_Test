@@ -12,7 +12,7 @@ import android.widget.*
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatEditText
 import app.oson.business.R
-import app.oson.business.activities.MainActivity
+import app.oson.business.activities.main.history.MainActivity
 import app.oson.business.activities.MyActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.UserService

@@ -7,15 +7,12 @@ import android.text.TextWatcher
 //import androidx.appcompat.widget.AppCompatButton
 //import androidx.appcompat.widget.AppCompatEditText
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import app.oson.business.R
-import app.oson.business.activities.MainActivity
 import app.oson.business.activities.MyActivity
 import app.oson.business.activities.SplashActivity
 import app.oson.business.api.callbacks.BaseCallback
-import app.oson.business.api.services.BaseRestService
 import app.oson.business.api.services.UserService
 import app.oson.business.models.LoginData
 import okhttp3.ResponseBody
@@ -42,7 +39,7 @@ class ChangePasswordActivity : MyActivity(){
         changePassButton.isEnabled = false
 
 
-        currentPassEditText.addTextChangedListener(object : TextWatcher {
+        currentPassEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
@@ -98,17 +95,17 @@ class ChangePasswordActivity : MyActivity(){
             }
         })
 
-        confirmPassEditText.addTextChangedListener(object : TextWatcher {
+        confirmPassEditText.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
                 before: Int,
                 count: Int
-            ) {
-                if (s.toString().trim { it <= ' ' }.length == 0) {
+            ){
+                if(s.toString().trim { it <= ' ' }.isEmpty()){
                     changePassButton.alpha = .5f
                     changePassButton.isEnabled = false
-                } else {
+                }else{
                     if(currentPassEditText.text!!.isNotEmpty() && newPassEditText.text!!.isNotEmpty()){
                         changePassButton.alpha = 1.0f
                         changePassButton.isEnabled = true
@@ -122,13 +119,11 @@ class ChangePasswordActivity : MyActivity(){
             ) {
                 // TODO Auto-generated method stub
             }
-
             override fun afterTextChanged(s: Editable){
                 // TODO Auto-generated method stub
             }
         })
-
-        if(currentPassEditText.text!!.isNotEmpty() && newPassEditText.text!!.isNotEmpty()&& confirmPassEditText.text!!.isNotEmpty()){
+        if(currentPassEditText.text!!.isNotEmpty() && newPassEditText.text!!.isNotEmpty() && confirmPassEditText.text!!.isNotEmpty()){
             changePassButton.alpha = 1.0f
             changePassButton.isEnabled = true
         }
@@ -163,7 +158,7 @@ class ChangePasswordActivity : MyActivity(){
             return false
         }
 
-        if (confirmPassEditText.text.toString().isEmpty()) {
+        if(confirmPassEditText.text.toString().isEmpty()){
             showAlertDialog(
                 "Error",
                 resources.getString(R.string.dialogfragment_main_preferences_confirm_new_password_empty)

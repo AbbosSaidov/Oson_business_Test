@@ -1,4 +1,4 @@
-package app.oson.business.activities
+package app.oson.business.activities.main.settings
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -14,6 +14,8 @@ import android.widget.ImageView
 import android.widget.Spinner
 import androidx.appcompat.widget.AppCompatTextView
 import app.oson.business.R
+import app.oson.business.activities.MyActivity
+import app.oson.business.activities.SplashActivity
 import app.oson.business.activities.login.ChangePasswordActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
@@ -70,7 +72,7 @@ class SettingsActivity : MyActivity() {
         exitImageView.visibility=View.VISIBLE
     }
 
-    fun initViews() {
+    fun initViews(){
        // qrCodeView = findViewById(R.id.view_qr_code)
         changePasswordView = findViewById(R.id.view_change_password)
        // logOutView = findViewById(R.id.view_log_out)
@@ -83,9 +85,9 @@ class SettingsActivity : MyActivity() {
             .setMessage(resources.getString(R.string.dialogfragment_main_preferences_logout_message))
             .setCancelable(false)
             .setPositiveButton("ОК",
-                DialogInterface.OnClickListener { dialog, id -> logOut() })
+                DialogInterface.OnClickListener { dialog, id -> logOut()})
             .setNegativeButton("CANCEL",
-                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel()})
         val alert = builder.create()
         alert.show()
     }

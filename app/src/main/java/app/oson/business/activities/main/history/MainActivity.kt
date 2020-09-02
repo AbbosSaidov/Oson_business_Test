@@ -1,4 +1,4 @@
-package app.oson.business.activities
+package app.oson.business.activities.main.history
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,11 +14,14 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import app.oson.business.R
+import app.oson.business.activities.MyActivity
+import app.oson.business.activities.main.request.RequestBillActivity
+import app.oson.business.activities.main.settings.SettingsActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.fragments.FragmentPurchaseList
 import app.oson.business.models.Merchant
-import app.oson.business.ui.purchase.PurchaseActivity
+import app.oson.business.activities.main.purchase.PurchaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 

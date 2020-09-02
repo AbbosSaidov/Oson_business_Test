@@ -160,6 +160,7 @@
     <string name="fragment_change_password_change_password_button_hint">Изменить пароль</string>
 
     <string name="menu_item_main_bill_filter">Фильтр по счетам</string>
+    <string name="menu_item_main_filter">Фильтр</string>
     <string name="menu_item_main_purchase_filter">Фильтр по оплатам</string>
     <string name="menu_item_main_clear_filter_title">Очистить результаты</string>
     <string name="menu_item_main_preference_title">Настройки</string>

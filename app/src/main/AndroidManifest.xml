@@ -7,22 +7,21 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:configChanges="locale|orientation"
         android:name=".App"
         android:allowBackup="true"
+        android:configChanges="locale|orientation"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <activity android:name=".activities.SetLanguageActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.main.history.FilterActivity"></activity>
+        <activity android:name=".activities.main.settings.SetLanguageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.SettingsActivity" />
-
+                android:value=".activities.main.settings.SettingsActivity" />
         </activity>
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.main.history.MainActivity" />
         <activity
             android:name=".activities.SplashActivity"
             android:noHistory="true"
@@ -30,6 +29,7 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -40,14 +40,14 @@
             android:name=".activities.login.RegistrationActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name=".ui.purchase.PurchaseActivity"
+            android:name="app.oson.business.activities.main.purchase.PurchaseActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activities.RequestBillActivity"
+            android:name=".activities.main.request.RequestBillActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activities.NoConnectionActivity" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name=".activities.main.settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity

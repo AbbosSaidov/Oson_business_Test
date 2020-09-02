@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/action_bar"/>
+
+        <androidx.core.widget.NestedScrollView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="36dp"
+                android:paddingRight="36dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_bottom_click"
+                        tools:ignore="VectorDrawableCompat"/>
+
+                    <LinearLayout
+                        android:id="@+id/bottom_sheet_item_click"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="55dp"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="20dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/bottom_sheet_click_text"
+                            style="@style/Ui.Button.Transparent.ColorPrimaryDark"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:text="@string/dialogfragment_main_bill_purchase_filter_choose_merchant_title"/>
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/bottom_sheet_click_view"
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"/>
+                </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/merchant_title"
+                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:text=""/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    >
+                    <androidx.appcompat.widget.AppCompatCheckedTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:text="Дата от"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/vector_drawable_key"
+                        tools:ignore="VectorDrawableCompat"/>
+
+               <!--     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="75dp"
+                        android:orientation="vertical"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlack"
+                            android:singleLine="true"
+                            android:text="@string/fragment_main_preference_change_password_title"
+                            android:textSize="16sp"
+
+                            />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black_80"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/fragment_main_preference_change_password_subtitle"
+                            android:textSize="14sp"
+
+                            />
+
+                    </LinearLayout>-->
+
+                    <View
+                        android:id="@+id/view_change_password"
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"/>
+
+                </RelativeLayout>
+                <View style="@style/Divider.Horizontal"/>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="25dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="36dp"
+        android:paddingRight="36dp"
+        >
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_sent_request"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textColor="@color/colorWhite"
+            style="@style/Ui.Button"
+            android:text="ok"/>
+    </RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

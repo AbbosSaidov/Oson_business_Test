@@ -1,6 +1,5 @@
-package app.oson.business.ui.purchase
+package app.oson.business.activities.main.purchase
 
-import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
