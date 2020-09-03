@@ -13,7 +13,6 @@
         <include layout="@layout/action_bar"/>
 
         <androidx.core.widget.NestedScrollView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -26,8 +25,11 @@
                 android:paddingLeft="36dp"
                 android:paddingRight="36dp">
                 <RelativeLayout
+                    android:id="@+id/click_subsidiaries_item"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="?actionBarSize"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:background="?attr/selectableItemBackground">
@@ -46,6 +48,7 @@
                         android:layout_marginLeft="55dp"
                         android:layout_marginEnd="0dp"
                         android:layout_marginRight="20dp"
+                        android:focusable="true"
                         android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
@@ -55,30 +58,30 @@
                             style="@style/Ui.Button.Transparent.ColorPrimaryDark"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:background="?attr/selectableItemBackground"
                             android:text="@string/dialogfragment_main_bill_purchase_filter_choose_merchant_title"/>
                     </LinearLayout>
                     <View
-                        android:id="@+id/bottom_sheet_click_view"
+                        android:id="@+id/bottom_sheet_click_view2"
                         android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"/>
+                        android:background="?attr/selectableItemBackground"
+                        android:focusable="true" />
                 </RelativeLayout>
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/merchant_title"
+                    android:id="@+id/subsidiary_title"
                     style="@style/Ui.Button.Transparent.ColorPrimaryDark"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="?attr/selectableItemBackground"
                     android:text=""/>
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="?actionBarSize"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:clickable="true"
+                    android:id="@+id/dateFrom"
                     android:background="?attr/selectableItemBackground"
                     >
                     <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -86,55 +89,120 @@
                         android:layout_height="40dp"
                         android:padding="5dp"
                         android:text="Дата от"
-                        android:layout_centerVertical="true"
+                        android:textColor="@color/colorPrimaryDark"
                         app:srcCompat="@drawable/vector_drawable_key"
                         tools:ignore="VectorDrawableCompat"/>
 
-               <!--     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="75dp"
-                        android:orientation="vertical"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorBlack"
-                            android:singleLine="true"
-                            android:text="@string/fragment_main_preference_change_password_title"
-                            android:textSize="16sp"
-
-                            />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black_80"
-                            android:layout_marginTop="3dp"
-                            android:text="@string/fragment_main_preference_change_password_subtitle"
-                            android:textSize="14sp"
-
-                            />
-
-                    </LinearLayout>-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="end"
+                            >
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                >
+                                <androidx.appcompat.widget.AppCompatCheckedTextView
+                                  android:id="@+id/textDateIn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:padding="5dp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    />
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:padding="5dp"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    app:srcCompat="@drawable/ic_calendar_foreground"
+                                    tools:ignore="VectorDrawableCompat"/>
+                            </LinearLayout>
+                        </RelativeLayout>
 
                     <View
                         android:id="@+id/view_change_password"
                         android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"/>
+                        android:background="?attr/selectableItemBackground"
+                        android:focusable="true" />
 
-                </RelativeLayout>
+                </LinearLayout>
                 <View style="@style/Divider.Horizontal"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:id="@+id/dateIn"
+                    android:focusable="true">
+                    <androidx.appcompat.widget.AppCompatCheckedTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:text="Дата до"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:srcCompat="@drawable/vector_drawable_key"
+                        tools:ignore="VectorDrawableCompat"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            >
+                            <androidx.appcompat.widget.AppCompatCheckedTextView
+                                android:id="@+id/textDateFrom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:padding="5dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:padding="5dp"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                app:srcCompat="@drawable/ic_calendar_foreground"
+                                tools:ignore="VectorDrawableCompat"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <View
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        android:focusable="true"/>
+
+                </LinearLayout>
+                <View style="@style/Divider.Horizontal"/>
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Быстрые настройки"
+                    />
+                <co.lujun.androidtagview.TagContainerLayout
+                    android:id="@+id/tagContainerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    app:container_enable_drag="false"
+                    app:horizontal_interval="20dp"
+                    app:vertical_interval="15dp"
+                    app:tag_clickable="true"
+                     />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-
 
     </LinearLayout>
 
@@ -155,6 +223,5 @@
             style="@style/Ui.Button"
             android:text="ok"/>
     </RelativeLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

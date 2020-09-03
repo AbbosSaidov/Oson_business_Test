@@ -40,7 +40,7 @@ class PurchaseItemAdapter(val context: Context, val myDataset: ArrayList<String>
     override fun getItemCount() = myDataset.size
 
     // allows clicks events to be caught
-    fun setClickListener(itemClickListener: ItemClickListener) {
+    fun setClickListener(itemClickListener: ItemClickListener){
         this.mClickListener = itemClickListener
     }
 

@@ -276,6 +276,7 @@ class FragmentPurchaseList : Fragment(){
         */
 
         val intent = Intent(activity, FilterActivity::class.java)
+        intent.putExtra("merchant", merchantList)
         startActivity(intent)
     }
 
@@ -401,7 +402,7 @@ class FragmentPurchaseList : Fragment(){
     }
 
     var merchantList: ArrayList<Merchant>? = null
-    fun getMerchantList() {
+    fun getMerchantList(){
 
         MerchantService().merchantList(
             callback = object : BaseCallback<Merchant.MerchantList>{
