@@ -428,29 +428,24 @@ class FragmentPurchaseList : Fragment(){
     var toDate: Long? = null
     var fromDate: Long? = null
 
-    fun getPurchaseList() {
-        if (purchaseList == null) {
+    private fun getPurchaseList(){
+        if (purchaseList == null){
             swipeRefreshLayout.isRefreshing = true
         }
-
         PurchaseService().getPurchaseList(
             merchantId = merchantId,
             userId = userId,
             fromDate = fromDate,
             toDate = toDate,
-            callback = object : BaseCallback<Purchase.PurchaseList> {
-                override fun onLoading() {
-
+            callback = object : BaseCallback<Purchase.PurchaseList>{
+                override fun onLoading(){
                 }
-
-                override fun onError(throwable: Throwable) {
+                override fun onError(throwable: Throwable){
                     throwable.printStackTrace()
                     swipeRefreshLayout.isRefreshing = false
                 }
-
-                override fun onSuccess(response: Purchase.PurchaseList) {
+                override fun onSuccess(response: Purchase.PurchaseList){
                     swipeRefreshLayout.isRefreshing = false
-
                     purchaseList = response.arrayList
                     purchaseAdapter.notifyDataSetChanged()
                 }

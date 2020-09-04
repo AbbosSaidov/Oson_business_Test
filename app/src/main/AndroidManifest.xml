@@ -15,13 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.main.history.FilterActivity"></activity>
-        <activity android:name=".activities.main.settings.SetLanguageActivity">
+        <activity
+            android:name=".activities.main.history.FilterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.main.settings.SetLanguageActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.main.settings.SettingsActivity" />
         </activity>
-        <activity android:name=".activities.main.history.MainActivity" />
+        <activity android:name=".activities.main.history.MainActivity" android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SplashActivity"
             android:noHistory="true"
@@ -34,15 +36,19 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.login.RegistrationActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
+            android:screenOrientation="portrait"
             android:name="app.oson.business.activities.main.purchase.PurchaseActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.main.request.RequestBillActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activities.NoConnectionActivity" />

@@ -25,7 +25,7 @@ import app.oson.business.activities.main.purchase.PurchaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 
-class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
 
     var MERCHANT = "merchant"
 
@@ -40,10 +40,9 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     lateinit var infoRelativeLayout: RelativeLayout
     lateinit var settingsLinearLayout: LinearLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         titleTextView.setText(R.string.menu_item_bottomnavigationview_history_title)
 
@@ -53,25 +52,20 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
         tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(p0: TabLayout.Tab?) {
-
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(p0: TabLayout.Tab?){
             }
-
-            override fun onTabUnselected(p0: TabLayout.Tab?) {
-
+            override fun onTabUnselected(p0: TabLayout.Tab?){
             }
-
             override fun onTabSelected(tab: TabLayout.Tab){
                 val position = tab.position
-                when (position) {
+                when (position){
                     1->{
                         transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
                      //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
                     transaction!!.commit()
                     }
                 }
-
             }
         })
 
@@ -95,16 +89,16 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
     }
 
-    override fun setupActionBar() {
+    override fun setupActionBar(){
         filterImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
         // infoImageView.visibility = View.VISIBLE
     }
 
-    override fun onClick(v: View?) {
-        if (v == filterImageView) {
+    override fun onClick(v: View?){
+        if(v == filterImageView){
             fragmentPurchaseList!!.onOpenFilterDialog()
-        } else if (v == settingsLinearLayout) {
+        } else if(v == settingsLinearLayout){
             infoRelativeLayout.visibility = View.GONE
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
             intent.putExtra(MERCHANT, merchantList)

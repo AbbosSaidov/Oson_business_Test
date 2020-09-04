@@ -13,18 +13,17 @@
         <include layout="@layout/action_bar"/>
 
         <androidx.core.widget.NestedScrollView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="25dp"
-                android:paddingBottom="20dp"
+                android:orientation="vertical"
                 android:paddingLeft="36dp"
-                android:paddingRight="36dp">
+                android:paddingTop="25dp"
+                android:paddingRight="36dp"
+                android:paddingBottom="20dp">
                 <!--       <androidx.appcompat.widget.AppCompatSpinner
                            android:id="@+id/spinner"
                            android:layout_width="match_parent"
@@ -34,15 +33,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:orientation="horizontal"
+                    android:background="?attr/selectableItemBackground"
                     android:gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground">
+                    android:orientation="horizontal">
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         app:srcCompat="@drawable/ic_bottom_click"
-                        tools:ignore="VectorDrawableCompat"/>
+                        tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
                         android:id="@+id/bottom_sheet_item_click"
@@ -63,12 +63,13 @@
                             android:layout_height="40dp"
                             android:background="?attr/selectableItemBackground" />
                     </LinearLayout>
+
                     <View
                         android:id="@+id/bottom_sheet_click_view"
-                        android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"/>
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true" />
                 </RelativeLayout>
 
 
@@ -84,11 +85,11 @@
                         android:id="@+id/edit_text_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="@string/fragment_main_bill_input_phonenumber_hint"
                         android:imeOptions="flagNoExtractUi|actionNext"
-                        android:maxLines="1"
                         android:inputType="number"
                         android:maxLength="13"
-                        android:hint="@string/fragment_main_bill_input_phonenumber_hint"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,10 +105,10 @@
                         android:id="@+id/edit_text_bill_sum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="@string/fragment_main_bill_input_sum_hint"
                         android:imeOptions="flagNoExtractUi|actionNext"
-                        android:maxLines="1"
                         android:inputType="number"
-                        android:hint="@string/fragment_main_bill_input_sum_hint"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,33 +124,32 @@
                         android:id="@+id/edit_text_bill_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="@string/fragment_main_bill_comment_hint"
                         android:imeOptions="flagNoExtractUi|actionDone"
-                        android:maxLines="1"
                         android:inputType="textVisiblePassword|textNoSuggestions"
-                        android:hint="@string/fragment_main_bill_comment_hint"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_generate_qr_code"
+                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/fragment_main_bill_generate_qrcode_title"
-                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"/>
+                    android:layout_marginTop="3dp"
+                    android:text="@string/fragment_main_bill_generate_qrcode_title" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_sent_nfs_message"
+                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:visibility="gone"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="1dp"
                     android:text="@string/fragment_main_bill_generate_ndefmessage_title"
-                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"/>
+                    android:visibility="gone" />
 
 
             </LinearLayout>

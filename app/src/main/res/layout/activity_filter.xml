@@ -34,32 +34,20 @@
                     android:gravity="center_vertical"
                     android:background="?attr/selectableItemBackground">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerVertical="true"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
                         app:srcCompat="@drawable/ic_bottom_click"
                         tools:ignore="VectorDrawableCompat"/>
-
-                    <LinearLayout
-                        android:id="@+id/bottom_sheet_item_click"
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/bottom_sheet_click_text"
+                        style="@style/Ui.Button.Transparent.ColorPrimaryDark"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="55dp"
-                        android:layout_marginLeft="55dp"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginRight="20dp"
-                        android:focusable="true"
-                        android:clickable="true"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/bottom_sheet_click_text"
-                            style="@style/Ui.Button.Transparent.ColorPrimaryDark"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:text="@string/dialogfragment_main_bill_purchase_filter_choose_merchant_title"/>
-                    </LinearLayout>
+                        android:text="@string/dialogfragment_main_bill_purchase_filter_choose_merchant_title"
+                        android:layout_centerInParent="true"
+                     />
                     <View
                         android:id="@+id/bottom_sheet_click_view2"
                         android:clickable="true"
@@ -68,13 +56,6 @@
                         android:background="?attr/selectableItemBackground"
                         android:focusable="true" />
                 </RelativeLayout>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/subsidiary_title"
-                    style="@style/Ui.Button.Transparent.ColorPrimaryDark"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text=""/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
@@ -86,7 +67,7 @@
                     >
                     <androidx.appcompat.widget.AppCompatCheckedTextView
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Дата от"
                         android:textColor="@color/colorPrimaryDark"
@@ -107,12 +88,12 @@
                                 <androidx.appcompat.widget.AppCompatCheckedTextView
                                   android:id="@+id/textDateIn"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="40dp"
+                                    android:layout_height="wrap_content"
                                     android:padding="5dp"
                                     android:textColor="@color/colorPrimaryDark"
                                     />
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:padding="5dp"
+                                    android:padding="7dp"
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     app:srcCompat="@drawable/ic_calendar_foreground"
@@ -129,7 +110,7 @@
                         android:focusable="true" />
 
                 </LinearLayout>
-                <View style="@style/Divider.Horizontal"/>
+                <View style="@style/Divider.Horizontal" android:alpha="0.2"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
@@ -141,7 +122,7 @@
                     android:focusable="true">
                     <androidx.appcompat.widget.AppCompatCheckedTextView
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Дата до"
                         android:textColor="@color/colorPrimaryDark"
@@ -162,12 +143,12 @@
                             <androidx.appcompat.widget.AppCompatCheckedTextView
                                 android:id="@+id/textDateFrom"
                                 android:layout_width="wrap_content"
-                                android:layout_height="40dp"
+                                android:layout_height="wrap_content"
                                 android:padding="5dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 />
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:padding="5dp"
+                                android:padding="7dp"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 app:srcCompat="@drawable/ic_calendar_foreground"
@@ -182,11 +163,13 @@
                         android:focusable="true"/>
 
                 </LinearLayout>
-                <View style="@style/Divider.Horizontal"/>
+                <View style="@style/Divider.Horizontal" android:alpha="0.2"/>
                 <androidx.appcompat.widget.AppCompatCheckedTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:padding="5dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Быстрые настройки"
                     />
@@ -215,13 +198,28 @@
         android:paddingRight="36dp"
         >
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_sent_request"
+            android:id="@+id/button_filter"
             android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/colorWhite"
-            style="@style/Ui.Button"
-            android:text="ok"/>
+            style="@style/Ui.Button.Filter"
+            android:text="Применить"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/colorBack"
+            android:background="@drawable/roundshapbtn"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_clear_filter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black_32"
+            android:text="Сбросить"
+            android:layout_alignParentStart="true"/>
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

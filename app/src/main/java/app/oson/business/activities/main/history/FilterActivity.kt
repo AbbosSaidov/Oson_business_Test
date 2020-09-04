@@ -8,6 +8,7 @@ import android.widget.CalendarView
 import android.widget.CalendarView.OnDateChangeListener
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import app.oson.business.models.Merchant
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView.OnTagClickListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.shagi.materialdatepicker.date.DatePickerFragmentDialog
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -48,7 +50,7 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         titleTextView.setText(R.string.menu_item_main_filter)
         TextdateFrom = findViewById<AppCompatCheckedTextView>(R.id.textDateFrom)
         TextdateIn = findViewById<AppCompatCheckedTextView>(R.id.textDateIn)
-        subsidiaryTitle = findViewById<AppCompatTextView>(R.id.subsidiary_title)
+        subsidiaryTitle = findViewById<AppCompatTextView>(R.id.bottom_sheet_click_text)
         clickSubsidiariesItem = findViewById<View>(R.id.bottom_sheet_click_view2)
         dateIn = findViewById<LinearLayout>(R.id.dateIn)
         dateIn.setOnClickListener(this)
@@ -63,12 +65,13 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         for (i in merchantList!!.indices){
             subsidaryList!!.add(merchantList!![i].name)
         }
-        subsidiaryTitle.text = subsidaryList!![0]
-
-
+        subsidiaryTitle.text = resources.getString(R.string.dialogfragment_main_bill_purchase_filter_choose_merchant_title)
+        setupTagView()
+    }
+    private fun setupTagView(){
         val mTagContainerLayout = findViewById<View>(R.id.tagContainerLayout) as TagContainerLayout
 
-         tags= listOf(
+        tags= listOf(
             "Все",
             "Сегодня",
             "Вчера",
@@ -83,17 +86,13 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         val color1 = intArrayOf(
             resources.getColor(R.color.colorPrimaryDark),
             resources.getColor(R.color.colorPrimaryDark),
-            resources.getColor(
-                R.color.colorBack
-            ),
+            resources.getColor(R.color.colorBack),
             Color.YELLOW
         )
         val color2 = intArrayOf(
             resources.getColor(R.color.colorBack),
             resources.getColor(R.color.colorPrimaryDark),
-            resources.getColor(
-                R.color.colorPrimaryDark
-            ),
+            resources.getColor(R.color.colorPrimaryDark),
             Color.YELLOW
         )
         colors.add(color1)
@@ -124,43 +123,51 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
 
                 val currentTime = Calendar.getInstance()
 
-                if(position==0){
-                    TextdateFrom.text = ""
-                    TextdateIn.text = ""
-                }else if(position==1){
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                }else if(position==2){
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    currentTime.add(Calendar.DAY_OF_YEAR, -1)
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                }else if(position==3){
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    currentTime.add(Calendar.DAY_OF_YEAR, -7)
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                }else if(position==4){
-                    currentTime.add(Calendar.WEEK_OF_MONTH, -1)
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    currentTime.add(Calendar.WEEK_OF_MONTH, -1)
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                }else if(position==5){
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    currentTime.add(Calendar.MONTH, -1)
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                }else if(position==6){
-                    currentTime.add(Calendar.MONTH, -1)
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    currentTime.add(Calendar.MONTH, -1)
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                }else if(position==7){
-                    TextdateFrom.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
-                    currentTime.add(Calendar.YEAR, -1)
-                    TextdateIn.text = currentTime.get(Calendar.YEAR).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.DAY_OF_MONTH).toString()
+                when (position) {
+                    0 -> {
+                        TextdateFrom.text = ""
+                        TextdateIn.text = ""
+                    }
+                    1 -> {
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
+                    2 -> {
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        currentTime.add(Calendar.DAY_OF_YEAR, -1)
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
+                    3 -> {
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        currentTime.add(Calendar.DAY_OF_YEAR, -7)
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
+                    4 -> {
+                        currentTime.add(Calendar.WEEK_OF_MONTH, -1)
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        currentTime.add(Calendar.WEEK_OF_MONTH, -1)
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
+                    5 -> {
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        currentTime.add(Calendar.MONTH, -1)
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
+                    6 -> {
+                        currentTime.add(Calendar.MONTH, -1)
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        currentTime.add(Calendar.MONTH, -1)
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
+                    7 -> {
+                        TextdateFrom.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                        currentTime.add(Calendar.YEAR, -1)
+                        TextdateIn.text = currentTime.get(Calendar.DAY_OF_MONTH).toString()+"."+currentTime.get(Calendar.MONTH).toString()+"."+currentTime.get(Calendar.YEAR).toString()
+                    }
                 }
-
             }
 
-            override fun onTagLongClick(position: Int, text: String) {
+            override fun onTagLongClick(position: Int, text: String){
                 // ...
             }
 
@@ -172,12 +179,20 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 // ...
             }
         })
-
-
     }
 
     private fun showCalendarDialog(t:Int){
-        val dialog = Dialog(this@FilterActivity)
+        val dialog = DatePickerFragmentDialog.newInstance { view, year, monthOfYear, dayOfMonth ->
+            if(t==1){
+                TextdateFrom.text = "$dayOfMonth.$monthOfYear.$year"
+            }else{
+                TextdateIn.text = "$dayOfMonth.$monthOfYear.$year"
+            }
+        }
+        dialog.setMaxDate(System.currentTimeMillis())
+        dialog.show(supportFragmentManager, "tag")
+
+    /*    val dialog = Dialog(this@FilterActivity)
         dialog.setCancelable(false)
         //dialog.setView(layoutInflater.inflate(R.layout.calendar_main, null));
         dialog.setContentView(layoutInflater.inflate(R.layout.calendar_main, null))
@@ -195,13 +210,13 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 TextdateIn.text = "$year.$month.$dayOfMonth"
             }
         })
-        dialog.show()
+        dialog.show()*/
     }
     override fun setupActionBar(){
         titleTextView.visibility = View.VISIBLE
         backImageView.visibility = View.VISIBLE
     }
-    fun subsidiaryListDialog(){
+    private fun subsidiaryListDialog(){
 
         bottomSheet2dialog = BottomSheetDialog(this)
         bottomSheet2dialog.setContentView(R.layout.bottom_sheet)
@@ -215,20 +230,23 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         recyclerView.adapter =listviewOfBottomSheetAdapter
 
     }
-    override fun onClick(v: View?){
-        if(v == dateIn){
-            showCalendarDialog(1)
-        }else if(v == dateFrom){
-            showCalendarDialog(2)
-        }else if(v==clickSubsidiariesItem){
-            subsidiaryListDialog()
-            bottomSheet2dialog.show()
+    override fun onClick(v:View?){
+        when (v){
+            dateIn -> {
+                showCalendarDialog(1)
+            }
+            dateFrom -> {
+                showCalendarDialog(2)
+            }
+            clickSubsidiariesItem -> {
+                subsidiaryListDialog()
+                bottomSheet2dialog.show()
+            }
         }
     }
 
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(position: Int){
         bottomSheet2dialog.hide()
         subsidiaryTitle.text = subsidaryList!![position]
     }
-
 }
