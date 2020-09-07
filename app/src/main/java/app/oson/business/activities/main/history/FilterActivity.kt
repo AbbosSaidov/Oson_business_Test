@@ -9,6 +9,7 @@ import android.widget.CalendarView.OnDateChangeListener
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +36,9 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
     lateinit var TextdateFrom: AppCompatCheckedTextView
     lateinit var TextdateIn: AppCompatCheckedTextView
     lateinit var subsidiaryTitle: AppCompatTextView
+    lateinit var buttonFilter: AppCompatButton
+    lateinit var buttonDropFilter: AppCompatButton
+    var fragmentPurchaseList: FragmentPurchaseList? = null
 
     lateinit var recyclerView: RecyclerView
     lateinit var clickSubsidiariesItem: View
@@ -43,12 +47,33 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
     lateinit var bottomSheet2dialog: BottomSheetDialog
     var subsidaryList: ArrayList<String>? = null
     var merchantList: ArrayList<Merchant>? = null
+    lateinit var color1:IntArray
+    lateinit var color2:IntArray
+    lateinit var mTagContainerLayout:TagContainerLayout
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
         titleTextView.setText(R.string.menu_item_main_filter)
+        mTagContainerLayout = findViewById<View>(R.id.tagContainerLayout) as TagContainerLayout
+        color1 = intArrayOf(
+            resources.getColor(R.color.colorPrimaryDark),
+            resources.getColor(R.color.colorPrimaryDark),
+            resources.getColor(R.color.colorBack),
+            Color.YELLOW
+        )
+        color2 = intArrayOf(
+            resources.getColor(R.color.colorBack),
+            resources.getColor(R.color.colorPrimaryDark),
+            resources.getColor(R.color.colorPrimaryDark),
+            Color.YELLOW
+        )
+        fragmentPurchaseList = FragmentPurchaseList()
         TextdateFrom = findViewById<AppCompatCheckedTextView>(R.id.textDateFrom)
+        buttonFilter = findViewById<AppCompatButton>(R.id.button_filter)
+        buttonFilter.setOnClickListener(this)
+        buttonDropFilter = findViewById<AppCompatButton>(R.id.button_clear_filter)
+        buttonDropFilter.setOnClickListener(this)
         TextdateIn = findViewById<AppCompatCheckedTextView>(R.id.textDateIn)
         subsidiaryTitle = findViewById<AppCompatTextView>(R.id.bottom_sheet_click_text)
         clickSubsidiariesItem = findViewById<View>(R.id.bottom_sheet_click_view2)
@@ -69,8 +94,6 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         setupTagView()
     }
     private fun setupTagView(){
-        val mTagContainerLayout = findViewById<View>(R.id.tagContainerLayout) as TagContainerLayout
-
         tags= listOf(
             "Все",
             "Сегодня",
@@ -83,18 +106,7 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         )
         val colors: MutableList<IntArray> = ArrayList()
         //int[] color = {TagBackgroundColor, TabBorderColor, TagTextColor, TagSelectedBackgroundColor}
-        val color1 = intArrayOf(
-            resources.getColor(R.color.colorPrimaryDark),
-            resources.getColor(R.color.colorPrimaryDark),
-            resources.getColor(R.color.colorBack),
-            Color.YELLOW
-        )
-        val color2 = intArrayOf(
-            resources.getColor(R.color.colorBack),
-            resources.getColor(R.color.colorPrimaryDark),
-            resources.getColor(R.color.colorPrimaryDark),
-            Color.YELLOW
-        )
+
         colors.add(color1)
         colors.add(color2)
         colors.add(color2)
@@ -174,13 +186,11 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
             override fun onSelectedTagDrag(position: Int, text: String) {
                 // ...
             }
-
             override fun onTagCrossClick(position: Int) {
                 // ...
             }
         })
     }
-
     private fun showCalendarDialog(t:Int){
         val dialog = DatePickerFragmentDialog.newInstance { view, year, monthOfYear, dayOfMonth ->
             if(t==1){
@@ -242,9 +252,26 @@ class FilterActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
                 subsidiaryListDialog()
                 bottomSheet2dialog.show()
             }
+            buttonFilter->{
+                fragmentPurchaseList!!.getPurchaseList()
+            }
+            buttonDropFilter->{
+                subsidiaryTitle.text = resources.getString(R.string.dialogfragment_main_bill_purchase_filter_choose_merchant_title)
+                TextdateFrom.text = ""
+                TextdateIn.text = ""
+                val colors2: MutableList<IntArray> = ArrayList()
+                for(i in 0..7){
+                    if(i == 0){
+                        colors2.add(color1)
+                    }else{
+                        colors2.add(color2)
+                    }
+                }
+                mTagContainerLayout.removeAllTags()
+                mTagContainerLayout.setTags(tags, colors2)
+            }
         }
     }
-
     override fun onItemClick(position: Int){
         bottomSheet2dialog.hide()
         subsidiaryTitle.text = subsidaryList!![position]

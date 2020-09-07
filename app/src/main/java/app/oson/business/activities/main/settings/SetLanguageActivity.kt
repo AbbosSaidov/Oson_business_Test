@@ -51,7 +51,6 @@ class SetLanguageActivity : MyActivity(){
     }
 
     override fun onClick(v: View?){
-        Log.i("qwerty","asdasd")
 
         if (v == russianView){
             setLocale("")

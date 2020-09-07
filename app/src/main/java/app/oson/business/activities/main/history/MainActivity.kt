@@ -24,6 +24,7 @@ import app.oson.business.models.Merchant
 import app.oson.business.activities.main.purchase.PurchaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.JsonArray
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -111,32 +112,26 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         }
     }
 
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean{
         when (menuItem.itemId){
-            R.id.menu_main_bottomnavigationview_bill_item -> {
+            R.id.menu_main_bottomnavigationview_bill_item ->{
                 var intent = Intent(this, RequestBillActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
             }
-
-            R.id.menu_main_bottomnavigationview_purchase_item -> {
+            R.id.menu_main_bottomnavigationview_purchase_item ->{
                 var intent = Intent(this, PurchaseActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
             }
-
-            R.id.menu_main_bottomnavigationview_history_item -> {
-
-            }
-            R.id.menu_item_bottomnavigationview_settings_item -> {
+            R.id.menu_main_bottomnavigationview_history_item ->{}
+            R.id.menu_item_bottomnavigationview_settings_item ->{
                 var intent = Intent(this, SettingsActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
 
-             Log.i("qwerty","qweqwe")
             }
         }
-
         return false
     }
 
@@ -145,20 +140,19 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         MerchantService().merchantList(
             callback = object : BaseCallback<Merchant.MerchantList>{
                 override fun onLoading(){
-
                 }
-
-                override fun onError(throwable: Throwable) {
+                override fun onError(throwable: Throwable){
                     throwable.printStackTrace()
                 }
 
-                override fun onSuccess(response: Merchant.MerchantList) {
+                override fun onSuccess(response: Merchant.MerchantList){
                     merchantList = response.arrayList
-                }
+                    //   Log.i("qwer", "JJ="+JsonArray(response.arrayList))
 
+                    for(i in merchantList!!.indices){
+                     //     Log.i("qwer", "JJ="+merchantList!![i].contractDate)
+                    }
+                }
             })
     }
-
-
-
 }

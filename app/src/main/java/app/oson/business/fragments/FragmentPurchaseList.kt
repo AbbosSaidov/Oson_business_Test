@@ -34,6 +34,7 @@ import kotlin.collections.ArrayList
 class FragmentPurchaseList : Fragment(){
 
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    var fragmentPurchaseList: FragmentPurchaseList? = null
 
     lateinit var recyclerView: RecyclerView
     lateinit var purchaseAdapter: PurchaseListAdapter
@@ -310,13 +311,12 @@ class FragmentPurchaseList : Fragment(){
 
 //            userId =
 
-            if (helper == 1) {
+            if(helper == 1){
                 fromDate = Date(year, month, day, 0, 0).time
-
 
                 fromDateTextView.setText(resources.getString(R.string.start_date) + " " + format.format(fromDate))
                 clearFromDateImageButton.visibility = View.VISIBLE
-            } else {
+            }else{
                 toDate = Date(year, month, day, 23, 59).time
 
                 toDateTextView.setText(resources.getString(R.string.start_date) + " " + format.format(toDate))
@@ -428,7 +428,7 @@ class FragmentPurchaseList : Fragment(){
     var toDate: Long? = null
     var fromDate: Long? = null
 
-    private fun getPurchaseList(){
+     fun getPurchaseList(){
         if (purchaseList == null){
             swipeRefreshLayout.isRefreshing = true
         }

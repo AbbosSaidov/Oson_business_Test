@@ -168,7 +168,6 @@ class LoginActivity : MyActivity(){
                     override fun onSuccess(response: UserData){
 
                         val userData = response
-                        Log.i("qwerty", "asd"+response.logged)
                         if(response.logged){
                             preferences.setUserData(userData)
 

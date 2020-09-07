@@ -201,11 +201,13 @@
             android:id="@+id/button_filter"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/colorWhite"
             style="@style/Ui.Button.Filter"
-            android:text="Применить"/>
+            android:text="@string/apply"
+             />
         <androidx.appcompat.widget.AppCompatButton
             android:padding="10dp"
             android:textAllCaps="false"
@@ -218,7 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/black_32"
-            android:text="Сбросить"
+            android:text="@string/drop_filter"
             android:layout_alignParentStart="true"/>
     </RelativeLayout>
 

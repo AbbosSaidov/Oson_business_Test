@@ -149,10 +149,7 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener{
         progressDialog?.show()
     }
 
-
-
-
-    fun cancelProgressDialog() {
+    fun cancelProgressDialog(){
         if (progressDialog != null && progressDialog!!.isShowing)
             progressDialog?.cancel()
     }

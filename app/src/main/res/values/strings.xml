@@ -188,5 +188,7 @@
     <string name="_998_71_207_80_80">+998 71 207 80 80</string>
     <string name="version_number">Версия:1.1.0</string>
     <string name="fragment_change_language">Язык</string>
+    <string name="apply">Применить</string>
+    <string name="drop_filter">Сбросить</string>
 
 </resources>
