@@ -1,12 +1,12 @@
 package app.oson.business.activities.main.history
 
-import android.content.Intent
-import android.os.Bundle
 //import android.support.design.widget.BottomNavigationView
 //import com.google.android.material.tabs.TabLayout
 //import android.support.v4.app.FragmentManager
 //import android.support.v4.app.FragmentTransaction
-import android.util.Log
+
+import android.content.Intent
+import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -15,16 +15,19 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import app.oson.business.R
 import app.oson.business.activities.MyActivity
+import app.oson.business.activities.main.purchase.PurchaseActivity
 import app.oson.business.activities.main.request.RequestBillActivity
 import app.oson.business.activities.main.settings.SettingsActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.fragments.FragmentPurchaseList
 import app.oson.business.models.Merchant
-import app.oson.business.activities.main.purchase.PurchaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.JsonArray
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.tasks.Task
+
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -45,6 +48,8 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         titleTextView.setText(R.string.menu_item_bottomnavigationview_history_title)
 
         fragmentManager = supportFragmentManager
@@ -53,18 +58,18 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
         tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?){
             }
-            override fun onTabUnselected(p0: TabLayout.Tab?){
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
             }
             override fun onTabSelected(tab: TabLayout.Tab){
                 val position = tab.position
-                when (position){
-                    1->{
+                when (position) {
+                    1 -> {
                         transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
-                     //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
-                    transaction!!.commit()
+                        //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
+                        transaction!!.commit()
                     }
                 }
             }
@@ -114,22 +119,22 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean{
         when (menuItem.itemId){
-            R.id.menu_main_bottomnavigationview_bill_item ->{
+            R.id.menu_main_bottomnavigationview_bill_item -> {
                 var intent = Intent(this, RequestBillActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
             }
-            R.id.menu_main_bottomnavigationview_purchase_item ->{
+            R.id.menu_main_bottomnavigationview_purchase_item -> {
                 var intent = Intent(this, PurchaseActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
             }
-            R.id.menu_main_bottomnavigationview_history_item ->{}
-            R.id.menu_item_bottomnavigationview_settings_item ->{
+            R.id.menu_main_bottomnavigationview_history_item -> {
+            }
+            R.id.menu_item_bottomnavigationview_settings_item -> {
                 var intent = Intent(this, SettingsActivity::class.java)
                 intent.putExtra(MERCHANT, merchantList)
                 startActivity(intent)
-
             }
         }
         return false
@@ -138,19 +143,17 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     var merchantList: ArrayList<Merchant>? = null
     fun getMerchantList(){
         MerchantService().merchantList(
-            callback = object : BaseCallback<Merchant.MerchantList>{
-                override fun onLoading(){
-                }
-                override fun onError(throwable: Throwable){
+            callback = object : BaseCallback<Merchant.MerchantList> {
+                override fun onLoading() {}
+                override fun onError(throwable: Throwable) {
                     throwable.printStackTrace()
                 }
 
-                override fun onSuccess(response: Merchant.MerchantList){
+                override fun onSuccess(response: Merchant.MerchantList) {
                     merchantList = response.arrayList
                     //   Log.i("qwer", "JJ="+JsonArray(response.arrayList))
-
-                    for(i in merchantList!!.indices){
-                     //     Log.i("qwer", "JJ="+merchantList!![i].contractDate)
+                    for (i in merchantList!!.indices) {
+                        //     Log.i("qwer", "JJ="+merchantList!![i].contractDate)
                     }
                 }
             })

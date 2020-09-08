@@ -18,6 +18,10 @@ import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.UserService
 import app.oson.business.models.LoginData
 import app.oson.business.models.UserData
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.testing.FakeReviewManager
+import com.google.android.play.core.tasks.Task
 
 class LoginActivity : MyActivity(){
 
@@ -31,7 +35,19 @@ class LoginActivity : MyActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-      //   throw RuntimeException("Test Crash") // Force a crash
+        val manager = ReviewManagerFactory.create(this)
+        val request = manager.requestReviewFlow()
+
+        request.addOnCompleteListener{ request ->
+            if(request.isSuccessful){
+                Log.i("qwer","Rating")
+                manager.launchReviewFlow(this, request.result).addOnCompleteListener{
+                    Log.i("qwer","Rating1")
+                }
+            }
+        }
+
+       //  throw RuntimeException("Test Crash")  //Force a crash
 
         titleTextView.setText(R.string.authorization_title)
 

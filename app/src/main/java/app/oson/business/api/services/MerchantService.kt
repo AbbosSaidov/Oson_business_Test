@@ -24,7 +24,6 @@ class MerchantService : BaseRestService(){
                         callback.onError(Throwable("Error"))
                     }
                 }
-
                 override fun onFailure(call: Call<Merchant.MerchantList>, t: Throwable){
                     callback.onError(t)
                 }
