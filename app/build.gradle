@@ -56,6 +56,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.2.1'
     implementation 'co.lujun:androidtagview:1.1.7'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
     implementation 'com.google.android.play:core:1.8.0'
     implementation 'com.google.android.play:core-ktx:1.8.1'
     implementation('com.shagi:material-datepicker:1.3'){

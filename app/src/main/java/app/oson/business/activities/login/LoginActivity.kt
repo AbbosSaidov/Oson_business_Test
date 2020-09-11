@@ -35,17 +35,17 @@ class LoginActivity : MyActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val manager = ReviewManagerFactory.create(this)
+       /*       val manager = ReviewManagerFactory.create(this)
         val request = manager.requestReviewFlow()
 
         request.addOnCompleteListener{ request ->
             if(request.isSuccessful){
-                Log.i("qwer","Rating")
+                Log.i("qwer","Rating="+request.result)
                 manager.launchReviewFlow(this, request.result).addOnCompleteListener{
                     Log.i("qwer","Rating1")
                 }
             }
-        }
+        }*/
 
        //  throw RuntimeException("Test Crash")  //Force a crash
 
@@ -64,6 +64,11 @@ class LoginActivity : MyActivity(){
         loginButton = findViewById(R.id.button_login)
         disabledButton()
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 
     private fun disabledButton(){

@@ -190,5 +190,13 @@
     <string name="fragment_change_language">Язык</string>
     <string name="apply">Применить</string>
     <string name="drop_filter">Сбросить</string>
+    <string name="setting_security_title">Безопасность</string>
+    <string name="block_title">Блокировка при истечении</string>
+    <string name="notification_title">Уведомления</string>
+    <string name="ask_question">Задать вопрос</string>
+    <string name="share_title">Поделиться</string>
+    <string name="Version">Версия </string>
+    <string name="rate_app">Оценить приложение</string>
+    <string name="about_app_title">О приложении</string>
 
 </resources>

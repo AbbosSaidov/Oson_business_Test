@@ -59,13 +59,10 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
         tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(p0: TabLayout.Tab?){
-            }
-            override fun onTabUnselected(p0: TabLayout.Tab?) {
-            }
+            override fun onTabReselected(p0: TabLayout.Tab?){}
+            override fun onTabUnselected(p0: TabLayout.Tab?){}
             override fun onTabSelected(tab: TabLayout.Tab){
-                val position = tab.position
-                when (position) {
+                when (tab.position){
                     1 -> {
                         transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
                         //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
@@ -104,14 +101,14 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     override fun onClick(v: View?){
         if(v == filterImageView){
             fragmentPurchaseList!!.onOpenFilterDialog()
-        } else if(v == settingsLinearLayout){
+        }else if(v == settingsLinearLayout){
             infoRelativeLayout.visibility = View.GONE
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
             intent.putExtra(MERCHANT, merchantList)
             startActivity(intent)
-        } else if (v == infoRelativeLayout){
+        }else if(v == infoRelativeLayout){
             infoRelativeLayout.visibility = View.GONE
-        } else if (v == clearImageView){
+        }else if(v == clearImageView){
             clearImageView.visibility = View.GONE
             fragmentPurchaseList!!.clear()
         }

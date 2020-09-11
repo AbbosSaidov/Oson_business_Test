@@ -1,6 +1,5 @@
 package app.oson.business.api.services
 
-import android.util.Log
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.models.Merchant
 import retrofit2.Call
@@ -14,13 +13,11 @@ class MerchantService : BaseRestService(){
     ){
         callback.onLoading()
         getApi().getMerchantList()
-            .enqueue(object : Callback<Merchant.MerchantList> {
-                override fun onResponse(call: Call<Merchant.MerchantList>, response: Response<Merchant.MerchantList>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        Log.i("qwer", "JJ"+response.body().toString())
-
+            .enqueue(object : Callback<Merchant.MerchantList>{
+                override fun onResponse(call: Call<Merchant.MerchantList>, response: Response<Merchant.MerchantList>){
+                    if(response.isSuccessful && response.body() != null){
                         callback.onSuccess(response.body()!!)
-                    } else {
+                    }else{
                         callback.onError(Throwable("Error"))
                     }
                 }
@@ -29,17 +26,14 @@ class MerchantService : BaseRestService(){
                 }
             })
     }
-
     fun getMerchant(
         merchantId : Long?,
-
         callback: BaseCallback<Merchant.MerchantList>
-    ) {
-
+    ){
         callback.onLoading()
         getApiOther().getMerchantWithFields(
             merchantId = merchantId
-        ).enqueue(object : Callback<Merchant.MerchantList> {
+        ).enqueue(object : Callback<Merchant.MerchantList>{
                 override fun onResponse(call: Call<Merchant.MerchantList>, response: Response<Merchant.MerchantList>){
                     if (response.isSuccessful && response.body() != null){
                         callback.onSuccess(response.body()!!)
