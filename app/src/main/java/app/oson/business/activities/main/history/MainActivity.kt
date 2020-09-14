@@ -48,8 +48,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         titleTextView.setText(R.string.menu_item_bottomnavigationview_history_title)
 
         fragmentManager = supportFragmentManager
@@ -58,7 +56,7 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
         tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabReselected(p0: TabLayout.Tab?){}
             override fun onTabUnselected(p0: TabLayout.Tab?){}
             override fun onTabSelected(tab: TabLayout.Tab){
@@ -75,9 +73,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         fragmentPurchaseList = FragmentPurchaseList()
         transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
         transaction!!.commit()
-
-
-
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
         bottomNavigationView.selectedItemId = R.id.menu_main_bottomnavigationview_history_item

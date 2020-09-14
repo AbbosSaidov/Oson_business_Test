@@ -3,6 +3,7 @@ package app.oson.business.fragments
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,7 +81,16 @@ class FragmentPurchaseList : Fragment(){
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
 
-            var sum: String = (purchaseList!![position].amount / 100).toString() + " сўм"
+
+            val sumFix=(purchaseList!![position].amount / 100).toString()
+            var sum: String=sumFix
+            if(sumFix.length>3){
+                sum = sumFix.substring(0,sumFix.length-3)+" "+sumFix.substring(sumFix.length-3,sumFix.length)  + " сўм"
+            }else if(sumFix.length>6){
+                sum = sumFix.substring(0,sumFix.length-6)+" "+sumFix.substring(sumFix.length-6,sumFix.length)  + " сўм"
+            }
+
+
             var check: String = "Чек " + purchaseList!![position].receiptId.toString()
 
             var number: String
@@ -95,7 +105,7 @@ class FragmentPurchaseList : Fragment(){
             holder.nameTextView.text = number
             holder.timeTextView.text = format.format(date)
             holder.sumTextView.text = sum
-            holder.checkCodeTextView.text = check
+//            holder.checkCodeTextView.text = check
 
             holder.linearLayout.setOnClickListener { view ->
                 dialogPurchaseHistory(purchaseList!![position])
@@ -129,7 +139,8 @@ class FragmentPurchaseList : Fragment(){
         }
 
         override fun onBindHeaderViewHolder(holder: HeaderHolder?, position: Int) {
-            holder?.textView?.setText(dateFormat(purchaseList!![position].time))
+            Log.i("date","date="+purchaseList!![position].time)
+            holder?.textView?.text = dateFormat(purchaseList!![position].time)
         }
 
 
@@ -138,7 +149,7 @@ class FragmentPurchaseList : Fragment(){
 
         }
 
-        inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
             val nameTextView = itemView.findViewById<TextView>(R.id.text_view_name)
             val timeTextView = itemView.findViewById<TextView>(R.id.text_view_time)
@@ -154,23 +165,23 @@ class FragmentPurchaseList : Fragment(){
         var format = SimpleDateFormat("yyyy-MM-dd")
         val date = format.parse(string.substring(0, 11))
 
-        format = SimpleDateFormat("dd MMM. yyyy")
+        format = SimpleDateFormat("dd MMMM yyyy")
 
 
         return format.format(date)
     }
 
 
-    fun dialogPurchaseHistory(purchase: Purchase) {
+    fun dialogPurchaseHistory(purchase: Purchase){
         val dialog = Dialog(activity)
         dialog.setContentView(R.layout.dialog_purchase_history)
-
 
         val nameTextView = dialog.findViewById<TextView>(R.id.text_view_name)
         val timeTextView = dialog.findViewById<TextView>(R.id.text_view_time)
         val sumTextView = dialog.findViewById<TextView>(R.id.text_view_sum)
         val checkCodeTextView = dialog.findViewById<TextView>(R.id.text_view_check_code)
         val okTextView = dialog.findViewById<TextView>(R.id.text_view_ok)
+
 
         var sum: String = (purchase.amount / 100).toString() + " сўм"
         var check: String = "Чек " + purchase.receiptId.toString()

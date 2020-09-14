@@ -7,18 +7,16 @@
     <LinearLayout
             android:id="@+id/linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackground"
             android:orientation="horizontal">
 
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="30dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
                 android:layout_weight="1">
@@ -28,30 +26,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+998989898989"
-                    android:textColor="@color/colorBlack"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
             />
-            <TextView
+     <!--       <TextView
                     android:id="@+id/text_view_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="15:59"
                     android:layout_marginTop="2dp"
                     android:textSize="13sp"
-                    android:textColor="@color/black_80"/>
+                    android:textColor="@color/black_80"/>-->
 
         </LinearLayout>
 
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:orientation="vertical"
                 android:layout_weight="1">
             <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:layout_alignParentRight="true"
             >
@@ -61,12 +58,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000 sum"
-                        android:textColor="@color/colorBlack"
                         android:layout_alignParentRight="true"
                         android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                 />
-                <TextView
+
+             <!--  <TextView
                         android:id="@+id/text_view_check_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -75,6 +72,16 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/text_view_sum"
                         android:textSize="13sp"
+                        android:textColor="@color/black_80"/> -->
+                <TextView
+                        android:id="@+id/text_view_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2343434"
+                        android:layout_marginTop="2dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/text_view_sum"
+                        android:textSize="12sp"
                         android:textColor="@color/black_80"/>
 
             </RelativeLayout>
@@ -83,7 +90,8 @@
 
     <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
+            android:alpha="0.6"
             android:background="@color/black_20"
     />
 </LinearLayout>

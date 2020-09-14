@@ -1,15 +1,22 @@
 package app.oson.business.activities.main.request
 
-import android.content.Intent
-import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 //import android.support.design.widget.BottomSheetBehavior
 //import android.support.design.widget.BottomSheetDialog
 //import android.support.v7.widget.*
+
+import android.R.attr
+import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
+import android.os.Bundle
+import android.provider.ContactsContract
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
@@ -18,11 +25,11 @@ import androidx.recyclerview.widget.RecyclerView
 import app.oson.business.R
 import app.oson.business.activities.MyActivity
 import app.oson.business.activities.main.history.MainActivity
+import app.oson.business.activities.main.purchase.PurchaseItemAdapter
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
 import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
-import app.oson.business.activities.main.purchase.PurchaseItemAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -32,6 +39,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
     lateinit var billSumEditText: AppCompatEditText
     lateinit var commentEditText: AppCompatEditText
     lateinit var qrCodeGenerateButton: AppCompatButton
+    lateinit var selectPhoneNumber: ImageView
     lateinit var sendButton: AppCompatButton
     lateinit var bootomSheetItemClick: View
     lateinit var bootomSheetItemClickText: AppCompatTextView
@@ -88,6 +96,24 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
             putBillQrCode()
         }else if(v == bootomSheetItemClick){
             dialog.show()
+        }else if(v == selectPhoneNumber){
+            val pickContact =  Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+            pickContact.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+            startActivityForResult(pickContact, 1);
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==1){
+            val contactData: Uri = data!!.data
+            val c: Cursor = contentResolver.query(contactData, null, null, null, null)
+            if (c.moveToFirst()){
+                val phoneIndex: Int = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                val num: String = c.getString(phoneIndex)
+                phoneNumberEditText.setText(num)
+                //Toast.makeText(this@RequestBillActivity, "Number=$num", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -100,7 +126,9 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         sendButton.setOnClickListener(this)
         bootomSheetItemClick = findViewById(R.id.bottom_sheet_click_view)
         bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
+        selectPhoneNumber = findViewById(R.id.select_phone_number)
         bootomSheetItemClick.setOnClickListener(this)
+        selectPhoneNumber.setOnClickListener(this)
         qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
         qrCodeGenerateButton.setOnClickListener(this)
         /*       bottomSheet = findViewById(R.id.bottom_sheet)
@@ -121,25 +149,26 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         sendButton.alpha = .5f
         sendButton.isEnabled = false
 
-        phoneNumberEditText.addTextChangedListener(object : TextWatcher{
+        phoneNumberEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
                 before: Int,
                 count: Int
-            ){
-                if(s.toString().trim { it <= ' '}.isEmpty()){
+            ) {
+                if (s.toString().trim { it <= ' ' }.isEmpty()) {
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
-                }else{
-                    if(billSumEditText.text!!.isNotEmpty() && commentEditText.text!!.isNotEmpty()){
+                } else {
+                    if (billSumEditText.text!!.isNotEmpty() && commentEditText.text!!.isNotEmpty()) {
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
                 }
             }
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int,after: Int){}
-            override fun afterTextChanged(s: Editable){}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable) {}
         })
         billSumEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
@@ -152,7 +181,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
                 } else {
-                    if(phoneNumberEditText.text!!.isNotEmpty()&& commentEditText.text!!.isNotEmpty()){
+                    if (phoneNumberEditText.text!!.isNotEmpty() && commentEditText.text!!.isNotEmpty()) {
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
@@ -171,28 +200,31 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
             }
         })
 
-        commentEditText.addTextChangedListener(object : TextWatcher{
+        commentEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
                 start: Int,
                 before: Int,
                 count: Int
-            ){
-                if(s.toString().trim { it <= ' ' }.isEmpty()) {
+            ) {
+                if (s.toString().trim { it <= ' ' }.isEmpty()) {
                     sendButton.alpha = .5f
                     sendButton.isEnabled = false
-                }else{
-                    if(phoneNumberEditText.text!!.isNotEmpty() && billSumEditText.text!!.isNotEmpty()){
+                } else {
+                    if (phoneNumberEditText.text!!.isNotEmpty() && billSumEditText.text!!.isNotEmpty()) {
                         sendButton.alpha = 1.0f
                         sendButton.isEnabled = true
                     }
                 }
             }
+
             override fun beforeTextChanged(
                 s: CharSequence, start: Int, count: Int,
                 after: Int
-            ){}
-            override fun afterTextChanged(s: Editable){}
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable) {}
         })
 
         if(phoneNumberEditText.text!!.isNotEmpty() && billSumEditText.text!!.isNotEmpty()&& commentEditText.text!!.isNotEmpty()){
@@ -235,29 +267,32 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
     var sum: Long? = null
     lateinit var commentText: String
 
-    fun putBill() {
+    fun putBill(){
         if (checkBillData()){
 //            merchantId =
 //                    if (spinner.selectedItemPosition == 0) null else merchantList!!.get(spinner.selectedItemPosition - 1).id;
 //            phoneNumber = phoneNumberEditText.text.toString()
 //            sum = billSumEditText.text.toString().toLong()
 //            commentText = commentEditText.text.toString()
+            Log.i("qwer", "qwe1")
 
             BillService().putBill(
                 merchantId = merchantId,
                 phone = phoneNumber,
                 amount = sum,
                 comment = commentText,
-                callback = object : BaseCallback<Bill> {
-                    override fun onLoading() {
+                callback = object : BaseCallback<Bill>{
+                    override fun onLoading(){
 
                     }
 
-                    override fun onError(throwable: Throwable) {
+                    override fun onError(throwable: Throwable){
                         throwable.printStackTrace()
                     }
 
-                    override fun onSuccess(response: Bill) {
+                    override fun onSuccess(response: Bill){
+                        Log.i("qwer", "qwe=$response")
+
 
                         val intent = Intent(this@RequestBillActivity, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -266,11 +301,8 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
                         startActivity(intent)
                     }
                 })
-
-
         }
     }
-
     fun putBillQrCode(){
         if (checkBillData()){
             merchantId =
@@ -309,7 +341,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
 
         listviewOfBottomSheetManager = LinearLayoutManager(this)
         recyclerView.layoutManager =listviewOfBottomSheetManager
-        listviewOfBottomSheetAdapter=PurchaseItemAdapter(this,subsidaryList!!)
+        listviewOfBottomSheetAdapter=PurchaseItemAdapter(this, subsidaryList!!)
         (listviewOfBottomSheetAdapter as PurchaseItemAdapter).setClickListener(this)
         recyclerView.adapter =listviewOfBottomSheetAdapter
 

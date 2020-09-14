@@ -94,9 +94,7 @@ class SettingsActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
              rateApp()
         }else if(view==viewAskQuestion){
              val emailIntent = Intent(
-                 Intent.ACTION_SENDTO, Uri.fromParts(
-                     "mailto", "support@oson.uz", null
-                 )
+                 Intent.ACTION_SENDTO, Uri.fromParts("mailto", "support@oson.uz", null)
              )
              this.startActivity(Intent.createChooser(emailIntent, null))
          }else if(view==viewShare){

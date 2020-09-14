@@ -27,7 +27,6 @@
                 android:textColor="@color/colorBlue"
                 android:textStyle="bold"
                 android:paddingLeft="20dp"/>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
