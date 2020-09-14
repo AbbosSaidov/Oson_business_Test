@@ -389,7 +389,6 @@
         <TextView
             android:fontFamily="@font/lato"
             android:paddingTop="4dp"
-            android:paddingBottom="14dp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:layout_gravity="center"
