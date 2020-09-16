@@ -5,6 +5,8 @@ package app.oson.business.activities.main.request
 //import android.support.v7.widget.*
 
 import android.R.attr
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
@@ -13,13 +15,16 @@ import android.provider.ContactsContract
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.oson.business.R
@@ -28,12 +33,13 @@ import app.oson.business.activities.main.history.MainActivity
 import app.oson.business.activities.main.purchase.PurchaseItemAdapter
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.BillService
+import app.oson.business.database.Preferences
 import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
-class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener {
+class RequestBillActivity : Fragment(), PurchaseItemAdapter.ItemClickListener {
 
     lateinit var phoneNumberEditText: AppCompatEditText
     lateinit var billSumEditText: AppCompatEditText
@@ -49,6 +55,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
     lateinit var listviewOfBottomSheetManager: LinearLayoutManager
     lateinit var dialog: BottomSheetDialog
     var selectedItemPosition: Int = 0
+    lateinit var preferences: Preferences
 
 
     var merchantList: ArrayList<Merchant>? = null
@@ -57,18 +64,33 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_request_bill)
-        titleTextView.setText(R.string.menu_item_bottomnavigationview_bill_title)
 
-        merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
+        // setContentView(R.layout.activity_request_bill)
+        //titleTextView.setText(R.string.menu_item_bottomnavigationview_bill_title)
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ):View?{
+        val view = inflater.inflate(R.layout.activity_request_bill, container, false)
+        preferences = Preferences(context!!)
+        initViews(view)
 
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+        var bundle:Bundle?=arguments
+        merchantList = bundle?.getSerializable("values") as ArrayList<Merchant>?
 
 
         subsidaryList = ArrayList<String>()
         for (i in merchantList!!.indices){
             subsidaryList!!.add(merchantList!![i].name)
         }
-        initViews()
         disabledButton()
         subsidiaryListDialog()
         /*val spinnerAdapter = ArrayAdapter(
@@ -80,16 +102,13 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         spinner!!.adapter = spinnerAdapter*/
         bootomSheetItemClickText.text = subsidaryList!![0]
 
-        sendButton.setOnClickListener(this)
-
     }
-
-    override fun setupActionBar(){
+ /*   override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
-    }
+    }*/
 
-    override fun onClick(v: View?){
+    fun onClick(v: View?){
         if (v == sendButton){
             putBill()
         }else if(v == qrCodeGenerateButton){
@@ -107,7 +126,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==1){
             val contactData: Uri = data!!.data
-            val c: Cursor = contentResolver.query(contactData, null, null, null, null)
+            val c: Cursor = context?.contentResolver!!.query(contactData, null, null, null, null)
             if (c.moveToFirst()){
                 val phoneIndex: Int = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                 val num: String = c.getString(phoneIndex)
@@ -117,20 +136,22 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
         }
     }
 
-    fun initViews(){
-        phoneNumberEditText = findViewById(R.id.edit_text_phone_number)
-        phoneNumberEditText.setSelection(phoneNumberEditText.text!!.length)
-        billSumEditText = findViewById(R.id.edit_text_bill_sum)
-        commentEditText = findViewById(R.id.edit_text_bill_comment)
-        sendButton = findViewById(R.id.button_sent_request)
-        sendButton.setOnClickListener(this)
-        bootomSheetItemClick = findViewById(R.id.bottom_sheet_click_view)
-        bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
-        selectPhoneNumber = findViewById(R.id.select_phone_number)
-        bootomSheetItemClick.setOnClickListener(this)
-        selectPhoneNumber.setOnClickListener(this)
-        qrCodeGenerateButton = findViewById(R.id.button_generate_qr_code)
-        qrCodeGenerateButton.setOnClickListener(this)
+    fun initViews(view: View?){
+        if (view != null) {
+            phoneNumberEditText = view.findViewById(R.id.edit_text_phone_number)
+            phoneNumberEditText.setSelection(phoneNumberEditText.text!!.length)
+            billSumEditText = view.findViewById(R.id.edit_text_bill_sum)
+            commentEditText = view.findViewById(R.id.edit_text_bill_comment)
+            sendButton = view.findViewById(R.id.button_sent_request)
+            sendButton.setOnClickListener{onClick(view)}
+            bootomSheetItemClick = view.findViewById(R.id.bottom_sheet_click_view)
+            bootomSheetItemClickText = view.findViewById(R.id.bottom_sheet_click_text)
+            selectPhoneNumber = view.findViewById(R.id.select_phone_number)
+            bootomSheetItemClick.setOnClickListener{onClick(view)}
+            selectPhoneNumber.setOnClickListener{onClick(view)}
+            qrCodeGenerateButton = view.findViewById(R.id.button_generate_qr_code)
+            qrCodeGenerateButton.setOnClickListener{onClick(view)}
+        }
         /*       bottomSheet = findViewById(R.id.bottom_sheet)
         var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -266,7 +287,16 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
     lateinit var phoneNumber: String
     var sum: Long? = null
     lateinit var commentText: String
-
+    fun showAlertDialog(title: String, message: String){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(title)
+            .setMessage(message)
+            .setCancelable(false)
+            .setPositiveButton("ОК",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel()})
+        val alert = builder.create()
+        alert.show()
+    }
     fun putBill(){
         if (checkBillData()){
 //            merchantId =
@@ -294,7 +324,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
                         Log.i("qwer", "qwe=$response")
 
 
-                        val intent = Intent(this@RequestBillActivity, MainActivity::class.java)
+                        val intent = Intent(context, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -323,7 +353,7 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
 
                     override fun onSuccess(response: Bill) {
 
-                        val intent = Intent(this@RequestBillActivity, MainActivity::class.java)
+                        val intent = Intent(context, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -334,14 +364,14 @@ class RequestBillActivity : MyActivity(), PurchaseItemAdapter.ItemClickListener 
     }
     fun subsidiaryListDialog(){
 
-        dialog = BottomSheetDialog(this)
+        dialog = BottomSheetDialog(context!!)
         dialog.setContentView(R.layout.bottom_sheet)
 
         recyclerView = dialog.findViewById<RecyclerView>(R.id.recycler_view)!!
 
-        listviewOfBottomSheetManager = LinearLayoutManager(this)
+        listviewOfBottomSheetManager = LinearLayoutManager(context)
         recyclerView.layoutManager =listviewOfBottomSheetManager
-        listviewOfBottomSheetAdapter=PurchaseItemAdapter(this, subsidaryList!!)
+        listviewOfBottomSheetAdapter=PurchaseItemAdapter(context!!, subsidaryList!!)
         (listviewOfBottomSheetAdapter as PurchaseItemAdapter).setClickListener(this)
         recyclerView.adapter =listviewOfBottomSheetAdapter
 

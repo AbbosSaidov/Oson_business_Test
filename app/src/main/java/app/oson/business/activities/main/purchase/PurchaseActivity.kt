@@ -1,5 +1,7 @@
 package app.oson.business.activities.main.purchase
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,11 +9,14 @@ import android.text.TextWatcher
 //import android.support.design.widget.BottomSheetDialog
 //import android.support.v7.widget.*
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.oson.business.R
@@ -19,12 +24,13 @@ import app.oson.business.activities.MyActivity
 import app.oson.business.api.callbacks.BaseCallback
 import app.oson.business.api.services.MerchantService
 import app.oson.business.api.services.PurchaseService
+import app.oson.business.database.Preferences
 import app.oson.business.models.Merchant
 import app.oson.business.models.PurchaseTransaction
 import app.oson.business.views.FieldsLinearLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
+class PurchaseActivity : Fragment(),PurchaseItemAdapter.ItemClickListener{
 
     lateinit var cardNumberEditText: AppCompatEditText
     lateinit var cardExpireEditText: AppCompatEditText
@@ -39,6 +45,7 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
     lateinit var listviewOfBottomSheetManager: LinearLayoutManager
     lateinit var dialog: BottomSheetDialog
     var selectedItemPosition: Int = 0
+    lateinit var preferences: Preferences
 
 
     var merchantList: ArrayList<Merchant>? = null
@@ -46,15 +53,32 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_purchase)
-        titleTextView.setText(R.string.menu_item_bottomnavigationview_purchase_title)
-        merchantList = intent.getSerializableExtra("merchant") as? ArrayList<Merchant>
+     //   setContentView(R.layout.activity_purchase)
+    //    titleTextView.setText(R.string.menu_item_bottomnavigationview_purchase_title)
 
-         subsidaryList = ArrayList<String>()
+
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ):View?{
+        val view = inflater.inflate(R.layout.activity_purchase, container, false)
+        preferences = Preferences(context!!)
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+        var bundle:Bundle?=arguments
+        merchantList = bundle?.getSerializable("values") as ArrayList<Merchant>?
+
+        subsidaryList = ArrayList<String>()
         for (i in merchantList!!.indices){
             subsidaryList!!.add(merchantList!![i].name)
         }
-        initViews()
 
         disabledButton()
         subsidiaryListDialog()
@@ -64,7 +88,6 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
         spinner!!.adapter = spinnerAdapter*/
         bootomSheetItemClickText.text = subsidaryList!![0]
 
-        sendButton.setOnClickListener(this)
 
         getMerchantWithFields()
     }
@@ -164,15 +187,13 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
             sendButton.isEnabled = true
         }
     }
-    override fun setupActionBar(){
+ /*   override fun setupActionBar(){
         backImageView.visibility = View.VISIBLE
         titleTextView.visibility = View.VISIBLE
-    }
+    }*/
 
-    override fun onClick(v: View?){
-        if(v == backImageView){
-            finish()
-        } else if (v == sendButton){
+     fun onClick(v: View?){
+        if (v == sendButton){
             putPurchase()
         }else if(v == bootomSheetItemClick){
             dialog.show()
@@ -181,28 +202,30 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
 
     fun subsidiaryListDialog(){
 
-        dialog = BottomSheetDialog(this)
+        dialog = BottomSheetDialog(context!!)
         dialog.setContentView(R.layout.bottom_sheet)
 
         recyclerView = dialog.findViewById<RecyclerView>(R.id.recycler_view)!!
 
-        listviewOfBottomSheetManager = LinearLayoutManager(this)
+        listviewOfBottomSheetManager = LinearLayoutManager(context)
         recyclerView.layoutManager =listviewOfBottomSheetManager
-        listviewOfBottomSheetAdapter=PurchaseItemAdapter(this,subsidaryList!!)
+        listviewOfBottomSheetAdapter=PurchaseItemAdapter(context!!,subsidaryList!!)
         (listviewOfBottomSheetAdapter as PurchaseItemAdapter).setClickListener(this)
         recyclerView.adapter =listviewOfBottomSheetAdapter
 
     }
 
-    fun initViews(){
-        cardNumberEditText = findViewById(R.id.edit_text_card_number)
-        cardExpireEditText = findViewById(R.id.edit_text_card_expire)
-        amountEditText = findViewById(R.id.edit_text_amount)
-        sendButton = findViewById(R.id.button_send_purchase)
-        linearLayout = findViewById(R.id.linear_layout)
-        bootomSheetItemClick = findViewById(R.id.bottom_sheet_click_view)
-        bootomSheetItemClickText = findViewById(R.id.bottom_sheet_click_text)
-        bootomSheetItemClick.setOnClickListener(this)
+    fun initViews(view: View?){
+        cardNumberEditText = view!!.findViewById(R.id.edit_text_card_number)
+        cardExpireEditText = view!!.findViewById(R.id.edit_text_card_expire)
+        amountEditText = view!!.findViewById(R.id.edit_text_amount)
+        sendButton = view!!.findViewById(R.id.button_send_purchase)
+        linearLayout = view!!.findViewById(R.id.linear_layout)
+        bootomSheetItemClick = view!!.findViewById(R.id.bottom_sheet_click_view)
+        bootomSheetItemClickText = view!!.findViewById(R.id.bottom_sheet_click_text)
+        bootomSheetItemClick.setOnClickListener{onClick(bootomSheetItemClick)}
+        sendButton.setOnClickListener{onClick(sendButton)}
+
         //bottomSheet = findViewById(R.id.bottom_sheet)
         //var sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         //sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -242,7 +265,16 @@ class PurchaseActivity : MyActivity(),PurchaseItemAdapter.ItemClickListener{
 
         return true
     }
-
+    fun showAlertDialog(title: String, message: String){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(title)
+            .setMessage(message)
+            .setCancelable(false)
+            .setPositiveButton("ОК",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel()})
+        val alert = builder.create()
+        alert.show()
+    }
     fun getFields() {
         if (merchantWithFields != null) {
             linearLayout.buildWithFields(merchantWithFields!![0].fields())

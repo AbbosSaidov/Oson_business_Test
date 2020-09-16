@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.main.history.MainActivity">
 
-    <include layout="@layout/action_bar"/>
+    <include android:id="@+id/actionbar_history" layout="@layout/action_bar"/>
 
     <RelativeLayout
             android:id="@+id/relative_layout_info"

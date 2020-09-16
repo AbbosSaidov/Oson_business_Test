@@ -8,8 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include
-        layout="@layout/action_bar"/>
+  <!--  <include
+        layout="@layout/action_bar"/>-->
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -20,7 +20,7 @@
             android:paddingTop="5dp">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
                 android:text="@string/setting_security_title"
                 android:gravity="center_vertical"
                 android:textSize="15sp"
@@ -29,7 +29,7 @@
                 android:paddingLeft="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -67,7 +67,7 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -112,7 +112,7 @@
             </RelativeLayout>
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
                 android:text="@string/fragment_main_preference_category_account_settings_title"
                 android:gravity="center_vertical"
                 android:textSize="15sp"
@@ -122,7 +122,7 @@
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -168,7 +168,7 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -220,7 +220,7 @@
             </RelativeLayout>
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
                 android:text="@string/about_app_title"
                 android:gravity="center_vertical"
                 android:textSize="15sp"
@@ -230,7 +230,7 @@
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -277,7 +277,7 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -314,55 +314,6 @@
 
                 <View
                     android:id="@+id/view_rate_app"
-                    android:clickable="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    android:focusable="true" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                >
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    app:srcCompat="@drawable/ic_share"
-                    tools:ignore="VectorDrawableCompat"
-                    />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="60dp"
-                    android:orientation="vertical"
-                    >
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
-                        android:textColor="@color/colorBlack"
-                        android:singleLine="true"
-                        android:text="@string/share_title"
-                        android:textSize="16sp"
-
-                        />
-
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view_share"
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

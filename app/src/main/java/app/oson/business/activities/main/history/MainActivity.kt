@@ -1,10 +1,5 @@
 package app.oson.business.activities.main.history
 
-//import android.support.design.widget.BottomNavigationView
-//import com.google.android.material.tabs.TabLayout
-//import android.support.v4.app.FragmentManager
-//import android.support.v4.app.FragmentTransaction
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -24,9 +19,6 @@ import app.oson.business.fragments.FragmentPurchaseList
 import app.oson.business.models.Merchant
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
-import com.google.android.play.core.review.ReviewInfo
-import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.tasks.Task
 
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
@@ -34,14 +26,20 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     var MERCHANT = "merchant"
 
     lateinit var fragmentManager: FragmentManager
+
     var transaction: FragmentTransaction? = null
+
     var fragmentPurchaseList: FragmentPurchaseList? = null
+    var fragmentSettings: SettingsActivity? = null
+    var fragmentPurchase: PurchaseActivity? = null
+    var fragmentRequest: RequestBillActivity? = null
 
     lateinit var tabLayout: TabLayout
 
     lateinit var bottomNavigationView: BottomNavigationView
 
     lateinit var infoRelativeLayout: RelativeLayout
+
     lateinit var settingsLinearLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -53,14 +51,17 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         fragmentManager = supportFragmentManager
         transaction = fragmentManager.beginTransaction()
         fragmentPurchaseList = FragmentPurchaseList()
+        fragmentSettings = SettingsActivity()
+        fragmentPurchase = PurchaseActivity()
+        fragmentRequest = RequestBillActivity()
 
         tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabReselected(p0: TabLayout.Tab?){}
-            override fun onTabUnselected(p0: TabLayout.Tab?){}
-            override fun onTabSelected(tab: TabLayout.Tab){
-                when (tab.position){
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(p0: TabLayout.Tab?) {}
+            override fun onTabUnselected(p0: TabLayout.Tab?) {}
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
                     1 -> {
                         transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
                         //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
@@ -84,7 +85,6 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         settingsLinearLayout.setOnClickListener(this)
 
         getMerchantList()
-
     }
 
     override fun setupActionBar(){
@@ -112,26 +112,92 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean{
         when (menuItem.itemId){
             R.id.menu_main_bottomnavigationview_bill_item -> {
-                var intent = Intent(this, RequestBillActivity::class.java)
-                intent.putExtra(MERCHANT, merchantList)
-                startActivity(intent)
+
+                titleTextView.setText(R.string.menu_item_bottomnavigationview_bill_title)
+
+                qrCodeImageView.visibility = View.GONE
+                exitImageView.visibility = View.GONE
+                filterImageView.visibility = View.GONE
+                val bundle = Bundle()
+                bundle.putSerializable("values",merchantList)
+                fragmentRequest?.arguments = bundle
+                transaction = supportFragmentManager.beginTransaction()
+                transaction!!.replace(R.id.fragment_content, fragmentRequest!!)
+                //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
+                transaction!!.commit()
+                bottomNavigationView.setOnNavigationItemSelectedListener(null)
+
+                bottomNavigationView.selectedItemId =
+                    R.id.menu_main_bottomnavigationview_bill_item
+                bottomNavigationView.setOnNavigationItemSelectedListener(this)
+                // var intent = Intent(this, RequestBillActivity::class.java)
+               // intent.putExtra(MERCHANT, merchantList)
+                //startActivity(intent)
             }
             R.id.menu_main_bottomnavigationview_purchase_item -> {
-                var intent = Intent(this, PurchaseActivity::class.java)
-                intent.putExtra(MERCHANT, merchantList)
-                startActivity(intent)
+
+                titleTextView.setText(R.string.menu_item_bottomnavigationview_purchase_title)
+
+                qrCodeImageView.visibility = View.GONE
+                exitImageView.visibility = View.GONE
+                filterImageView.visibility = View.GONE
+                val bundle = Bundle()
+                bundle.putSerializable("values",merchantList)
+                fragmentPurchase?.arguments = bundle
+                transaction = supportFragmentManager.beginTransaction()
+                transaction!!.replace(R.id.fragment_content, fragmentPurchase!!)
+                //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
+                transaction!!.commit()
+                bottomNavigationView.setOnNavigationItemSelectedListener(null)
+
+                bottomNavigationView.selectedItemId =
+                    R.id.menu_main_bottomnavigationview_purchase_item
+                bottomNavigationView.setOnNavigationItemSelectedListener(this)
+                //    var intent = Intent(this, PurchaseActivity::class.java)
+                //   intent.putExtra(MERCHANT, merchantList)
+                //   startActivity(intent)
             }
             R.id.menu_main_bottomnavigationview_history_item -> {
+                titleTextView.setText(R.string.menu_item_bottomnavigationview_history_title)
+
+                qrCodeImageView.visibility = View.GONE
+                exitImageView.visibility = View.GONE
+                filterImageView.visibility = View.VISIBLE
+
+                transaction = supportFragmentManager.beginTransaction()
+                transaction!!.replace(R.id.fragment_content, fragmentPurchaseList!!)
+                //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
+                transaction!!.commit()
+                bottomNavigationView.setOnNavigationItemSelectedListener(null)
+
+                bottomNavigationView.selectedItemId =
+                    R.id.menu_main_bottomnavigationview_history_item
+                bottomNavigationView.setOnNavigationItemSelectedListener(this)
             }
             R.id.menu_item_bottomnavigationview_settings_item -> {
-                var intent = Intent(this, SettingsActivity::class.java)
-                intent.putExtra(MERCHANT, merchantList)
-                startActivity(intent)
+
+                titleTextView.text = resources.getString(R.string.settings)
+
+                qrCodeImageView.visibility = View.VISIBLE
+                exitImageView.visibility = View.VISIBLE
+                filterImageView.visibility = View.GONE
+
+                transaction = supportFragmentManager.beginTransaction()
+                transaction!!.replace(R.id.fragment_content, fragmentSettings!!)
+                //   transaction!!.add(1,fragmentPurchaseList,R.id.fragment_content,)
+                transaction!!.commit()
+
+                bottomNavigationView.setOnNavigationItemSelectedListener(null)
+                bottomNavigationView.selectedItemId =
+                    R.id.menu_item_bottomnavigationview_settings_item
+                bottomNavigationView.setOnNavigationItemSelectedListener(this)
+                //  var intent = Intent(this, SettingsActivity::class.java)
+                //  intent.putExtra(MERCHANT, merchantList)
+                //  startActivity(intent)
             }
         }
         return false
     }
-
     var merchantList: ArrayList<Merchant>? = null
     fun getMerchantList(){
         MerchantService().merchantList(

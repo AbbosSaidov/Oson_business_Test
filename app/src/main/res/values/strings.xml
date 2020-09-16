@@ -198,5 +198,7 @@
     <string name="Version">Версия </string>
     <string name="rate_app">Оценить приложение</string>
     <string name="about_app_title">О приложении</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

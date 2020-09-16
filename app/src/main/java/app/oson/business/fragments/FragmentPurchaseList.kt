@@ -79,8 +79,7 @@ class FragmentPurchaseList : Fragment(){
             return Holder(view)
         }
 
-        override fun onBindViewHolder(holder: Holder, position: Int) {
-
+        override fun onBindViewHolder(holder: Holder, position: Int){
 
             val sumFix=(purchaseList!![position].amount / 100).toString()
             var sum: String=sumFix
@@ -90,14 +89,12 @@ class FragmentPurchaseList : Fragment(){
                 sum = sumFix.substring(0,sumFix.length-6)+" "+sumFix.substring(sumFix.length-6,sumFix.length)  + " сўм"
             }
 
-
             var check: String = "Чек " + purchaseList!![position].receiptId.toString()
 
-            var number: String
-            if (purchaseList!![position].phoneNumber.isEmpty()) {
-                number = resources.getString(R.string.viewholder_item_unknown_field)
-            } else
-                number = "+" + purchaseList!![position].phoneNumber
+            val number: String = if(purchaseList!![position].phoneNumber.isEmpty()){
+                resources.getString(R.string.viewholder_item_unknown_field)
+            }else
+                "+" + purchaseList!![position].phoneNumber
 
             var format = SimpleDateFormat("HH:mm")
             val date = format.parse(purchaseList!![position].time.substring(11, 16))
