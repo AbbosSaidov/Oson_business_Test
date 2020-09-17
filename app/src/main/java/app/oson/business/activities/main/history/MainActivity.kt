@@ -1,24 +1,34 @@
 package app.oson.business.activities.main.history
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import android.widget.*
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import app.oson.business.R
 import app.oson.business.activities.MyActivity
+import app.oson.business.activities.SplashActivity
 import app.oson.business.activities.main.purchase.PurchaseActivity
 import app.oson.business.activities.main.request.RequestBillActivity
 import app.oson.business.activities.main.settings.SettingsActivity
 import app.oson.business.api.callbacks.BaseCallback
+import app.oson.business.api.services.BillService
 import app.oson.business.api.services.MerchantService
+import app.oson.business.api.services.UserService
 import app.oson.business.fragments.FragmentPurchaseList
+import app.oson.business.models.Bill
 import app.oson.business.models.Merchant
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import okhttp3.ResponseBody
 
 
 class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
@@ -57,10 +67,10 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
 
         tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.addTab(tabLayout.newTab().setText(R.string.fragment_main_history_purchase))
-        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(p0: TabLayout.Tab?) {}
-            override fun onTabUnselected(p0: TabLayout.Tab?) {}
-            override fun onTabSelected(tab: TabLayout.Tab) {
+        tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(p0: TabLayout.Tab?){}
+            override fun onTabUnselected(p0: TabLayout.Tab?){}
+            override fun onTabSelected(tab: TabLayout.Tab){
                 when (tab.position) {
                     1 -> {
                         transaction!!.add(R.id.fragment_content, fragmentPurchaseList!!)
@@ -92,7 +102,77 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
         titleTextView.visibility = View.VISIBLE
         // infoImageView.visibility = View.VISIBLE
     }
+    fun showLogOutDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(resources.getString(R.string.fragment_main_preference_logout_title))
+            .setMessage(resources.getString(R.string.dialogfragment_main_preferences_logout_message))
+            .setCancelable(false)
+            .setPositiveButton("ОК",
+                DialogInterface.OnClickListener { dialog, id -> logOut() })
+            .setNegativeButton("CANCEL",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+        val alert = builder.create()
+        alert.show()
+    }
+    fun showQrCodeDialog(){
 
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_qr_code)
+
+        val spinner = dialog.findViewById<Spinner>(R.id.spinner)
+        val arrayList = ArrayList<String>()
+        for(i in merchantList!!.indices){
+            arrayList.add(merchantList!![i].name)
+        }
+
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayList)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
+        spinner!!.adapter = spinnerAdapter
+
+        val imageView = dialog.findViewById<ImageView>(R.id.image_view_qr_code)
+
+        if (bill.qrCodeBase!!.isNotEmpty()){
+            val bytes: ByteArray = Base64.decode(bill.qrCodeBase, Base64.DEFAULT)
+            val decodeByte = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            imageView.setImageBitmap(decodeByte)
+        }
+
+        val okTextView = dialog.findViewById<AppCompatTextView>(R.id.text_view_ok)
+
+        okTextView.setOnClickListener{ view ->
+            dialog.cancel()
+        }
+
+        dialog.show()
+    }
+    var token: String? = null
+    fun logOut(){
+        token = preferences.getUserData()!!.token
+        UserService().logOut(
+            token = token,
+            callback = object : BaseCallback<ResponseBody> {
+                override fun onLoading() {
+                    showProgressDialog()
+                }
+
+                override fun onError(throwable: Throwable) {
+                    throwable.printStackTrace()
+                    cancelProgressDialog()
+                }
+
+                override fun onSuccess(response: ResponseBody){
+                    preferences.saveLoginData(null)
+                    val intent = Intent(this@MainActivity, SplashActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+
+                    cancelProgressDialog()
+                }
+            }
+        )
+    }
     override fun onClick(v: View?){
         if(v == filterImageView){
             fragmentPurchaseList!!.onOpenFilterDialog()
@@ -101,6 +181,10 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
             intent.putExtra(MERCHANT, merchantList)
             startActivity(intent)
+        }else if(v==qrCodeImageView){
+            billQrCode()
+        }else if(v==exitImageView){
+            showLogOutDialog()
         }else if(v == infoRelativeLayout){
             infoRelativeLayout.visibility = View.GONE
         }else if(v == clearImageView){
@@ -108,7 +192,31 @@ class MainActivity : MyActivity(), BottomNavigationView.OnNavigationItemSelected
             fragmentPurchaseList!!.clear()
         }
     }
+    var bill = Bill()
+    fun billQrCode() {
+        BillService().putBillQrCode(
+            callback = object : BaseCallback<Bill> {
+                override fun onLoading() {
+                    showProgressDialog()
+                }
 
+                override fun onError(throwable: Throwable) {
+                    throwable.printStackTrace()
+
+                    cancelProgressDialog()
+                }
+
+                override fun onSuccess(response: Bill) {
+                    bill = response
+
+                    showQrCodeDialog()
+
+                    cancelProgressDialog()
+                }
+
+            }
+        )
+    }
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean{
         when (menuItem.itemId){
             R.id.menu_main_bottomnavigationview_bill_item -> {

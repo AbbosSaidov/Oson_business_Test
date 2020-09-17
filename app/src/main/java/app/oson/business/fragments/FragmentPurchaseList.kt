@@ -2,6 +2,7 @@ package app.oson.business.fragments
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -153,9 +154,7 @@ class FragmentPurchaseList : Fragment(){
             val sumTextView = itemView.findViewById<TextView>(R.id.text_view_sum)
             val checkCodeTextView = itemView.findViewById<TextView>(R.id.text_view_check_code)
             val linearLayout = itemView.findViewById<LinearLayout>(R.id.linear_layout)
-
         }
-
     }
 
     fun dateFormat(string: String): String? {
@@ -170,25 +169,43 @@ class FragmentPurchaseList : Fragment(){
 
 
     fun dialogPurchaseHistory(purchase: Purchase){
-        val dialog = Dialog(activity)
+        val dialog = Dialog(activity,R.style.CustomAlertDialog)
         dialog.setContentView(R.layout.dialog_purchase_history)
 
         val nameTextView = dialog.findViewById<TextView>(R.id.text_view_name)
+        val viewSuccessButton = dialog.findViewById<TextView>(R.id.view_success_button)
+        val viewUnSuccessButton = dialog.findViewById<TextView>(R.id.view_unsuccess_button)
+        val viewNeutButton = dialog.findViewById<TextView>(R.id.view_neut_button)
         val timeTextView = dialog.findViewById<TextView>(R.id.text_view_time)
+        val timeDatetView = dialog.findViewById<TextView>(R.id.view_date)
+        val cardNumber = dialog.findViewById<TextView>(R.id.card_number)
         val sumTextView = dialog.findViewById<TextView>(R.id.text_view_sum)
         val checkCodeTextView = dialog.findViewById<TextView>(R.id.text_view_check_code)
         val okTextView = dialog.findViewById<TextView>(R.id.text_view_ok)
 
 
         var sum: String = (purchase.amount / 100).toString() + " сўм"
-        var check: String = "Чек " + purchase.receiptId.toString()
+        var check: String =  purchase.receiptId.toString()
         var number: String = "+" + purchase.phoneNumber
 
         var format = SimpleDateFormat("HH:mm")
         val date = format.parse(purchase.time.substring(11, 16))
 
         nameTextView.text = number
-        timeTextView.text = dateFormat(purchase.time) + "   " + format.format(date)
+        Log.i("statuss","as="+purchase.status)
+        if(purchase.status==1){
+            viewSuccessButton.visibility=View.VISIBLE
+        }else if(purchase.status==15){
+            viewUnSuccessButton.visibility=View.VISIBLE
+        }else{
+            viewNeutButton.visibility=View.VISIBLE
+
+        }
+
+
+        cardNumber.text = purchase.cardNumber
+        timeTextView.text = format.format(date)
+        timeDatetView.text = dateFormat(purchase.time)
         sumTextView.text = sum
         checkCodeTextView.text = check
         okTextView.setOnClickListener { view ->

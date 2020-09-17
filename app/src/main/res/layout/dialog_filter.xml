@@ -15,6 +15,7 @@
             android:padding="?dialogPreferredPadding">
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:id="@+id/dialogfragment_bill_history_filter_title_merchant_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,6 +39,7 @@
                 android:background="@drawable/drawable_shape_gradient_view_90_background"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:id="@+id/dialogfragment_bill_history_filter_title_uid_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,6 +91,7 @@
                 android:background="@drawable/drawable_shape_gradient_view_90_background"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:id="@+id/dialogfragment_bill_history_filter_title_from_date_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,6 +144,7 @@
                 android:background="@drawable/drawable_shape_gradient_view_90_background"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:id="@+id/dialogfragment_bill_history_filter_title_to_date_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,6 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp">
             <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                     android:id="@+id/text_view_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,6 +218,7 @@
             />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                     android:id="@+id/text_view_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

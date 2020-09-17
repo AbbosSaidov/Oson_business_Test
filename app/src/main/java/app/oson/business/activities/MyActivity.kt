@@ -126,7 +126,8 @@ abstract class MyActivity : AppCompatActivity(), View.OnClickListener {
             finish()
         }
         filterImageView.setOnClickListener(this)
-        //infoImageView.setOnClickListener(this)
+        exitImageView.setOnClickListener(this)
+        qrCodeImageView.setOnClickListener(this)
         clearImageView.setOnClickListener(this)
 
         setupActionBar()

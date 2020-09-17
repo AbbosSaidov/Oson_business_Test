@@ -143,25 +143,16 @@ class SettingsActivity : Fragment(),PurchaseItemAdapter.ItemClickListener{
 
     fun initViews(view: View?){
        // qrCodeView = findViewById(R.id.view_qr_code)
+        // logOutView = findViewById(R.id.view_log_out)
         changePasswordView = view!!.findViewById(R.id.view_change_password)
 
-        // logOutView = findViewById(R.id.view_log_out)
+
         languageView = view!!.findViewById(R.id.view_set_language)
         viewChangeBlockTime = view!!.findViewById(R.id.view_change_block_time)
         viewAskQuestion = view!!.findViewById(R.id.view_ask_question)
         notificationSwitch = view!!.findViewById(R.id.notSwitch)
         viewNotification = view!!.findViewById(R.id.view_notification)
         viewRateApp = view!!.findViewById(R.id.view_rate_app)
-    }
-    fun share(){
-        val sendIntent: Intent = Intent().apply{
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, "https://app.oson.uzcom.oson")
-            type = "text/plain"
-        }
-
-        val shareIntent = Intent.createChooser(sendIntent, null)
-        startActivity(shareIntent)
     }
     fun rateApp(){
         val uri = Uri.parse("https://play.google.com/store/apps/details?id=com.oson.business&hl=ru")

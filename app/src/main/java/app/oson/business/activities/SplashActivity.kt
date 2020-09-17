@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.View
 import app.oson.business.R
 import app.oson.business.activities.login.LoginActivity
+import moxy.MvpAppCompatActivity
 import java.util.*
 
 class SplashActivity : MyActivity(){

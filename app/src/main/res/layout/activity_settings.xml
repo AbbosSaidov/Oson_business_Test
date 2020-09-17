@@ -19,6 +19,7 @@
             android:orientation="vertical"
             android:paddingTop="5dp">
             <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:text="@string/setting_security_title"
@@ -111,6 +112,7 @@
 
             </RelativeLayout>
             <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:text="@string/fragment_main_preference_category_account_settings_title"
@@ -191,9 +193,9 @@
                     android:orientation="horizontal"
                     >
                     <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/lato"
                         android:gravity="center_vertical"
                         android:textColor="@color/colorBlack"
                         android:singleLine="true"
@@ -219,6 +221,7 @@
                     android:focusable="true" />
             </RelativeLayout>
             <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:text="@string/about_app_title"
@@ -255,9 +258,9 @@
                     >
 
                     <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
                         android:textColor="@color/colorBlack"
                         android:singleLine="true"
                         android:text="@string/ask_question"
@@ -302,9 +305,9 @@
                     >
 
                     <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
                         android:textColor="@color/colorBlack"
                         android:singleLine="true"
                         android:text="@string/rate_app"

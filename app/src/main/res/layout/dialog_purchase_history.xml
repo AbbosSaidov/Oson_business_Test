@@ -1,54 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:layout_width="320dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:paddingTop="?dialogPreferredPadding"
-        android:paddingBottom="?dialogPreferredPadding">
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:paddingLeft="?dialogPreferredPadding"
-            android:paddingRight="?dialogPreferredPadding"
-            android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="14sp"
-                android:textColor="@color/black_60"/>
-
-
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_sum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="?dialogPreferredPadding"
-            android:paddingRight="?dialogPreferredPadding"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:textStyle="bold"
-            android:textSize="26sp"
-            android:textColor="@color/colorPrimary"/>
-
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/drawable_shape_gradient_view_90_background"/>
-
-    <RelativeLayout
+        android:orientation="vertical"
+        android:background="@drawable/rounded_dialog2"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -56,39 +16,270 @@
             android:paddingRight="?dialogPreferredPadding"
             android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_check_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="14sp"
-                android:textColor="@color/colorBlack"/>
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_name"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:textStyle="bold"
+                android:id="@+id/text_view_sum"
+                android:text="30 000 сум"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:textColor="@color/black_60"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:text="Статус:"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:backgroundTint="@color/green"
+                android:id="@+id/view_success_button"
+                android:text="Успешно"
+                style="@style/Ui.Button.History"
+                android:layout_width="wrap_content"
+                android:textAllCaps="false"
+                android:layout_height="25sp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:backgroundTint="@color/colorAccent"
+                android:id="@+id/view_neut_button"
+                android:text="not ok"
+                style="@style/Ui.Button.History"
+                android:layout_width="wrap_content"
+                android:textAllCaps="false"
+                android:layout_height="25sp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:backgroundTint="@color/colorAccent"
+                android:id="@+id/view_unsuccess_button"
+                android:text="Не Успешно"
+                style="@style/Ui.Button.History"
+                android:layout_width="wrap_content"
+                android:textAllCaps="false"
+                android:layout_height="25sp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:text="Дата:"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/view_date"
+                android:text="09 сентабря 2020"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorBlack"
                 android:textSize="14sp"
                 tools:ignore="RelativeOverlap" />
 
-    </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
 
-    <RelativeLayout
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:text="Время:"
+                android:textAllCaps="true"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_time"
+                android:text="15:28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:text="Чек №:"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_check_code"
+                android:text="10434093"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:text="Карта"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/card_number"
+                android:text="860014****7234"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:text="Номер тел:"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_name"
+                android:text="989023942"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="?dialogPreferredPadding"
             android:paddingRight="?dialogPreferredPadding">
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
                 android:id="@+id/text_view_ok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,10 +294,90 @@
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"
                 tools:ignore="RelativeOverlap"
-        />
+                />
 
-    </RelativeLayout>
+        </RelativeLayout>
+      <!--  <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
 
 
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_check_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="?dialogPreferredPadding"
+            android:paddingRight="?dialogPreferredPadding">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/lato"
+                android:id="@+id/text_view_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:padding="5dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorAccent"
+                android:layout_alignParentRight="true"
+                android:textSize="16sp"
+                android:text="OK"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                tools:ignore="RelativeOverlap"
+                />
+
+        </RelativeLayout>-->
+    </LinearLayout>
+
